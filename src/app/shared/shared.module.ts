@@ -5,6 +5,7 @@ import {HeaderComponent} from "./components/header/header.component";
 import {ItemsNumberComponent} from "./components/items-number/items-number.component";
 import {RouterModule} from "@angular/router";
 import { ProductImagesComponent } from './components/product-images/product-images.component';
+import { ProductItemComponent } from './components/product-item/product-item.component';
 
 
 
@@ -13,7 +14,8 @@ import { ProductImagesComponent } from './components/product-images/product-imag
     FooterComponent,
     HeaderComponent,
     ItemsNumberComponent,
-    ProductImagesComponent
+    ProductImagesComponent,
+    ProductItemComponent
   ],
   imports: [
     CommonModule,
@@ -23,7 +25,8 @@ import { ProductImagesComponent } from './components/product-images/product-imag
         FooterComponent,
         HeaderComponent,
         ItemsNumberComponent,
-        ProductImagesComponent
+        ProductImagesComponent,
+        ProductItemComponent
     ]
 })
 export class SharedModule { }

@@ -1,0 +1,80 @@
+.product{
+    position: relative;
+    /*width: 250px;*/
+}
+
+
+.absolut {
+    position: absolute;
+    top: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 90%;
+    left: 5%;
+}
+
+
+.discount{
+    padding: 3px 14px;
+    border-radius: 5px;
+    background-color: #38CB89;
+    font-size: 14px;
+    color: #F3F5F7;
+    font-weight: 600;
+}
+
+
+
+.wishlist-button{
+    background-color: white;
+    display: flex;
+    border-radius: 50%;
+    padding: 6px;
+    justify-content: center;
+    align-items: center;
+}
+
+.wishlist-button img{
+    width: 16px;
+    height: 16px;
+}
+
+
+.hero-img{
+    width: 100%;
+    height: auto;
+}
+
+.hero-img img{
+    width: 100%;
+    height: auto;
+}
+
+.name{
+    font-size: 16px;
+    font-weight: 600;
+}
+
+
+
+.price{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    margin-bottom: 16px;
+}
+
+.current-price{
+    font-size: 14px;
+    font-weight: 500;
+    color: #121212;
+    margin-right: 10px;
+}
+
+.previous-price{
+    font-size: 14px;
+    font-weight: 500;
+    color: #6C7275;
+    text-decoration: line-through;
+}
