@@ -1,38 +1,47 @@
 import { NgModule } from '@angular/core';
-import {RouterModule, Routes} from "@angular/router";
+import { RouterModule, Routes } from '@angular/router';
 
-const appRoutes : Routes = [
+const appRoutes: Routes = [
   {
-    path : "", redirectTo : "/home" , pathMatch : "full"
+    path: '',
+    redirectTo: '/home',
+    pathMatch: 'full',
   },
   {
-    path : "home" , loadChildren : ()=> import("./home/home.module").then(m=>m.HomeModule)
+    path: 'home',
+    loadChildren: () => import('./home/home.module').then((m) => m.HomeModule),
   },
   {
-    path : "auth" , loadChildren : ()=> import("./auth/auth.module").then(m=>m.AuthModule)
+    path: 'auth',
+    loadChildren: () => import('./auth/auth.module').then((m) => m.AuthModule),
   },
   {
-    path : "shop" , loadChildren : ()=> import("./shop/shop.module").then(m=>m.ShopModule)
+    path: 'shop',
+    loadChildren: () => import('./shop/shop.module').then((m) => m.ShopModule),
   },
   {
-    path : "discount" , loadChildren : ()=> import("./discount/discount.module").then(m=>m.DiscountModule)
+    path: 'discount',
+    loadChildren: () =>
+      import('./discount/discount.module').then((m) => m.DiscountModule),
   },
   {
-    path : "contact" , loadChildren : ()=> import("./contact/contact.module").then(m=>m.ContactModule)
+    path: 'contact',
+    loadChildren: () =>
+      import('./contact/contact.module').then((m) => m.ContactModule),
   },
   {
-    path : "cart" , loadChildren : ()=> import("./cart/cart.module").then(m=>m.CartModule)
+    path: 'cart',
+    loadChildren: () => import('./cart/cart.module').then((m) => m.CartModule),
   },
   {
-    path : "account" , loadChildren : ()=> import("./account/account.module").then(m=>m.AccountModule)
+    path: 'account',
+    loadChildren: () =>
+      import('./account/account.module').then((m) => m.AccountModule),
   },
-]
-
+];
 
 @NgModule({
-  imports: [
-      RouterModule.forRoot(appRoutes)
-  ],
-  exports : [RouterModule]
+  imports: [RouterModule.forRoot(appRoutes)],
+  exports: [RouterModule],
 })
-export class RoutingModule { }
+export class RoutingModule {}

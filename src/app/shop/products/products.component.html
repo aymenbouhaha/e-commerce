@@ -1,0 +1,80 @@
+<!-- app.component.html -->
+<div class="top">
+    <div>
+        <div>
+            <p class="routage">
+                <a [routerLink]="['/home']" style="cursor: pointer; color: black ; "> Home</a> > Shop
+            </p>
+        </div>
+        <div class="title">
+            <p>
+                Shop
+            </p>
+        </div>
+        <div class="description">
+            <p>Let’s design the place you always imagined.</p>
+        </div>
+    </div>
+
+</div>
+<div class="split-container">
+    <!-- Left Side -->
+    <div class="left-side">
+        <div class="filter-container">
+            <img src="../../../assets/filter.svg" style="width: 1.5rem; height: 1.5rem ; flex-shrink: 0;">
+            <div class="filter-text">
+                Filter
+            </div>
+        </div>
+        <div class="filter-text" style="padding: 1rem;">
+            Categories
+            <div class="list">
+                <a [routerLink]="['/#']" style="cursor: pointer; color: black ;    text-decoration: none;">All</a>
+                <a [routerLink]="['/#']" style="cursor: pointer; color: black ;    text-decoration: none;">Living
+                    Room</a>
+                <a [routerLink]="['/#']" style="cursor: pointer; color: black ;    text-decoration: none; ">Bedroom</a>
+                <a [routerLink]="['/#']" style="cursor: pointer; color: black ;    text-decoration: none;">Kitchen</a>
+                <a [routerLink]="['/#']" style="cursor: pointer; color: black ;    text-decoration: none;">Bathroom</a>
+                <a [routerLink]="['/#']" style="cursor: pointer; color: black ;    text-decoration: none;">Dinning</a>
+                <a [routerLink]="['/#']" style="cursor: pointer; color: black ;    text-decoration: none;">Outdoor</a>
+            </div>
+
+        </div>
+        <div class="filter-text" class="" style="padding: 1rem;">
+            Price
+            <div class="list">
+                <div class="check-container" style="width: 100%;">
+                    <a [routerLink]="['/#']"
+                        style="cursor: pointer; color: black ;    text-decoration: none;  ">All</a><input
+                        type="checkbox">
+                </div>
+                <div class="check-container">
+                    <a [routerLink]="['/#']" style="cursor: pointer; color: black ;    text-decoration: none;">$0.00 -
+                        99.99</a><input type="checkbox">
+                </div>
+                <div class="check-container">
+                    <a [routerLink]="['/#']" style="cursor: pointer; color: black ;    text-decoration: none;">$100.00 -
+                        199.99</a><input type="checkbox">
+                </div>
+                <div class="check-container">
+                    <a [routerLink]="['/#']" style="cursor: pointer; color: black ;    text-decoration: none;">$200.00 -
+                        299.99</a><input type="checkbox">
+                </div>
+                <div class="check-container">
+                    <a [routerLink]="['/#']" style="cursor: pointer; color: black ;    text-decoration: none;">$300.00 -
+                        399.99</a><input type="checkbox">
+                </div>
+                <div class="check-container">
+                    <a [routerLink]="['/#']" style="cursor: pointer; color: black ;    text-decoration: none;">$400.00
+                        +</a><input type="checkbox">
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <!-- Right Side -->
+    <div class="right-side">
+        <h1>content</h1>
+    </div>
+</div>
