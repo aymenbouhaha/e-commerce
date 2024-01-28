@@ -55,17 +55,13 @@
 
 .right-side {
   flex: 1;
+  /* Grow to take up remaining space */
+  display: flex;
+  flex-direction: column;
+  /* Use Flexbox */
 }
 
-.filer-text {
-  color: var(--Black-900, #121212);
-  font-feature-settings: 'clig' off, 'liga' off;
-  font-family: Inter;
-  font-size: 1.25rem;
-  font-style: normal;
-  font-weight: 600;
-  line-height: 2rem;
-}
+
 
 .filter-container {
   display: flex;
@@ -100,4 +96,24 @@
   justify-content: space-between;
   gap: 0.5rem;
   width: 100%;
+}
+
+.seemore {
+  width: 100%;
+  display: flex;
+  padding: 5rem 2.5rem;
+  justify-content: center;
+  align-items: center;
+}
+.seemore > button {
+  border-radius: 5rem;
+  border: 1px solid  #141718;
+  width: 10rem;
+  height: 2rem;
+  cursor: pointer;
+
+}
+.seemore > button:hover {
+  background-color: #141718;
+  color: #ffffff;
 }

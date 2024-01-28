@@ -7,6 +7,10 @@ import { RouterModule } from '@angular/router';
 import { ProductImagesComponent } from './components/product-images/product-images.component';
 import { ProductItemComponent } from './components/product-item/product-item.component';
 import { MatDividerModule } from '@angular/material/divider';
+import { MatIconModule } from '@angular/material/icon';
+import { MatCardModule } from '@angular/material/card';
+import { ItemComponent } from './components/item/item.component';
+import { MatGridListModule } from '@angular/material/grid-list';
 
 @NgModule({
   declarations: [
@@ -15,6 +19,7 @@ import { MatDividerModule } from '@angular/material/divider';
     ItemsNumberComponent,
     ProductImagesComponent,
     ProductItemComponent,
+    ItemComponent,
   ],
   imports: [CommonModule, RouterModule],
   exports: [
@@ -24,6 +29,10 @@ import { MatDividerModule } from '@angular/material/divider';
     ProductImagesComponent,
     ProductItemComponent,
     MatDividerModule,
+    MatIconModule,
+    MatCardModule,
+    ItemComponent,
+    MatGridListModule,
   ],
 })
 export class SharedModule {}

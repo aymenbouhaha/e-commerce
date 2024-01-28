@@ -75,6 +75,32 @@
     </div>
     <!-- Right Side -->
     <div class="right-side">
-        <h1>content</h1>
+        <div style="display: flex; justify-content: space-between;">
+            <h1>
+                Products
+            </h1>
+            <div class="filter-container" style="margin-right: 8rem;">
+                <h5>
+                    sort by <mat-icon aria-hidden="false" fontIcon="arrow_drop_down"></mat-icon>
+                </h5>
+                <mat-icon aria-hidden="false" fontIcon="grid_on"></mat-icon>
+                <mat-icon aria-hidden="false" fontIcon="list"></mat-icon>
+                <mat-icon aria-hidden="false" fontIcon="view_module"></mat-icon>
+            </div>
+        </div>
+        <mat-grid-list cols="3" style="gap: 1rem;">
+            <mat-grid-tile><app-item></app-item></mat-grid-tile>
+            <mat-grid-tile><app-item></app-item></mat-grid-tile>
+            <mat-grid-tile><app-item></app-item></mat-grid-tile>
+            <mat-grid-tile><app-item></app-item></mat-grid-tile>
+            <mat-grid-tile><app-item></app-item></mat-grid-tile>
+            <mat-grid-tile><app-item></app-item></mat-grid-tile>
+
+
+        </mat-grid-list>
+        
+        <div class="seemore">
+            <button>See more</button>
+        </div>
     </div>
 </div>
