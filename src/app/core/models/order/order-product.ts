@@ -1,6 +1,6 @@
 import { Product } from '../product/product';
 export class OrderProduct {
-  id?: number;
+  id?: string;
   product?: Product;
   itemsNumber?: number;
 }

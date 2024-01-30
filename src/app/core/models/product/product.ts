@@ -3,7 +3,7 @@ import { Discount } from '../discount';
 import { Image } from './image';
 
 export class Product {
-  id?: number;
+  id?: string;
   name?: string;
   price?: number;
   itemsNumber?: number;

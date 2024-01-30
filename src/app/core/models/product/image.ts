@@ -1,5 +1,5 @@
 export class Image {
-  id?: number;
+  id?: string;
   name?: string;
   type?: string;
   data?: { type: string; data: Buffer };

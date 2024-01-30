@@ -2,13 +2,13 @@ import { BasketProduct } from './basket-product';
 import { ProductInterface } from '../interfaces/product.interface';
 
 export class Basket {
-  id?: number;
+  id?: string;
 
   basketProduct?: BasketProduct[];
 }
 
 export interface BasketProductInterface {
-  id: number;
+  id: string;
 
   product: ProductInterface;
 
@@ -16,7 +16,7 @@ export interface BasketProductInterface {
 }
 
 export interface BasketInterface {
-  id: number;
+  id: string;
 
   basketProduct: BasketProductInterface[];
 }

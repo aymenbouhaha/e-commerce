@@ -1,7 +1,7 @@
 import { Product } from '../product/product';
 
 export class BasketProduct {
-  id!: number;
+  id?: string;
 
   product?: Product;
 
