@@ -1,30 +1,19 @@
-import {User} from "../user";
-import {OrderProduct} from "./order-product";
-import {BasketProductInterface} from "../basket/basket";
+import { User } from '../user';
+import { OrderProduct } from './order-product';
+import { BasketProductInterface } from '../basket/basket';
 
 export class Order {
-  id: number;
-
-  status: string;
-
-  date: Date;
-
+  id?: string;
+  status?: string;
+  date?: Date;
   client?: User;
-
-  orderProducts: OrderProduct[];
+  orderProducts?: OrderProduct[];
 }
 
-
-
 export interface OrderInterface {
-
-  id: number
-
-  status : string
-
-  date : Date
-
-  client? :User
-
-  orderProducts : BasketProductInterface[]
+  id: string;
+  status: string;
+  date: Date;
+  client?: User;
+  orderProducts: BasketProductInterface[];
 }
