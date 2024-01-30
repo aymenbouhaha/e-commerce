@@ -1,10 +1,9 @@
-import {Product} from "../product/product";
-
+import { Product } from '../product/product';
 
 export class BasketProduct {
-  id: number;
+  id!: number;
 
-  product: Product;
+  product?: Product;
 
-  itemsNumber: number;
+  itemsNumber?: number;
 }

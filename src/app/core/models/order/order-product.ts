@@ -1,10 +1,6 @@
-import {Order} from "./order";
-import {Product} from "../product/product";
-
+import { Product } from '../product/product';
 export class OrderProduct {
-  id: number;
-
-  product: Product;
-
-  itemsNumber: number;
+  id?: number;
+  product?: Product;
+  itemsNumber?: number;
 }

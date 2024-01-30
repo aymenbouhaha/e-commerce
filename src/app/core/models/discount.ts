@@ -1,29 +1,26 @@
-import {Product} from "./product/product";
-import {ProductInterface} from "./interfaces/product.interface";
+import { Product } from './product/product';
+import { ProductInterface } from './interfaces/product.interface';
 
 export class Discount {
+  id?: number;
 
-  id : number
+  startDate?: Date;
 
-  startDate : Date
+  endDate?: Date;
 
-  endDate : Date
+  value?: number;
 
-  value : number
-
-  product? : Product
+  product?: Product;
 }
 
-export interface DiscountInterface{
+export interface DiscountInterface {
+  id: number;
 
-  id : number
+  startDate: Date;
 
-  startDate : Date
+  endDate: Date;
 
-  endDate : Date
+  value: number;
 
-  value : number
-
-  product : ProductInterface
-
+  product: ProductInterface;
 }
