@@ -11,6 +11,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatCardModule } from '@angular/material/card';
 import { ItemComponent } from './components/item/item.component';
 import { MatGridListModule } from '@angular/material/grid-list';
+import { ServicesComponent } from './components/services/services.component';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { MatGridListModule } from '@angular/material/grid-list';
     ProductImagesComponent,
     ProductItemComponent,
     ItemComponent,
+    ServicesComponent,
   ],
   imports: [CommonModule, RouterModule],
   exports: [
@@ -33,6 +35,7 @@ import { MatGridListModule } from '@angular/material/grid-list';
     MatCardModule,
     ItemComponent,
     MatGridListModule,
+    ServicesComponent,
   ],
 })
 export class SharedModule {}
