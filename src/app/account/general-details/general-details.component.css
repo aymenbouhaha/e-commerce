@@ -82,7 +82,7 @@
   display: inline-block;
   padding-left: 150px;
   font-weight: 600;
-  width: 500px;
+  width: 60%;
 }
 .form p {
   font-weight: 600;
@@ -100,13 +100,19 @@
 
 
 
-
 .circular-input {
   font-weight: 500;
   color: #6C7275;
   border-radius: 50px; /* Use a value half of the element's height to make it circular */
   box-sizing: border-box;
   padding: 10px; /* Optional: Add padding for better visual appearance */
+}
+
+input{
+  width: 100%;
+  border-radius: 8px;
+  padding: 10px;
+  border: 1px solid gray;
 }
 
 
