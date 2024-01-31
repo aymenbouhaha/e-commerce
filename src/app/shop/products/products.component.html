@@ -1,103 +1,80 @@
-<!-- app.component.html -->
-<div class="top">
-    <div>
-        <div>
-            <p class="routage">
-                <a [routerLink]="['/home']" style="cursor: pointer; color: black ; "> Home</a> > Shop
-            </p>
-        </div>
-        <div class="title">
-            <p>
-                Shop
-            </p>
-        </div>
-        <div class="description">
-            <p>Let’s design the place you always imagined.</p>
-        </div>
+<div class="container">
+  <div class="top">
+    <img src="assets/background.svg" class="top-img">
+    <div class="image-overlay">
+      <div class="title">
+        Shop
+      </div>
+      <div class="description">
+        Let’s design the place you always imagined.
+      </div>
     </div>
-
-</div>
-<div class="split-container">
-    <!-- Left Side -->
+  </div>
+  <div class="split-container">
     <div class="left-side">
-        <div class="filter-container">
-            <img src="../../../assets/filter.svg" style="width: 1.5rem; height: 1.5rem ; flex-shrink: 0;">
-            <div class="filter-text">
-                Filter
-            </div>
+      <div class="ftl">
+        <img src="assets/filter.svg" style="width: 40px;height: 40px">
+        <div style="font-size: 20px;font-weight: bold">Filter</div>
+      </div>
+      <div class="categories">
+        <div class="filter-title">
+          CATEGORIES
         </div>
-        <div class="filter-text" style="padding: 1rem;">
-            Categories
-            <div class="list">
-                <a [routerLink]="['/#']" style="cursor: pointer; color: black ;    text-decoration: none;">All</a>
-                <a [routerLink]="['/#']" style="cursor: pointer; color: black ;    text-decoration: none;">Living
-                    Room</a>
-                <a [routerLink]="['/#']" style="cursor: pointer; color: black ;    text-decoration: none; ">Bedroom</a>
-                <a [routerLink]="['/#']" style="cursor: pointer; color: black ;    text-decoration: none;">Kitchen</a>
-                <a [routerLink]="['/#']" style="cursor: pointer; color: black ;    text-decoration: none;">Bathroom</a>
-                <a [routerLink]="['/#']" style="cursor: pointer; color: black ;    text-decoration: none;">Dinning</a>
-                <a [routerLink]="['/#']" style="cursor: pointer; color: black ;    text-decoration: none;">Outdoor</a>
-            </div>
-
+        <div class="category">All Rooms</div>
+        <div class="category">Living Room</div>
+        <div class="category">Bedroom</div>
+        <div class="category">Kitchen</div>
+        <div class="category">Bathroom</div>
+        <div class="category">Dinning</div>
+        <div class="category">Outdoor</div>
+      </div>
+      <div class="prices">
+        <div class="filter-title">
+          PRICE
         </div>
-        <div class="filter-text" class="" style="padding: 1rem;">
-            Price
-            <div class="list">
-                <div class="check-container" style="width: 100%;">
-                    <a [routerLink]="['/#']"
-                        style="cursor: pointer; color: black ;    text-decoration: none;  ">All</a><input
-                        type="checkbox">
-                </div>
-                <div class="check-container">
-                    <a [routerLink]="['/#']" style="cursor: pointer; color: black ;    text-decoration: none;">$0.00 -
-                        99.99</a><input type="checkbox">
-                </div>
-                <div class="check-container">
-                    <a [routerLink]="['/#']" style="cursor: pointer; color: black ;    text-decoration: none;">$100.00 -
-                        199.99</a><input type="checkbox">
-                </div>
-                <div class="check-container">
-                    <a [routerLink]="['/#']" style="cursor: pointer; color: black ;    text-decoration: none;">$200.00 -
-                        299.99</a><input type="checkbox">
-                </div>
-                <div class="check-container">
-                    <a [routerLink]="['/#']" style="cursor: pointer; color: black ;    text-decoration: none;">$300.00 -
-                        399.99</a><input type="checkbox">
-                </div>
-                <div class="check-container">
-                    <a [routerLink]="['/#']" style="cursor: pointer; color: black ;    text-decoration: none;">$400.00
-                        +</a><input type="checkbox">
-
-                </div>
-
-            </div>
+        <div class="price">
+          <div class="cat">All Prices</div>
+          <input type="checkbox" name="" id="99">
         </div>
+        <div class="price">
+          <div class="cat">$0.00-99.99</div>
+          <input type="checkbox" name="" id="199">
+        </div>
+        <div class="price">
+          <div class="cat">$100.00-199.99</div>
+          <input type="checkbox" name="" id="299">
+        </div>
+        <div class="price">
+          <div class="cat">$200.00-299.99</div>
+          <input type="checkbox" name="" id="399">
+        </div>
+        <div class="price">
+          <div class="cat">$300.00-399.99</div>
+          <input type="checkbox" name="" id="+400">
+        </div>
+      </div>
     </div>
-    <!-- Right Side -->
     <div class="right-side">
-        <div style="display: flex; justify-content: space-between;">
-            <h1>
-                Products
-            </h1>
-            <div class="filter-container" style="margin-right: 8rem;">
-                <h5>
-                    sort by <mat-icon aria-hidden="false" fontIcon="arrow_drop_down"></mat-icon>
-                </h5>
-                <mat-icon aria-hidden="false" fontIcon="grid_on"></mat-icon>
-                <mat-icon aria-hidden="false" fontIcon="list"></mat-icon>
-                <mat-icon aria-hidden="false" fontIcon="view_module"></mat-icon>
-            </div>
+      <div class="sorter">
+        <h2>
+          Products
+        </h2>
+        <div class="filter-container" >
+          <h5 >
+            sort by <mat-icon aria-hidden="false" fontIcon="arrow_drop_down"></mat-icon>
+          </h5>
         </div>
-        <mat-grid-list cols="3" style="gap: 1rem;">
-            <mat-grid-tile><app-item></app-item></mat-grid-tile>
-            <mat-grid-tile><app-item></app-item></mat-grid-tile>
-            <mat-grid-tile><app-item></app-item></mat-grid-tile>
-            
-
-        </mat-grid-list>
-        
-        <div class="seemore">
-            <button>See more</button>
-        </div>
+      </div>
+      <div class="grid">
+        <app-product-item></app-product-item>
+        <app-product-item></app-product-item>
+        <app-product-item></app-product-item>
+        <app-product-item></app-product-item>
+        <app-product-item></app-product-item>
+      </div>
+      <div class="seemore">
+        <button>See more</button>
+      </div>
     </div>
+  </div>
 </div>
