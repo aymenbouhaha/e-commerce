@@ -11,7 +11,8 @@ import { UserInterface } from '../models/interfaces/user.interface';
 })
 export class UserService {
   user: BehaviorSubject<User> = new BehaviorSubject<User>(new User(''));
-
+  User1: User =new User("1","firas","saada","bizerta","hey@jj","20202020","student",true)
+  password : string = "fer12"
   isAdmin: boolean = false;
 
   isAuthenticated?: boolean;
@@ -19,11 +20,11 @@ export class UserService {
   isVerified?: boolean;
 
   constructor(
-    private http: HttpClient,
+  //  private http: HttpClient,
     private router: Router,
     private basketService: BasketService
   ) {}
-
+/*
   login(email: string, password: string) {
     return this.http
       .post<UserInterface>('http://localhost:3000/user/login', {
@@ -93,5 +94,11 @@ export class UserService {
     localStorage.removeItem('user');
     this.user.next(new User(''));
     this.router.navigateByUrl('/user/login');
+  }
+
+  */
+  updateUser(updatedUser : User ) {
+    this.User1=updatedUser
+    //post_to_backend
   }
 }

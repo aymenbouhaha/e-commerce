@@ -6,6 +6,7 @@ import { WishlistComponent } from './wishlist/wishlist.component';
 import { AccountComponent } from './account.component';
 import {AccountRoutingModule} from "./account-routing.module";
 import {RouterModule} from "@angular/router";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 
 
 
@@ -18,8 +19,10 @@ import {RouterModule} from "@angular/router";
   ],
   imports: [
     CommonModule,
-      AccountRoutingModule,
-      RouterModule
+    AccountRoutingModule,
+    ReactiveFormsModule,
+    RouterModule,
+    FormsModule
   ]
 })
 export class AccountModule { }

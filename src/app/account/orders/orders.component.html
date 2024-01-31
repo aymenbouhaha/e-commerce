@@ -1,1 +1,55 @@
-<p>orders works!</p>
+<!-- app.component.html -->
+<div class="title">
+  <p>
+    My Account
+  </p>
+</div>
+<div class="content">
+  <div class="left-navigation">
+    <div class="images-container" >
+      <div class="center-container" >
+        <div class="profile-picture-container">
+          <img src="/assets/instagram.svg" alt="Profile Picture" class="profile-picture">
+        </div>
+      </div>
+      <div class="photo-icon-container" >
+        <img src="assets/heart_white.svg" class="photo-icon">
+      </div>
+    </div>
+    <p> Firas Saada</p>
+    <ul>
+
+      <li class="line"><a href="#" style="cursor: pointer; color: black ; ">Account</a></li>
+      <li><a href="#">Address</a></li>
+      <li><a href="#">Orders</a></li>
+      <li><a href="#">Wishlist</a></li>
+      <li><a href="#">Log Out</a></li>
+
+      <!-- Add more list items as needed -->
+    </ul>
+  </div>
+  <div class="Orders">
+    <p>Orders History</p>
+    <table>
+      <thead>
+      <tr >
+        <th>Number ID</th>
+        <th>Dates</th>
+        <th>Status</th>
+        <th>Price</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let order of orders" >
+        <td> {{order.id}} </td>
+        <td> {{order.date |  date:'yyyy-MM-dd'}} </td>
+        <td> {{order.status}} </td>
+        <td> {{order.id}} </td>
+
+      </tr><!-- Add more rows as needed -->
+      </tbody>
+    </table>
+  </div>
+
+
+</div>

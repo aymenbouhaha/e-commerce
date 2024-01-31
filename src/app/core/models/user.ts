@@ -10,7 +10,7 @@ export class User {
 
   constructor(
     id: string,
-    firstName?: string,
+    firstName?: string ,
     lastName?: string,
     address?: string,
     email?: string,

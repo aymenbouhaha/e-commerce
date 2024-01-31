@@ -1,5 +1,5 @@
 <!-- app.component.html -->
-<div class="title">
+<div class="title" xmlns="http://www.w3.org/1999/html">
     <p>
       My Account
     </p>
@@ -33,39 +33,41 @@
     <div class="circular-input">
     <label >FIRST NAME *</label>
     <br>
-    <input type="text"  name="myInput" placeholder="First name">
+    <input type="text"  [(ngModel)]="user.firstName" name="myInput" placeholder={{user.firstName}}>
   </div>
     <div class="circular-input">
     <label >LAST NAME *</label>
     <br>
-    <input type="text"  name="myInput" placeholder="Last name">
+    <input type="text"  [(ngModel)]="user.lastName" name="myInput" >
   </div>
     <div class="circular-input">
     <label >DISPLAY NAME *</label>
     <br>
-    <input type="text"  name="myInput" placeholder="Display name">
+    <input type="text"  [(ngModel)]="displayName"name="myInput" placeholder="Display name">
   </div>
     <div class="circular-input">
     <label >EMAIL *</label>
     <br>
-    <input type="text"  name="myInput" placeholder="Email">
+    <input type="text" [(ngModel)]="user.email"  name="myInput" placeholder={{user.email}}>
   </div>
+    <form [formGroup]="userForm">
     <p>Password</p>
     <div class="circular-input">
     <label >OLD PASSWORD</label>
     <br>
-    <input type="text"  name="myInput" placeholder="Old password">
+    <input type="text"  name="myInput" formControlName="oldPassword" placeholder="Old password">
 </div>
     <div class="circular-input">
     <label >NEW PASSWORD</label>
     <br>
-    <input type="text"  name="myInput" placeholder="New password">
+    <input type="text"  name="myInput" formControlName="newPassword">
   </div>
     <div class="circular-input">
-    <label >REPEAT NEW PASSWORD</label>
+    <label >REPEAT NEW PASSWORD  </label>
     <br>
-    <input type="text"  name="myInput" placeholder="Repeat new password">
+    <input type="text"     name="myInput" formControlName="repeatNewPassword">
   </div>
-    <button class="save-button">Save Changes</button>
+    <button type="button" (click)="onSaveChnages()" class="save-button">Save Changes</button>
+    </form>
 </div>
 </div>

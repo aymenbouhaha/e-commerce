@@ -1,0 +1,117 @@
+
+
+.title {
+  font-size: 3rem;
+  font-weight: 700;
+  color: #000000;
+  text-align: center;
+  margin-top: 2%;
+  margin-bottom: 2%;
+}
+.content {
+  margin-top:    2%;
+  margin-left:   10%;
+  margin-bottom: 2%;
+  margin-right:  10%;
+  white-space:   nowrap;
+}
+.left-navigation {
+  vertical-align: top;
+  display: inline-block;
+  width: 25%; /* Set the width of the left navigation */
+  height: 125%; /* Adjust the height as needed */
+  background-color: #F3F5F7; /* Set background color to a dark color */
+  box-sizing: border-box; /* Include padding and border in the total width */
+}
+.left-navigation ul {
+  list-style-type: none; /* Remove default list styling */
+  padding: 0;
+  margin: 0;
+}
+.left-navigation li {
+  padding: 10px; /* Adjust padding for each list item */
+  margin-left: 5%;
+}
+.left-navigation a {
+  padding-left: 5px;
+  color: #6C7275;
+  font-weight: 600;
+  text-decoration: none; /* Remove underlines from links */
+  display: block; /* Make the entire list item clickable */
+}
+.left-navigation p {
+  font-weight: 600;
+  text-align: center;
+}
+.line{
+  position: relative;
+  border-bottom: 1px solid #000;
+  margin: 5%;
+}
+.images-container{
+  white-space:   nowrap;
+}
+.center-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.profile-picture-container {
+  padding-top: 20px;
+  width: 80px; /* Set the container width */
+  height: 80px; /* Set the container height */
+  overflow: hidden;
+  border-radius: 100%; /* Make the container circular */
+}
+.profile-picture {
+  display: inline-block;
+  vertical-align: bottom;
+  width: 100%; /* Make the image fill the container */
+  height: auto; /* Maintain the aspect ratio */
+  display: block; /* Remove extra space below inline-block elements */
+}
+.photo-icon-container {
+  padding-left: 55% ;
+  color: black; /* Set the color of the icon */
+  font-size: 16px; /* Set the font size of the icon */
+
+}
+
+.Orders {
+  vertical-align: top;
+  display: inline-block;
+  padding-left: 150px;
+  width: 900px;
+}
+.Orders p {
+  font-weight: 600;
+  padding: 10px;
+}
+
+
+.circular-input {
+  font-weight: 500;
+  color: #6C7275;
+  border-radius: 50px; /* Use a value half of the element's height to make it circular */
+  box-sizing: border-box;
+  padding: 10px; /* Optional: Add padding for better visual appearance */
+}
+
+/* Optional CSS styles for better appearance */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+thead {
+  color: #6C7275;
+  font-weight: 400;
+}
+
+tr {
+  border-bottom: 1px solid #ddd;
+  height: 70px;
+  text-align: left;
+}
+
+
