@@ -60,7 +60,7 @@
           Products
         </h2>
       </div>
-      <app-products></app-products>
+      <app-products [products]="(products$ | async)!"></app-products>
       <div class="seemore">
         <button>See more</button>
       </div>
