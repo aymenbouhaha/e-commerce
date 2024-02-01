@@ -10,7 +10,7 @@ export interface ProductState {
 
   error : string | null
 
-  loading? : boolean
+  loading : boolean
 
 }
 

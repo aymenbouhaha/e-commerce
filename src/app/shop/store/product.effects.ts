@@ -2,7 +2,7 @@ import {Injectable} from "@angular/core";
 import {ProductRepositoryService} from "../../core/repositories/product-repository.service";
 import {Actions, createEffect, ofType} from "@ngrx/effects";
 import * as ProductActions from "./product.actions"
-import {catchError, map, of, switchMap} from "rxjs";
+import {catchError, map, of, switchMap, tap} from "rxjs";
 import {fetchedProducts} from "./product.actions";
 
 
@@ -49,6 +49,16 @@ export class ProductEffects{
       ),
     {dispatch: true}
   )
+
+  // clear=createEffect(()=>
+  //     this.actions$.pipe(
+  //       ofType(ProductActions.clearProductError),
+  //       tap(()=>{
+  //         console.log("Clear Error triggered")
+  //       })
+  //     ),
+  //   {dispatch: false}
+  // )
 
 
 }

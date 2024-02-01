@@ -12,6 +12,11 @@ import { MatCardModule } from '@angular/material/card';
 import { ItemComponent } from './components/item/item.component';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { ServicesComponent } from './components/services/services.component';
+import { LoaderComponent } from './components/loader/loader.component';
+import { DialogComponent } from './components/dialog/dialog.component';
+import {MatDialogModule} from "@angular/material/dialog";
+import {MatButtonModule} from "@angular/material/button";
+import {OverlayModule} from "@angular/cdk/overlay";
 
 @NgModule({
   declarations: [
@@ -22,20 +27,25 @@ import { ServicesComponent } from './components/services/services.component';
     ProductItemComponent,
     ItemComponent,
     ServicesComponent,
+    LoaderComponent,
+    DialogComponent,
   ],
-  imports: [CommonModule, RouterModule],
-  exports: [
-    FooterComponent,
-    HeaderComponent,
-    ItemsNumberComponent,
-    ProductImagesComponent,
-    ProductItemComponent,
-    MatDividerModule,
-    MatIconModule,
-    MatCardModule,
-    ItemComponent,
-    MatGridListModule,
-    ServicesComponent,
-  ],
+  imports: [CommonModule, RouterModule, MatDialogModule, MatButtonModule,OverlayModule],
+    exports: [
+        FooterComponent,
+        HeaderComponent,
+        ItemsNumberComponent,
+        ProductImagesComponent,
+        ProductItemComponent,
+        MatDividerModule,
+        MatIconModule,
+        MatCardModule,
+        ItemComponent,
+        MatGridListModule,
+        ServicesComponent,
+        LoaderComponent,
+      OverlayModule,
+      MatDialogModule
+    ],
 })
 export class SharedModule {}

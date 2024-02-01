@@ -60,7 +60,8 @@
           Products
         </h2>
       </div>
-      <app-products [products]="(products$ | async)!"></app-products>
+      <app-loader *ngIf="(loading$ | async)"></app-loader>
+      <app-products [products]="(products$ | async)!" *ngIf="!(loading$ | async)"></app-products>
       <div class="seemore">
         <button>See more</button>
       </div>
