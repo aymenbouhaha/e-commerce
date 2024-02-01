@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import {Component, signal} from '@angular/core';
+import {FormControl, FormGroup} from "@angular/forms";
+
 
 @Component({
   selector: 'app-general-details',
@@ -7,4 +9,26 @@ import { Component } from '@angular/core';
 })
 export class GeneralDetailsComponent {
 
+
+  form : FormGroup
+
+  constructor() {
+    this.form=new FormGroup({
+      firstName : new FormControl(),
+      lastName : new FormControl(),
+      address : new FormControl(),
+      phoneNumber : new FormControl(),
+    })
+  }
+
+
+  onSubmit(){
+    console.log(this.form)
+  }
+
 }
+
+
+
+
+
