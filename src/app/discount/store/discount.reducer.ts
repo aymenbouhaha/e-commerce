@@ -38,7 +38,7 @@ export const discountReducer = createReducer(
       ...state,
       error: null,
       loading: false,
-      discounts: action.discounts,
+      discounts: [...state.discounts, ...action.discounts],
     };
   }),
   on(DiscountActions.errorFetchingDiscount, (state, action) => {
