@@ -24,7 +24,7 @@ const initialDiscountsState: DiscountState = {
   selectedDiscount: null,
 };
 
-export const productReducer = createReducer(
+export const discountReducer = createReducer(
   initialDiscountsState,
   on(DiscountActions.startFetchingDiscounts, (state) => {
     return {
@@ -58,17 +58,17 @@ export const productReducer = createReducer(
 
 const discountFeatureState = createFeatureSelector<DiscountState>('discounts');
 
-export const getProducts = createSelector(
+export const getDiscounts = createSelector(
   discountFeatureState,
   (state: DiscountState) => state.discounts
 );
 
-export const getProductsLoading = createSelector(
+export const getDiscountsLoading = createSelector(
   discountFeatureState,
   (state: DiscountState) => state.loading
 );
 
-export const getProductsError = createSelector(
+export const getDiscountsError = createSelector(
   discountFeatureState,
   (state: DiscountState) => state.error
 );
