@@ -8,7 +8,7 @@ export interface ProductInterface {
   itemsNumber: number;
   description: string;
   category: Category;
-  images: ImageInterface[];
+  images: string[];
   discount: Discount;
 }
 
@@ -17,9 +17,4 @@ export interface GetProductInterface {
   length: number;
 }
 
-export interface ImageInterface {
-  id: number;
-  name: string;
-  type: string;
-  data: { type: string; data: Buffer };
-}
+
