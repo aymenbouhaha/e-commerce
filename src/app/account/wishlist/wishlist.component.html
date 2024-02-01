@@ -1,1 +1,61 @@
-<p>wishlist works!</p>
+<!-- app.component.html -->
+<div class="title">
+  <p>
+    My Account
+  </p>
+</div>
+<div class="content">
+     <div class="left-navigation">
+       <div class="images-container" >
+      <div class="center-container" >
+        <div class="profile-picture-container">
+          <img src="/assets/instagram.svg" alt="Profile Picture" class="profile-picture">
+        </div>
+      </div>
+      <div class="photo-icon-container" >
+        <img src="assets/heart_white.svg" class="photo-icon">
+      </div>
+    </div>
+    <p> Firas Saada</p>
+    <ul>
+
+      <li ><a [routerLink]="['/account/general-details']" >Account</a></li>
+      <li><a href="#">Address</a></li>
+      <li><a [routerLink]="['/account/orders']">Orders</a></li>
+      <li class="line"><a [routerLink]="['/account/wishlist']" style="cursor: pointer; color: black ; ">Wishlist</a></li>
+      <li><a href="#">Log Out</a></li>
+
+      <!-- Add more list items as needed -->
+    </ul>
+  </div>
+  <div class="Orders">
+    <p>Your Wishlist </p>
+    <table>
+      <thead>
+      <tr >
+        <th>Product</th>
+        <th>Price</th>
+        <th>Action</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let product of wishList">
+        <td>
+          <img src="assets/cancel.svg" class="cancel-icon">
+          <img src="assets/sofa.png" class="product-image">
+          <div class="product-name" >
+            {{product.name}}
+          </div>
+        </td>
+        <td>${{product.price}}</td>
+        <td>
+          <button type="button" class="add-to-cart-button">Add to card</button>
+        </td>
+
+      </tr><!-- Add more rows as needed -->
+      </tbody>
+    </table>
+  </div>
+
+
+</div>

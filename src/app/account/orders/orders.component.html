@@ -19,10 +19,10 @@
     <p> Firas Saada</p>
     <ul>
 
-      <li class="line"><a href="#" style="cursor: pointer; color: black ; ">Account</a></li>
+      <li ><a [routerLink]="['/account/general-details']" >Account</a></li>
       <li><a href="#">Address</a></li>
-      <li><a href="#">Orders</a></li>
-      <li><a href="#">Wishlist</a></li>
+      <li class="line"><a [routerLink]="['/account/orders']" style="cursor: pointer; color: black ; ">Orders</a></li>
+      <li ><a [routerLink]="['/account/wishlist']" >Wishlist</a></li>
       <li><a href="#">Log Out</a></li>
 
       <!-- Add more list items as needed -->

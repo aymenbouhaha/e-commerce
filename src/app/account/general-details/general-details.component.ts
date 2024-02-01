@@ -44,13 +44,12 @@ export class GeneralDetailsComponent {
     if (oldPassword !== "fer12" ) {
       return { 'oldPasswordMismatch': true };
     }
-
     return null;
   }
 
 
 
-  onSaveChnages() {
+  onSaveChanges() {
     if (this.userForm.valid) {
       this.userService.updateUser(this.user);
       this.toastr.success('Changes saved successfully', 'Success');
