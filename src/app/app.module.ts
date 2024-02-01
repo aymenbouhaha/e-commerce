@@ -12,12 +12,14 @@ import {authReducer} from "./auth/store/auth.reducer";
 import {ProductEffects} from "./shop/store/product.effects";
 import {AuthEffects} from "./auth/store/auth.effects";
 import {HttpClientModule} from "@angular/common/http";
+import { CommonModule } from '@angular/common';
 
 @NgModule({
   declarations: [
     AppComponent,
   ],
   imports: [
+    CommonModule,
     SharedModule,
     BrowserModule,
     RoutingModule,

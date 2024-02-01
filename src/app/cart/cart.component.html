@@ -1,1 +1,44 @@
-<p>cart works!</p>
+<div class="container">
+  <div class="hero-title">
+    <div class="slogan">
+      <p>Card</p>
+    </div>
+  </div>
+
+  <div class="banner-grid">
+    <h2>Tabs</h2>
+    <p>Click on the buttons inside the tabbed menu:</p>
+
+    <!-- Tab buttons -->
+    <div class="tab">
+      <button class="tablinks" (click)="openTab('Tab1')">Tab 1</button>
+      <button class="tablinks" (click)="openTab('Tab2')">Tab 2</button>
+      <button class="tablinks" (click)="openTab('Tab3')">Tab 3</button>
+    </div>
+
+    <!-- Tab content -->
+    <div *ngIf="currentTab === 'Tab1'">
+      <div class="tabcontent">
+        <!-- Content for Tab 1 -->
+        <h3>Tab 1</h3>
+        <p>This is the content for Tab 1.</p>
+      </div>
+    </div>
+
+    <div *ngIf="currentTab === 'Tab2'">
+      <div class="tabcontent">
+        <!-- Content for Tab 2 -->
+        <h3>Tab 2</h3>
+        <p>This is the content for Tab 2.</p>
+      </div>
+    </div>
+
+    <div *ngIf="currentTab === 'Tab3'">
+      <div class="tabcontent">
+        <!-- Content for Tab 3 -->
+        <h3>Tab 3</h3>
+        <p>This is the content for Tab 3.</p>
+      </div>
+    </div>
+  </div>
+</div>
