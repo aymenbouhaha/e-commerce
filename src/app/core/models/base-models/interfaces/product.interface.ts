@@ -2,7 +2,7 @@ import { Category } from '../categroy';
 import { Discount } from '../discount';
 
 export interface ProductInterface {
-  id: string;
+  id: number;
   name: string;
   price: number;
   itemsNumber: number;
@@ -18,7 +18,7 @@ export interface GetProductInterface {
 }
 
 export interface ImageInterface {
-  id: string;
+  id: number;
   name: string;
   type: string;
   data: { type: string; data: Buffer };
