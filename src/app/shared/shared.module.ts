@@ -17,6 +17,7 @@ import { DialogComponent } from './components/dialog/dialog.component';
 import {MatDialogModule} from "@angular/material/dialog";
 import {MatButtonModule} from "@angular/material/button";
 import {OverlayModule} from "@angular/cdk/overlay";
+import { PricePipe } from './pipes/price.pipe';
 
 @NgModule({
   declarations: [
@@ -29,23 +30,25 @@ import {OverlayModule} from "@angular/cdk/overlay";
     ServicesComponent,
     LoaderComponent,
     DialogComponent,
+    PricePipe,
   ],
   imports: [CommonModule, RouterModule, MatDialogModule, MatButtonModule,OverlayModule],
-    exports: [
-        FooterComponent,
-        HeaderComponent,
-        ItemsNumberComponent,
-        ProductImagesComponent,
-        ProductItemComponent,
-        MatDividerModule,
-        MatIconModule,
-        MatCardModule,
-        ItemComponent,
-        MatGridListModule,
-        ServicesComponent,
-        LoaderComponent,
-      OverlayModule,
-      MatDialogModule
-    ],
+  exports: [
+    FooterComponent,
+    HeaderComponent,
+    ItemsNumberComponent,
+    ProductImagesComponent,
+    ProductItemComponent,
+    MatDividerModule,
+    MatIconModule,
+    MatCardModule,
+    ItemComponent,
+    MatGridListModule,
+    ServicesComponent,
+    LoaderComponent,
+    OverlayModule,
+    MatDialogModule,
+    PricePipe
+  ],
 })
 export class SharedModule {}

@@ -21,12 +21,12 @@ export class ShopComponent implements OnInit , OnDestroy{
   subscriptions : Subscription[]=[]
 
   constructor(private store : Store<ProductState>,private activatedRoute : ActivatedRoute,private dialog: MatDialog) {
-    const queryParams$=this.activatedRoute.queryParams.pipe(
+    this.activatedRoute.queryParams.pipe(
       tap((params)=>{
         this.store.dispatch(ProductsActions.startFetchingProducts({params : {page : +params["page"], category : params["category"]}}))
       })
     ).subscribe()
-    this.loading$ = this.store.select(getProductsLoading).pipe()
+    this.loading$ = this.store.select(getProductsLoading)
     this.products$ = this.store.select(getProducts)
     this.error$ = this.store.select(getProductsError)
     const error= this.error$.subscribe(
@@ -36,7 +36,7 @@ export class ShopComponent implements OnInit , OnDestroy{
         }
       }
     )
-    this.subscriptions.push(queryParams$,error)
+    this.subscriptions.push(error)
   }
 
   ngOnDestroy(): void {
@@ -58,7 +58,6 @@ export class ShopComponent implements OnInit , OnDestroy{
         store : this.store
       }
     });
-
   }
 
 

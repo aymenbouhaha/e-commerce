@@ -6,9 +6,10 @@ import { ShopRoutingModule } from './shop-routing.module';
 import { RouterModule } from '@angular/router';
 import { SharedModule } from '../shared/shared.module';
 import { ProductsComponent } from './products/products.component';
+import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
 
 @NgModule({
   declarations: [ShopComponent, ProductDetailsComponent, ProductsComponent],
-    imports: [CommonModule, ShopRoutingModule, RouterModule, SharedModule, NgOptimizedImage],
+  imports: [CommonModule, ShopRoutingModule, RouterModule, SharedModule, NgOptimizedImage, MatProgressSpinnerModule],
 })
 export class ShopModule {}

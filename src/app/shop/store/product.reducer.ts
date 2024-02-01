@@ -88,6 +88,7 @@ export const productReducer = createReducer(
     (state,action)=>{
       return {
         ...state,
+        selectedProduct : null,
         error : action.error,
         loading : false,
       }
