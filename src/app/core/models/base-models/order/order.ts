@@ -8,6 +8,10 @@ export class Order {
   date?: Date;
   client?: User;
   orderProducts?: OrderProduct[];
+  constructor(id:number,dates:Date,Status : string,Price : number) {
+
+}
+
 }
 
 export interface OrderInterface {

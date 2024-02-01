@@ -12,6 +12,9 @@ import {authReducer} from "./auth/store/auth.reducer";
 import {ProductEffects} from "./shop/store/product.effects";
 import {AuthEffects} from "./auth/store/auth.effects";
 import {HttpClientModule} from "@angular/common/http";
+import {wishlistReducer} from "./account/wishlist/Store/wishlist.reducer";
+import {wishlistEffects} from "./account/wishlist/Store/wishlist.effects";
+import {userReducer} from "./account/general-details/Store/general-details.reducer";
 
 @NgModule({
   declarations: [
@@ -29,10 +32,13 @@ import {HttpClientModule} from "@angular/common/http";
     StoreModule.forRoot({
       products : productReducer,
       auth : authReducer,
+      wishlist : wishlistReducer ,
+      user     : userReducer ,
     }),
     EffectsModule.forRoot([
       ProductEffects,
-      AuthEffects
+      AuthEffects ,
+      wishlistEffects
     ]),
   ],
   providers: [],
