@@ -10,6 +10,8 @@ import {productReducer} from "./shop/store/product.reducer";
 import {ToastrModule} from "ngx-toastr";
 import {authReducer} from "./auth/store/auth.reducer";
 import {ProductEffects} from "./shop/store/product.effects";
+import {AuthEffects} from "./auth/store/auth.effects";
+import {HttpClientModule} from "@angular/common/http";
 
 @NgModule({
   declarations: [
@@ -19,6 +21,7 @@ import {ProductEffects} from "./shop/store/product.effects";
     SharedModule,
     BrowserModule,
     RoutingModule,
+    HttpClientModule,
     ToastrModule.forRoot({
       positionClass: 'toast-top-center'
     }),
@@ -29,7 +32,7 @@ import {ProductEffects} from "./shop/store/product.effects";
     }),
     EffectsModule.forRoot([
       ProductEffects,
-
+      AuthEffects
     ]),
   ],
   providers: [],
