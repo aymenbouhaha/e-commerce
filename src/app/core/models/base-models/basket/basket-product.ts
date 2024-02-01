@@ -1,9 +1,9 @@
 import { Product } from '../product/product';
 
-export class BasketProduct {
-  id?: number;
+export interface BasketProduct {
+  id: number;
 
-  product?: Product;
+  product: Product;
 
-  itemsNumber?: number;
+  itemsNumber: number;
 }

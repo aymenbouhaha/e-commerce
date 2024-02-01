@@ -49,7 +49,6 @@ export const productReducer = createReducer(
         ...state,
         error : action.error,
         loading : false,
-        products : []
       }
     }
   )
