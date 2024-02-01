@@ -5,11 +5,13 @@ import {AccountComponent} from "./account.component";
 import {GeneralDetailsComponent} from "./general-details/general-details.component";
 import {WishlistComponent} from "./wishlist/wishlist.component";
 import {OrdersComponent} from "./orders/orders.component";
+import {authGuard} from "../shared/auth.guard";
 
 
 const routes : Routes = [
   {
     path : "" , component : AccountComponent,
+    canActivate : [authGuard],
     children : [
       {
         path : "general-details" , component : GeneralDetailsComponent

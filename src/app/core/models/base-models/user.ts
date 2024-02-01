@@ -1,5 +1,5 @@
 export class User {
-  id: string;
+  id: number;
   firstName?: string;
   lastName?: string;
   address?: string;
@@ -9,7 +9,7 @@ export class User {
   verified?: boolean;
 
   constructor(
-    id: string,
+    id: number,
     firstName?: string,
     lastName?: string,
     address?: string,

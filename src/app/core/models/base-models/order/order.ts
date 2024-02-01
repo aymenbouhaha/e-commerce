@@ -3,7 +3,7 @@ import { OrderProduct } from './order-product';
 import { BasketProductInterface } from '../basket/basket';
 
 export class Order {
-  id?: string;
+  id?: number;
   status?: string;
   date?: Date;
   client?: User;
@@ -11,7 +11,7 @@ export class Order {
 }
 
 export interface OrderInterface {
-  id: string;
+  id: number;
   status: string;
   date: Date;
   client?: User;

@@ -2,7 +2,7 @@ import { Product } from './product/product';
 import { ProductInterface } from './interfaces/product.interface';
 
 export class Discount {
-  id?: string;
+  id?: number;
 
   startDate?: Date;
 
@@ -14,7 +14,7 @@ export class Discount {
 }
 
 export interface DiscountInterface {
-  id: string;
+  id: number;
 
   startDate: Date;
 

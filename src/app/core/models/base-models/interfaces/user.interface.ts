@@ -1,7 +1,7 @@
 import { Basket } from '../basket/basket';
 
 export interface UserInterface {
-  id: string;
+  id: number;
   firstName: string;
   lastName: string;
   address: string;
