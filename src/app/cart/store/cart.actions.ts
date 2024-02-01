@@ -25,7 +25,7 @@ export const CLEAR_ERROR = "[CART] CLEAR_ERROR"
 
 export const startAddToBasket=createAction(
   START_ADD_TO_BASKET,
-  props<{productId : number,itemsNumber : number}>()
+  props<{productId : Product,itemsNumber : number}>()
 )
 
 export const removeFromBasketStart=createAction(

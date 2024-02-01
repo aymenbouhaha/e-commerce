@@ -2,8 +2,8 @@
 
 export interface GetProductsParams{
 
-  page? : number
+  page : number | null
 
-  category? : string
+  category : string | null
 
 }

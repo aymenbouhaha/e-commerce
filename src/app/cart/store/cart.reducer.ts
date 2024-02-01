@@ -64,13 +64,13 @@ export const cartReducer=createReducer(
       products : newPrevProductsRef
     }
   }),
-  on(CartActions.removeFromBasketStart,(state,action)=>{
+  on(CartActions.removeFromBasketStart,(state)=>{
     return{
       ...state,
       loading : true,
     }
   }),
-  on(CartActions.startAddToBasket,(state,action)=>{
+  on(CartActions.startAddToBasket,(state)=>{
     return{
       ...state,
       loading : true,
@@ -83,7 +83,7 @@ export const cartReducer=createReducer(
       loading : false
     }
   }),
-  on(CartActions.clearError,(state,action)=>{
+  on(CartActions.clearError,(state)=>{
     return{
       ...state,
       error : null,
