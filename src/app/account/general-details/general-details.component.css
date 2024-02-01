@@ -5,25 +5,33 @@
   font-weight: 600;
   width: 500px;
 }
+
 .form p {
   font-weight: 600;
   padding: 10px;
 }
+
 .save-button {
-  background-color: #000; /* Set background color to black */
-  color: #fff; /* Set text color to white */
-  border: 2px solid #000; /* Set border to black with 2px width */
-  border-radius: 10px; /* Set border-radius to make it circular */
-  padding: 10px ; /* Add padding for better visual appearance (adjust as needed) */
-  cursor: pointer; /* Show pointer cursor on hover */
-  font-size: 16px; /* Set font size to 16 pixels */
+  background-color: #000;
+  color: #fff;
+  border: 2px solid #000;
+  border-radius: 10px;
+  padding: 10px;
+  cursor: pointer;
+  font-size: 16px;
 }
+
 .circular-input {
   font-weight: 500;
   color: #6C7275;
-  border-radius: 50px; /* Use a value half of the element's height to make it circular */
+  border-radius: 50px;
   box-sizing: border-box;
-  padding: 10px; /* Optional: Add padding for better visual appearance */
+  padding: 10px;
 }
 
-
+input {
+  width: 100%;
+  border-radius: 8px;
+  padding: 10px;
+  border: 1px solid gray;
+}

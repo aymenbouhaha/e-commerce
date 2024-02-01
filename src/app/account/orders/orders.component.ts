@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
-import {User} from "../../core/models/user";
-import {OrderService} from "../../core/order/order.service";
-import {Order} from "../../core/models/order/order";
+import {User} from "../../core/models/base-models/user";
+import {Order} from "../../core/models/base-models/order/order";
+
 
 @Component({
   selector: 'app-orders',
@@ -9,13 +9,10 @@ import {Order} from "../../core/models/order/order";
   styleUrls: ['./orders.component.css']
 })
 export class OrdersComponent {
-  constructor(private orderService : OrderService) {
-  }
-  user: User =this.orderService.User1; // Example user
+
+
+  user: User =new User(0); // Example user
   orders: Order[] = [];
 
-  ngOnInit() : void {
-    this.orders = this.orderService.GetOrders(this.user) ;
-  }
 
 }

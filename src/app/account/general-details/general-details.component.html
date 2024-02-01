@@ -1,43 +1,27 @@
-<!-- app.component.html -->
-<div class="form">
-    <p>Account details</p>
+<div class="form" >
+  <p>Account details</p>
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
     <div class="circular-input">
-    <label >FIRST NAME *</label>
-    <br>
-    <input type="text"  [(ngModel)]="user.firstName" name="myInput" placeholder={{user.firstName}}>
-  </div>
+      <label >FIRST NAME *</label>
+      <br>
+      <input type="text" formControlName="firstName" placeholder="First Name">
+    </div>
     <div class="circular-input">
-    <label >LAST NAME *</label>
-    <br>
-    <input type="text"  [(ngModel)]="user.lastName" name="myInput" >
-  </div>
+      <label >LAST NAME *</label>
+      <br>
+      <input type="text"  formControlName="lastName" placeholder="Last Name">
+    </div>
     <div class="circular-input">
-    <label >DISPLAY NAME *</label>
-    <br>
-    <input type="text"  [(ngModel)]="displayName"name="myInput" placeholder="Display name">
-  </div>
+      <label >ADDRESS *</label>
+      <br>
+      <input type="text"  formControlName="address" placeholder="Address">
+    </div>
     <div class="circular-input">
-    <label >EMAIL *</label>
-    <br>
-    <input type="text" [(ngModel)]="user.email"  name="myInput" placeholder={{user.email}}>
-  </div>
-    <form [formGroup]="userForm">
-    <p>Password</p>
-    <div class="circular-input">
-    <label >OLD PASSWORD</label>
-    <br>
-    <input type="text"  name="myInput" formControlName="oldPassword" placeholder="Old password">
-</div>
-    <div class="circular-input">
-    <label >NEW PASSWORD</label>
-    <br>
-    <input type="text"  name="myInput" formControlName="newPassword">
-  </div>
-    <div class="circular-input">
-    <label >REPEAT NEW PASSWORD  </label>
-    <br>
-    <input type="text"     name="myInput" formControlName="repeatNewPassword">
-  </div>
-    <button type="button" (click)="onSaveChanges()" class="save-button">Save Changes</button>
-    </form>
+      <label >PHONE NUMBER *</label>
+      <br>
+      <input type="text" formControlName="phoneNumber" placeholder="Phone Number">
+    </div>
+    <button type="submit" class="save-button">Save Changes</button>
+
+  </form>
 </div>

@@ -1,0 +1,205 @@
+.container{
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.hero-title{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 20px;
+  gap: 40px;
+}
+
+.slogan{
+  font-size: 72px;
+  font-weight: 800;
+}
+
+.slogan span{
+  color: #6C7275;
+}
+
+.hero-title .description{
+  color: #6C7275;
+  font-size: 20px;
+
+}
+
+.description span{
+  color: black;
+  font-weight: bold;
+}
+
+
+.banner-grid {
+  background: #ffffff;
+  display: flex;
+  flex-direction: row;
+  gap: 24px;
+  align-items: flex-start;
+  justify-content: center;
+  flex-shrink: 0;
+  position: relative;
+  margin-bottom: 30px;
+}
+.elements-card {
+  flex-shrink: 0;
+  width: 548px;
+  height: 664px;
+  position: relative;
+}
+.image-placeholder {
+  position: absolute;
+  right: 0px;
+  left: 0px;
+  bottom: 0px;
+  top: 0px;
+  overflow: hidden;
+}
+.paste-image {
+  background: linear-gradient(to left, #f3f5f7, #f3f5f7);
+  position: absolute;
+  right: 0%;
+  left: 0%;
+  width: 100%;
+  bottom: 0%;
+  top: 0%;
+  height: 100%;
+  object-fit: cover;
+}
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  align-items: flex-start;
+  justify-content: flex-start;
+  position: absolute;
+  left: 48px;
+  top: 48px;
+}
+.title {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  align-items: flex-start;
+  justify-content: flex-start;
+  flex-shrink: 0;
+  width: 360px;
+  position: relative;
+}
+.product-name {
+  color:  #141718;
+  text-align: left;
+  font-family: "Poppins-Medium", sans-serif;
+  font-size: 34px;
+  line-height: 38px;
+  font-weight: 500;
+  position: relative;
+  align-self: stretch;
+}
+.button {
+  border-style: solid;
+  border-color:  #141718;
+  border-width: 0px 0px 1px 0px;
+  display: flex;
+  flex-direction: row;
+  gap: 4px;
+  align-items: center;
+  justify-content: flex-start;
+  flex-shrink: 0;
+  position: relative;
+}
+.content2 {
+  display: flex;
+  flex-direction: row;
+  gap: 4px;
+  align-items: center;
+  justify-content: flex-start;
+  flex-shrink: 0;
+  position: relative;
+}
+.get-started {
+  color:  #141718;
+  text-align: left;
+  font-family: "Inter-Medium", sans-serif;
+  font-size:  16px;
+  line-height: 28px;
+  font-weight: 500;
+  position: relative;
+}
+.icon-arrow-right {
+  flex-shrink: 0;
+  width: 20px;
+  height: 20px;
+  position: relative;
+  overflow: visible;
+}
+.small-cards {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  align-items: flex-start;
+  justify-content: flex-start;
+  flex-shrink: 0;
+  width: 548px;
+  height: 662px;
+  position: relative;
+}
+.elements-card2 {
+  flex-shrink: 0;
+  width: 548px;
+  height: 319px;
+  position: relative;
+}
+.content3 {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  align-items: flex-start;
+  justify-content: flex-start;
+  width: 420px;
+  position: absolute;
+  left: 32px;
+  bottom: 40px;
+}
+.bedroom {
+  color: #141718;
+  text-align: left;
+  font-family:  "Poppins-Medium", sans-serif;
+  font-size:  34px;
+  line-height:  38px;
+  font-weight:  500;
+  position: relative;
+  width: 516px;
+}
+.icon-arrow-right2 {
+  flex-shrink: 0;
+  width: 20px;
+  height: 20px;
+  position: relative;
+  overflow: visible;
+}
+.kitchen {
+  color:  #141718;
+  text-align: left;
+  font-family:"Poppins-Medium", sans-serif;
+  font-size:  34px;
+  line-height:  38px;
+  font-weight:  500;
+  position: relative;
+  width: 516px;
+}
+.icon-arrow-right3 {
+  flex-shrink: 0;
+  width: 20px;
+  height: 20px;
+  position: relative;
+  overflow: visible;
+}
+
+.values{
+  display: flex;
+  gap: 24px;
+  justify-content: center;
+}

@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import {CommonModule, NgOptimizedImage} from '@angular/common';
 import { ShopComponent } from './shop.component';
 import { ProductDetailsComponent } from './product-details/product-details.component';
 import { ShopRoutingModule } from './shop-routing.module';
@@ -9,6 +9,6 @@ import { ProductsComponent } from './products/products.component';
 
 @NgModule({
   declarations: [ShopComponent, ProductDetailsComponent, ProductsComponent],
-  imports: [CommonModule, ShopRoutingModule, RouterModule, SharedModule],
+    imports: [CommonModule, ShopRoutingModule, RouterModule, SharedModule, NgOptimizedImage],
 })
 export class ShopModule {}

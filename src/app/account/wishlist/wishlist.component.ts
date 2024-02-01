@@ -1,8 +1,6 @@
 import { Component } from '@angular/core';
-import {ProductService} from "../../core/product/product.service";
-import {UserService} from "../../core/user/user.service";
-import {Product} from "../../core/models/product/product";
-import {User} from "../../core/models/user";
+import {Product} from "../../core/models/base-models/product/product";
+
 
 @Component({
   selector: 'app-wishlist',
@@ -10,16 +8,15 @@ import {User} from "../../core/models/user";
   styleUrls: ['./wishlist.component.css']
 })
 export class WishlistComponent {
-  wishList? : Product[]
-  User? : User
-  constructor(private productService : ProductService ,private userService :UserService) {
-  }
-  ngOnInit() {
-    this.User=this.userService.User1
-    this.wishList = this.productService.getWishList(this.User)
-  }
 
 
+  wishList? : Product[]=[
+    new Product(0,"test",29),
+    new Product(0,"test",29),
+    new Product(0,"test",29),
+    new Product(0,"test",29),
+    new Product(0,"test",29),
+  ]
 
 
 }
