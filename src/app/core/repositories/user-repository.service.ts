@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {Endpoints} from "../utils/constant";
 import {SignUpDto} from "../models/dto/sign-up.dto";
+import {SignInSuccessDto} from "../models/dto/sign-in-success-dto";
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +13,7 @@ export class UserRepositoryService {
 
 
   login(email:string,password : string){
-    return this.httpClient.post(
+    return this.httpClient.post<SignInSuccessDto>(
       Endpoints.login,
       {
         email : email,

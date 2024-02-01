@@ -8,6 +8,8 @@ import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 import {productReducer} from "./shop/store/product.reducer";
 import {ToastrModule} from "ngx-toastr";
+import {authReducer} from "./auth/store/auth.reducer";
+import {ProductEffects} from "./shop/store/product.effects";
 
 @NgModule({
   declarations: [
@@ -22,9 +24,13 @@ import {ToastrModule} from "ngx-toastr";
     }),
     BrowserAnimationsModule,
     StoreModule.forRoot({
-      products : productReducer
+      products : productReducer,
+      auth : authReducer,
     }),
-    EffectsModule.forRoot([]),
+    EffectsModule.forRoot([
+      ProductEffects,
+
+    ]),
   ],
   providers: [],
   bootstrap: [AppComponent]
