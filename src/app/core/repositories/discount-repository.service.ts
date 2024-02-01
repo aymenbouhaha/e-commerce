@@ -1,22 +1,23 @@
 import { Injectable } from '@angular/core';
-import {HttpClient} from "@angular/common/http";
-import {Endpoints} from "../utils/constant";
-import {Discount} from "../models/base-models/discount";
+import { HttpClient, HttpParams } from '@angular/common/http';
+import { Endpoints } from '../utils/constant';
+import { Discount } from '../models/base-models/discount';
+import { GetDiscountParams } from '../models/dto/get-discount-params';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class DiscountRepositoryService {
+  constructor(private httpClient: HttpClient) {}
 
-  constructor(private httpClient: HttpClient) { }
+  getDiscounts(params: GetDiscountParams) {
+    let httpParams = new HttpParams();
 
-
-  getDiscounts(){
-    return this.httpClient.get<Discount[]>(
-      Endpoints.discounts
-    )
+    if (params.page) {
+      httpParams = httpParams.append('page', params.page);
+    }
+    return this.httpClient.get<Discount[]>(Endpoints.discounts, {
+      params: httpParams,
+    });
   }
-
-
-
 }
