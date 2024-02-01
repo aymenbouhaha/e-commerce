@@ -8,7 +8,6 @@ export interface ProductState {
 
   selectedProduct : Product | null
 
-
   error : string | null
 
   loading? : boolean
@@ -38,11 +37,28 @@ export const productReducer = createReducer(
   on(
     ProductActions.fetchedProducts,
     (state,action)=>{
-      return {
-        ...state,
-        error : null,
-        loading : false,
-        products : action.products
+      const {page , category} = action.params
+      if (category && page){
+        return {
+          ...state,
+          error : null,
+          loading : false,
+          products : [...state.products,...action.products]
+        }
+      }else if(!category && page){
+        return {
+          ...state,
+          error : null,
+          loading : false,
+          products : [...state.products,...action.products]
+        }
+      }else{
+        return {
+          ...state,
+          error : null,
+          loading : false,
+          products : action.products
+        }
       }
     }
   ),

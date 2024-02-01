@@ -21,7 +21,7 @@ export class ProductEffects{
       switchMap((params)=>{
         return this.productsRepository.getProducts(params.params).pipe(
           map((products)=>{
-            return ProductActions.fetchedProducts({products :products})
+            return ProductActions.fetchedProducts({products :products,params: params.params})
           }),
           catchError((err)=> {
             return of(ProductActions.errorFetchingProducts({error: err}))
@@ -33,7 +33,22 @@ export class ProductEffects{
   )
 
 
-
+  fetchProduct = createEffect(()=>
+      this.actions$.pipe(
+        ofType(ProductActions.startFetchingProduct),
+        switchMap((params)=>{
+          return this.productsRepository.getProductById(params.productId).pipe(
+            map((product)=>{
+              return ProductActions.fetchedProduct({product :product})
+            }),
+            catchError((err)=> {
+              return of(ProductActions.errorFetchingProducts({error: err}))
+            } )
+          )
+        })
+      ),
+    {dispatch: true}
+  )
 
 
 }
