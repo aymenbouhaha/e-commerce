@@ -1,34 +1,5 @@
 <!-- app.component.html -->
-<div class="title" xmlns="http://www.w3.org/1999/html">
-    <p>
-      My Account
-    </p>
-  </div>
-<div class="content">
-  <div class="left-navigation">
-    <div class="images-container" >
-      <div class="center-container" >
-      <div class="profile-picture-container">
-        <img src="/assets/instagram.svg" alt="Profile Picture" class="profile-picture">
-      </div>
-      </div>
-      <div class="photo-icon-container" >
-      <img src="assets/heart_white.svg" class="photo-icon">
-    </div>
-    </div>
-    <p> Firas Saada</p>
-    <ul>
-
-      <li class="line" ><a [routerLink]="['/account/general-details']" style="cursor: pointer; color: black ; ">Account</a></li>
-      <li><a href="#">Address</a></li>
-      <li ><a [routerLink]="['/account/orders']" >Orders</a></li>
-      <li ><a [routerLink]="['/account/wishlist']" >Wishlist</a></li>
-      <li><a href="#">Log Out</a></li>
-
-      <!-- Add more list items as needed -->
-    </ul>
-  </div>
-  <div class="form">
+<div class="form">
     <p>Account details</p>
     <div class="circular-input">
     <label >FIRST NAME *</label>
@@ -69,5 +40,4 @@
   </div>
     <button type="button" (click)="onSaveChanges()" class="save-button">Save Changes</button>
     </form>
-</div>
 </div>
