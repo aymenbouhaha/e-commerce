@@ -20,7 +20,6 @@ export class ShopComponent implements OnInit , OnDestroy{
   constructor(private store : Store<ProductState>,private activatedRoute : ActivatedRoute) {
     const queryParams$=this.activatedRoute.queryParams.pipe(
       tap((params)=>{
-        console.log(params)
         this.store.dispatch(ProductsActions.startFetchingProducts({params : {page : +params["page"], category : params["category"]}}))
       })
     ).subscribe()
@@ -28,7 +27,7 @@ export class ShopComponent implements OnInit , OnDestroy{
     this.error$ = this.store.select(getProductsError)
     const error= this.error$.subscribe(
       (value)=>{
-        console.log(error)
+        console.log("error",value)
       }
     )
     this.subscriptions.push(queryParams$,error)
