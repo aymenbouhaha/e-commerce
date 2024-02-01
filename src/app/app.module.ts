@@ -12,6 +12,8 @@ import {authReducer} from "./auth/store/auth.reducer";
 import {ProductEffects} from "./shop/store/product.effects";
 import {AuthEffects} from "./auth/store/auth.effects";
 import {HttpClientModule} from "@angular/common/http";
+import {cartReducer} from "./cart/store/cart.reducer";
+import {CartEffects} from "./cart/store/cart.effects";
 
 @NgModule({
   declarations: [
@@ -29,10 +31,12 @@ import {HttpClientModule} from "@angular/common/http";
     StoreModule.forRoot({
       products : productReducer,
       auth : authReducer,
+      cartReducer : cartReducer
     }),
     EffectsModule.forRoot([
       ProductEffects,
-      AuthEffects
+      AuthEffects,
+      CartEffects
     ]),
   ],
   providers: [],

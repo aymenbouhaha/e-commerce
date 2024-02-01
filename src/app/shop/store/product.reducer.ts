@@ -1,10 +1,13 @@
 import {Product} from "../../core/models/base-models/product/product";
-import {createReducer, on} from "@ngrx/store";
+import {createFeatureSelector, createReducer, createSelector, on} from "@ngrx/store";
 import * as ProductActions from "./product.actions"
 
 export interface ProductState {
 
   products : Product[]
+
+  selectedProduct : Product | null
+
 
   error : string | null
 
@@ -16,7 +19,8 @@ export interface ProductState {
 const initialProductsState : ProductState = {
   error : null,
   loading: false,
-  products : []
+  products : [],
+  selectedProduct : null,
 }
 
 export const productReducer = createReducer(
@@ -43,6 +47,27 @@ export const productReducer = createReducer(
     }
   ),
   on(
+    ProductActions.startFetchingProduct,
+    (state,action)=>{
+      return {
+        ...state,
+        error : null,
+        loading : false,
+      }
+    }
+  ),
+  on(
+    ProductActions.fetchedProduct,
+    (state,action)=>{
+      return {
+        ...state,
+        error : null,
+        loading : false,
+        product : action.product
+      }
+    }
+  ),
+  on(
     ProductActions.errorFetchingProducts,
     (state,action)=>{
       return {
@@ -51,6 +76,42 @@ export const productReducer = createReducer(
         loading : false,
       }
     }
-  )
+  ),
+  on(
+    ProductActions.clearProductError,
+    (state,action)=>{
+      return {
+        ...state,
+        error : null,
+      }
+    }
+  ),
 )
 
+
+
+const productFeatureState = createFeatureSelector<ProductState>("products")
+
+
+export const getProducts = createSelector(
+  productFeatureState,
+  (state : ProductState)=>state.products
+)
+
+
+export const getProductsLoading = createSelector(
+  productFeatureState,
+  (state : ProductState)=>state.loading
+)
+
+
+export const getProductsError = createSelector(
+  productFeatureState,
+  (state : ProductState)=>state.error
+)
+
+
+export const getSelectedProduct=createSelector(
+  productFeatureState,
+  (state)=>state.selectedProduct
+)
