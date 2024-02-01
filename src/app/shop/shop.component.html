@@ -1,2 +1,70 @@
-<p>shop works!</p>
+<div class="container">
+  <div class="top">
+    <img src="assets/background.svg" class="top-img">
+    <div class="image-overlay">
+      <div class="title">
+        Shop
+      </div>
+      <div class="description">
+        Let’s design the place you always imagined.
+      </div>
+    </div>
+  </div>
+  <div class="split-container">
+    <div class="left-side">
+      <div class="ftl">
+        <img src="assets/filter.svg" style="width: 40px;height: 40px">
+        <div style="font-size: 20px;font-weight: bold">Filter</div>
+      </div>
+      <div class="categories">
+        <div class="filter-title">
+          CATEGORIES
+        </div>
+        <div class="category">All Rooms</div>
+        <div class="category">Living Room</div>
+        <div class="category">Bedroom</div>
+        <div class="category">Kitchen</div>
+        <div class="category">Bathroom</div>
+        <div class="category">Dinning</div>
+        <div class="category">Outdoor</div>
+      </div>
+      <div class="prices">
+        <div class="filter-title">
+          PRICE
+        </div>
+        <div class="price">
+          <div class="cat">All Prices</div>
+          <input type="checkbox" name="" id="99">
+        </div>
+        <div class="price">
+          <div class="cat">$0.00-99.99</div>
+          <input type="checkbox" name="" id="199">
+        </div>
+        <div class="price">
+          <div class="cat">$100.00-199.99</div>
+          <input type="checkbox" name="" id="299">
+        </div>
+        <div class="price">
+          <div class="cat">$200.00-299.99</div>
+          <input type="checkbox" name="" id="399">
+        </div>
+        <div class="price">
+          <div class="cat">$300.00-399.99</div>
+          <input type="checkbox" name="" id="+400">
+        </div>
+      </div>
+    </div>
+    <div class="right-side">
+      <div class="sorter">
+        <h2>
+          Products
+        </h2>
+      </div>
+      <app-products [products]="(products$ | async)!"></app-products>
+      <div class="seemore">
+        <button>See more</button>
+      </div>
+    </div>
+  </div>
+</div>
 
