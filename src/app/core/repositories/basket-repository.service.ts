@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {Endpoints} from "../utils/constant";
+import {Product} from "../models/base-models/product/product";
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +12,7 @@ export class BasketRepositoryService {
 
 
   addToBasket(productId: number,itemsNumber : number){
-    return this.httpClient.post(
+    return this.httpClient.post<{product : Product,itemsNumber : number}>(
       Endpoints.addToBasket,
       {
         id : productId,

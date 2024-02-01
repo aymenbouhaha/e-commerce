@@ -39,7 +39,6 @@ export const authReducer=createReducer(
     AuthActions.signInStarted,(state,action)=>{
       return {
         ...state,
-        isAuthenticated : false,
         error : null,
         loading : true
       }
@@ -49,7 +48,6 @@ export const authReducer=createReducer(
     AuthActions.signUpStarted,(state,action)=>{
       return {
         ...state,
-        isAuthenticated : false,
         error : null,
         loading : true
       }
@@ -59,7 +57,6 @@ export const authReducer=createReducer(
     AuthActions.signUpSuccess,(state,action)=>{
       return {
         ...state,
-        isAuthenticated : false,
         error : null,
         loading : false
       }
@@ -69,7 +66,6 @@ export const authReducer=createReducer(
     AuthActions.authenticationFailed,(state,action)=>{
       return {
         ...state,
-        token : null,
         isAuthenticated : false,
         error : action.error,
         loading : false

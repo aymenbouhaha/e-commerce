@@ -1,10 +1,10 @@
 import { BasketProduct } from './basket-product';
 import { ProductInterface } from '../interfaces/product.interface';
 
-export class Basket {
-  id?: number;
+export interface Basket {
+  id: number;
 
-  basketProduct?: BasketProduct[];
+  basketProduct: BasketProduct[];
 }
 
 export interface BasketProductInterface {
