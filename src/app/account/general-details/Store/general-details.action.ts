@@ -6,3 +6,7 @@ export const setUser=createAction(
   'User',
         props<{user : User}>()
 )
+export const updateUser=createAction(
+  'update' ,
+  props<{}>
+)

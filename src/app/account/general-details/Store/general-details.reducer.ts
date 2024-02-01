@@ -10,7 +10,7 @@ export interface AccountState {
 }
 
 const initialState : AccountState = {
-  user : new User(1,"firas"),
+  user : new User(1,"firas","saada","bizerta","","22221133"),
   error : null ,
   loading : false
 }
