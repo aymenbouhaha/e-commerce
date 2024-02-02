@@ -14,6 +14,8 @@ import {AuthEffects} from "./auth/store/auth.effects";
 import {HttpClientModule} from "@angular/common/http";
 import {cartReducer} from "./cart/store/cart.reducer";
 import {CartEffects} from "./cart/store/cart.effects";
+import {recommendationsReducer} from "./shop/product-details/recommendations/store/recommendations.reducer";
+import {RecommendationsEffects} from "./shop/product-details/recommendations/store/recommendations.effects";
 
 @NgModule({
   declarations: [
@@ -31,12 +33,14 @@ import {CartEffects} from "./cart/store/cart.effects";
     StoreModule.forRoot({
       products : productReducer,
       auth : authReducer,
-      cartReducer : cartReducer
+      cart : cartReducer,
+      recommendations : recommendationsReducer
     }),
     EffectsModule.forRoot([
       ProductEffects,
       AuthEffects,
-      CartEffects
+      CartEffects,
+      RecommendationsEffects
     ]),
   ],
   providers: [],

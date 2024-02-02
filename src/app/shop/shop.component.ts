@@ -1,48 +1,40 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
-import {Observable, Subscription, tap} from "rxjs";
+import {Component, OnDestroy} from '@angular/core';
+import {Observable, tap} from "rxjs";
 import {Product} from "../core/models/base-models/product/product";
 import {Store} from "@ngrx/store";
-import {getProducts, getProductsError, ProductState} from "./store/product.reducer";
+import {getProducts, getProductsError, getProductsLoading, ProductState} from "./store/product.reducer";
 import * as ProductsActions from "./store/product.actions";
-import {ActivatedRoute, Router} from "@angular/router";
+import {ActivatedRoute} from "@angular/router";
+import {MatDialog} from "@angular/material/dialog";
+import {GenericComponent} from "../shared/generic/generic.component";
 
 @Component({
   selector: 'app-shop',
   templateUrl: './shop.component.html',
   styleUrls: ['./shop.component.css']
 })
-export class ShopComponent implements OnInit , OnDestroy{
+export class ShopComponent extends GenericComponent implements OnDestroy{
 
   products$ : Observable<Product[]>
-  error$ : Observable<string | null>
-  subscriptions : Subscription[]=[]
+  loading$ : Observable<boolean>
 
-  constructor(private store : Store<ProductState>,private activatedRoute : ActivatedRoute) {
-    const queryParams$=this.activatedRoute.queryParams.pipe(
+  constructor(private store : Store<ProductState>,private activatedRoute : ActivatedRoute,private dialog: MatDialog) {
+    super(store.select(getProductsError),store,dialog)
+    this.activatedRoute.queryParams.pipe(
       tap((params)=>{
         this.store.dispatch(ProductsActions.startFetchingProducts({params : {page : +params["page"], category : params["category"]}}))
       })
     ).subscribe()
+    this.loading$ = this.store.select(getProductsLoading)
     this.products$ = this.store.select(getProducts)
-    this.error$ = this.store.select(getProductsError)
-    const error= this.error$.subscribe(
-      (value)=>{
-        console.log("error",value)
-      }
-    )
-    this.subscriptions.push(queryParams$,error)
+
   }
 
   ngOnDestroy(): void {
-      this.subscriptions.forEach(
-        (el)=>{
-          el.unsubscribe()
-        }
-      )
+    this.destroySubscription()
   }
 
-  ngOnInit(): void {
-  }
+
 
 
 
