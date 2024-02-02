@@ -22,7 +22,7 @@ export const startFetchingProducts = createAction(
 
 export const fetchedProducts=createAction(
   FETCHED_PRODUCTS,
-  props<{products: Product[]}>()
+  props<{products: Product[],params : GetProductsParams}>()
 )
 
 export const errorFetchingProducts=createAction(

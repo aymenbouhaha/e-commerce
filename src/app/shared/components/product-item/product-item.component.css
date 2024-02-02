@@ -33,10 +33,10 @@
     padding: 6px;
     justify-content: flex-end;
     align-items: flex-end;
-    display: none;
     position: absolute;
     cursor: pointer;
     left: 80%;
+    visibility: hidden;
 }
 
 .wishlist-button img{
@@ -107,7 +107,6 @@
 }
 
 .product:hover .wishlist-button {
-    display: block;
-
+    visibility: visible;
 }
 
