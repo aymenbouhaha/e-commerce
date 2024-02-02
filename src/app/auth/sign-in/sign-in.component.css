@@ -65,6 +65,8 @@ button {
     margin-top: 16px;
     justify-content: center;
     display: flex;
+    height: auto;
+
 }
 
 button:hover {
@@ -80,4 +82,15 @@ button:hover {
 
 .example-full-width {
     width: 100%;
+}
+a{
+    color: #38CB89;
+    font-weight: 600;
+    text-decoration: none;
+
+}
+.example-section a {
+    color: #000000;
+    font-weight: 600;
+    text-decoration: none;
 }
