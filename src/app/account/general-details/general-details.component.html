@@ -4,24 +4,24 @@
     <div class="circular-input">
       <label >FIRST NAME *</label>
       <br>
-      <input type="text" formControlName="firstName" placeholder=>
+      <input type="text" formControlName="firstName" [placeholder]="(User$ | async)?.firstName">
     </div>
     <div class="circular-input">
       <label >LAST NAME *</label>
       <br>
-      <input type="text"  formControlName="lastName" [placeholder]="(User$ | async)?.id">
+      <input type="text"  formControlName="lastName" [placeholder]="(User$ | async)?.lastName">
     </div>
     <div class="circular-input">
       <label >ADDRESS *</label>
       <br>
-      <input type="text"  formControlName="address" placeholder="Address">
+      <input type="text"  formControlName="address" [placeholder]="(User$ | async)?.address">
     </div>
     <div class="circular-input">
       <label >PHONE NUMBER *</label>
       <br>
-      <input type="text" formControlName="phoneNumber" placeholder="Phone Number">
+      <input type="text" formControlName="phoneNumber" [placeholder]="(User$ | async)?.phoneNumber">
     </div>
-   <button type="submit" class="save-button" >Save Changes</button>
+   <button type="submit" class="save-button" (click)="updateUser(User$) ">Save Changes</button>
 
   </form>
 </div>

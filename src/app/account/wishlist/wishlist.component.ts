@@ -4,6 +4,7 @@ import {Store} from "@ngrx/store";
 import {wishlistReducer} from "./Store/wishlist.reducer";
 import {Observable} from "rxjs";
 import {Delete, Init, Set} from "./Store/wishlist.actions";
+import {selectwishlist} from "./Store/wishlist.selector";
 
 
 @Component({
@@ -13,10 +14,10 @@ import {Delete, Init, Set} from "./Store/wishlist.actions";
 })
 export class WishlistComponent implements OnInit{
 
-  wishList$ : Observable<Product[]>
+  wishList$ : Observable<Product[]| null>
 
   constructor(private store : Store<{wishlist : Product[]}>) {
-  this.wishList$ = this.store.select('wishlist')
+  this.wishList$ = this.store.select(selectwishlist)
   }
   ngOnInit() {
      this.store.dispatch(Init());
