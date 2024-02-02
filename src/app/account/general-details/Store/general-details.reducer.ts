@@ -26,5 +26,17 @@ export const userReducer=createReducer(
         loading : false,
       }
     }
- )
+  ) ,
+  on(GeneralDetailsActions.updateUser ,
+    (state,{formData}) => {
+      return {
+          ...state,
+
+          user : {...state.user , ...formData},
+          error : null ,
+          loading : false,
+        }
+
+    }
+    )
 )

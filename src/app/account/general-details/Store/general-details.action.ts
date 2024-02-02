@@ -8,5 +8,5 @@ export const setUser=createAction(
 )
 export const updateUser=createAction(
   'update' ,
-  props<{}>
+  props<{formData : any}>()
 )
