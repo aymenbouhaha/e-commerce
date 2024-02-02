@@ -14,6 +14,8 @@ import {AuthEffects} from "./auth/store/auth.effects";
 import {HttpClientModule} from "@angular/common/http";
 import {cartReducer} from "./cart/store/cart.reducer";
 import {CartEffects} from "./cart/store/cart.effects";
+import {recommendationsReducer} from "./shop/product-details/recommendations/store/recommendations.reducer";
+import {RecommendationsEffects} from "./shop/product-details/recommendations/store/recommendations.effects";
 import {wishlistReducer} from "./account/wishlist/Store/wishlist.reducer";
 import {wishlistEffects} from "./account/wishlist/Store/wishlist.effects";
 import {userReducer} from "./account/general-details/Store/general-details.reducer";
@@ -34,6 +36,8 @@ import {userReducer} from "./account/general-details/Store/general-details.reduc
     StoreModule.forRoot({
       products : productReducer,
       auth : authReducer,
+      cart : cartReducer,
+      recommendations : recommendationsReducer,
       cartReducer : cartReducer ,
       wishlist : wishlistReducer ,
       user     : userReducer ,
@@ -41,6 +45,8 @@ import {userReducer} from "./account/general-details/Store/general-details.reduc
     EffectsModule.forRoot([
       ProductEffects,
       AuthEffects,
+      CartEffects,
+      RecommendationsEffects,
       CartEffects ,
       wishlistEffects
     ]),
