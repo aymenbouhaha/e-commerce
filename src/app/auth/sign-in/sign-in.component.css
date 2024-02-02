@@ -25,11 +25,12 @@
 .right-side {
     display: flex;
     flex-direction: column;
-    flex: 1;
+    flex: 2;
+    height: 100vh;
 }
 
 .left-side {
-    flex: 2;
+    flex: 3;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -41,7 +42,8 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    display: inline-flex
+    display: inline-flex;
+    height: 100%;
 }
 
 

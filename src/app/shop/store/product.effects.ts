@@ -2,7 +2,7 @@ import {Injectable} from "@angular/core";
 import {ProductRepositoryService} from "../../core/repositories/product-repository.service";
 import {Actions, createEffect, ofType} from "@ngrx/effects";
 import * as ProductActions from "./product.actions"
-import {catchError, map, of, switchMap, tap} from "rxjs";
+import {catchError, map, mergeMap, of, switchMap, tap} from "rxjs";
 import {fetchedProducts} from "./product.actions";
 
 
@@ -18,7 +18,7 @@ export class ProductEffects{
   fetchProducts = createEffect(()=>
     this.actions$.pipe(
       ofType(ProductActions.startFetchingProducts),
-      switchMap((params)=>{
+      mergeMap((params)=>{
         return this.productsRepository.getProducts(params.params).pipe(
           map((products)=>{
             return ProductActions.fetchedProducts({products :products,params: params.params})

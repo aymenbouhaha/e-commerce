@@ -4,6 +4,7 @@ import {User} from "../../core/models/base-models/user";
 import {Observable} from "rxjs";
 import {Store} from "@ngrx/store";
 import {selectUser} from "./Store/general-details.selector";
+import {SignUpDto} from "../../core/models/dto/sign-up.dto";
 
 
 @Component({
@@ -15,7 +16,7 @@ export class GeneralDetailsComponent {
 
 
   form : FormGroup
-  User$ : Observable<User>
+  // User$ : Observable<User>
 
   constructor(private store : Store<{user : User}>) {
     this.form=new FormGroup({
@@ -24,7 +25,8 @@ export class GeneralDetailsComponent {
       address : new FormControl(),
       phoneNumber : new FormControl(),
     })
-    this.User$=this.store.select(selectUser)
+    // this.User$=this.store.select(selectUser)
+
   }
 
 
