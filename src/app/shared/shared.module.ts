@@ -18,6 +18,10 @@ import {MatButtonModule} from "@angular/material/button";
 import {OverlayModule} from "@angular/cdk/overlay";
 import { PricePipe } from './pipes/price.pipe';
 import { ImagePipe } from './pipes/image.pipe';
+import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+
 
 @NgModule({
   declarations: [
@@ -32,7 +36,7 @@ import { ImagePipe } from './pipes/image.pipe';
     PricePipe,
     ImagePipe,
   ],
-  imports: [CommonModule, RouterModule, MatDialogModule, MatButtonModule,OverlayModule],
+  imports: [CommonModule, RouterModule, MatInputModule, MatFormFieldModule,MatDialogModule, MatButtonModule,OverlayModule],
   exports: [
     FooterComponent,
     HeaderComponent,
@@ -48,7 +52,10 @@ import { ImagePipe } from './pipes/image.pipe';
     OverlayModule,
     MatDialogModule,
     PricePipe,
-    ImagePipe
+    ImagePipe,
+    MatInputModule,
+    MatFormFieldModule,
+    MatCheckboxModule,
   ],
 })
 export class SharedModule {}
