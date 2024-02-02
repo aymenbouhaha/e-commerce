@@ -9,7 +9,6 @@ import { ProductItemComponent } from './components/product-item/product-item.com
 import { MatDividerModule } from '@angular/material/divider';
 import { MatIconModule } from '@angular/material/icon';
 import { MatCardModule } from '@angular/material/card';
-import { ItemComponent } from './components/item/item.component';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { ServicesComponent } from './components/services/services.component';
 import { LoaderComponent } from './components/loader/loader.component';
@@ -18,6 +17,7 @@ import {MatDialogModule} from "@angular/material/dialog";
 import {MatButtonModule} from "@angular/material/button";
 import {OverlayModule} from "@angular/cdk/overlay";
 import { PricePipe } from './pipes/price.pipe';
+import { ImagePipe } from './pipes/image.pipe';
 
 @NgModule({
   declarations: [
@@ -26,11 +26,11 @@ import { PricePipe } from './pipes/price.pipe';
     ItemsNumberComponent,
     ProductImagesComponent,
     ProductItemComponent,
-    ItemComponent,
     ServicesComponent,
     LoaderComponent,
     DialogComponent,
     PricePipe,
+    ImagePipe,
   ],
   imports: [CommonModule, RouterModule, MatDialogModule, MatButtonModule,OverlayModule],
   exports: [
@@ -42,13 +42,13 @@ import { PricePipe } from './pipes/price.pipe';
     MatDividerModule,
     MatIconModule,
     MatCardModule,
-    ItemComponent,
     MatGridListModule,
     ServicesComponent,
     LoaderComponent,
     OverlayModule,
     MatDialogModule,
-    PricePipe
+    PricePipe,
+    ImagePipe
   ],
 })
 export class SharedModule {}

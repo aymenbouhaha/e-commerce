@@ -8,9 +8,9 @@ export class Product {
   itemsNumber?: number;
   description?: string;
   category?: Category;
-  images?: string[];
+  images? : string[];
   discount?: Discount;
-  constructor(id : number , name: string , price : number ) {
+  constructor(id : number , name: string , price : number) {
     this.id=id ;
     this.name=name ;
     this.price= price

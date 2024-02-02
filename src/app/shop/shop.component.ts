@@ -1,26 +1,25 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
-import {Observable, Subscription, tap} from "rxjs";
+import {Component, OnDestroy} from '@angular/core';
+import {Observable, tap} from "rxjs";
 import {Product} from "../core/models/base-models/product/product";
 import {Store} from "@ngrx/store";
 import {getProducts, getProductsError, getProductsLoading, ProductState} from "./store/product.reducer";
 import * as ProductsActions from "./store/product.actions";
-import {ActivatedRoute, Router} from "@angular/router";
-import {DialogComponent} from "../shared/components/dialog/dialog.component";
+import {ActivatedRoute} from "@angular/router";
 import {MatDialog} from "@angular/material/dialog";
+import {GenericComponent} from "../shared/generic/generic.component";
 
 @Component({
   selector: 'app-shop',
   templateUrl: './shop.component.html',
   styleUrls: ['./shop.component.css']
 })
-export class ShopComponent implements OnInit , OnDestroy{
+export class ShopComponent extends GenericComponent implements OnDestroy{
 
   products$ : Observable<Product[]>
-  error$ : Observable<string | null>
   loading$ : Observable<boolean>
-  subscriptions : Subscription[]=[]
 
   constructor(private store : Store<ProductState>,private activatedRoute : ActivatedRoute,private dialog: MatDialog) {
+    super(store.select(getProductsError),store,dialog)
     this.activatedRoute.queryParams.pipe(
       tap((params)=>{
         this.store.dispatch(ProductsActions.startFetchingProducts({params : {page : +params["page"], category : params["category"]}}))
@@ -28,37 +27,15 @@ export class ShopComponent implements OnInit , OnDestroy{
     ).subscribe()
     this.loading$ = this.store.select(getProductsLoading)
     this.products$ = this.store.select(getProducts)
-    this.error$ = this.store.select(getProductsError)
-    const error= this.error$.subscribe(
-      (value)=>{
-        if (value){
-          this.openDialog(value)
-        }
-      }
-    )
-    this.subscriptions.push(error)
+
   }
 
   ngOnDestroy(): void {
-      this.subscriptions.forEach(
-        (el)=>{
-          el.unsubscribe()
-        }
-      )
+    this.destroySubscription()
   }
 
-  ngOnInit(): void {
-  }
 
-  openDialog(msg : string): void {
-    const dialogRef = this.dialog.open(DialogComponent, {
-      data: {
-        message : msg,
-        action : ProductsActions.clearProductError(),
-        store : this.store
-      }
-    });
-  }
+
 
 
 }
