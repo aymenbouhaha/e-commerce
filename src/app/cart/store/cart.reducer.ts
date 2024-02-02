@@ -3,7 +3,6 @@ import {createReducer, on} from "@ngrx/store";
 import * as CartActions from "./cart.actions"
 
 export interface BasketState{
-  loading : boolean
   error : string | null
   products : {
     product : Product
@@ -14,7 +13,6 @@ export interface BasketState{
 
 
 export const cartInitialState : BasketState= {
-  loading : false,
   error : null,
   products : []
 }
@@ -44,7 +42,6 @@ export const cartReducer=createReducer(
     newPrevProductsRef.push({product : action.product, itemsNumber: action.itemsNumber})
     return{
       ...state,
-      loading : false,
       products : newPrevProductsRef
     }
   }),
@@ -64,26 +61,23 @@ export const cartReducer=createReducer(
       products : newPrevProductsRef
     }
   }),
-  on(CartActions.removeFromBasketStart,(state,action)=>{
+  on(CartActions.removeFromBasketStart,(state)=>{
     return{
       ...state,
-      loading : true,
     }
   }),
-  on(CartActions.startAddToBasket,(state,action)=>{
+  on(CartActions.startAddToBasket,(state)=>{
     return{
       ...state,
-      loading : true,
     }
   }),
   on(CartActions.basketError,(state,action)=>{
     return{
       ...state,
       error : action.error,
-      loading : false
     }
   }),
-  on(CartActions.clearError,(state,action)=>{
+  on(CartActions.clearError,(state)=>{
     return{
       ...state,
       error : null,

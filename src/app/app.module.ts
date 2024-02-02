@@ -12,14 +12,19 @@ import {authReducer} from "./auth/store/auth.reducer";
 import {ProductEffects} from "./shop/store/product.effects";
 import {AuthEffects} from "./auth/store/auth.effects";
 import {HttpClientModule} from "@angular/common/http";
-import { CommonModule } from '@angular/common';
+import {cartReducer} from "./cart/store/cart.reducer";
+import {CartEffects} from "./cart/store/cart.effects";
+import {recommendationsReducer} from "./shop/product-details/recommendations/store/recommendations.reducer";
+import {RecommendationsEffects} from "./shop/product-details/recommendations/store/recommendations.effects";
+import {wishlistReducer} from "./account/wishlist/Store/wishlist.reducer";
+import {wishlistEffects} from "./account/wishlist/Store/wishlist.effects";
+import {userReducer} from "./account/general-details/Store/general-details.reducer";
 
 @NgModule({
   declarations: [
     AppComponent,
   ],
   imports: [
-    CommonModule,
     SharedModule,
     BrowserModule,
     RoutingModule,
@@ -31,10 +36,19 @@ import { CommonModule } from '@angular/common';
     StoreModule.forRoot({
       products : productReducer,
       auth : authReducer,
+      cart : cartReducer,
+      recommendations : recommendationsReducer,
+      cartReducer : cartReducer ,
+      wishlist : wishlistReducer ,
+      user     : userReducer ,
     }),
     EffectsModule.forRoot([
       ProductEffects,
-      AuthEffects
+      AuthEffects,
+      CartEffects,
+      RecommendationsEffects,
+      CartEffects ,
+      wishlistEffects
     ]),
   ],
   providers: [],
