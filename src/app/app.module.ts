@@ -16,6 +16,9 @@ import {cartReducer} from "./cart/store/cart.reducer";
 import {CartEffects} from "./cart/store/cart.effects";
 import {recommendationsReducer} from "./shop/product-details/recommendations/store/recommendations.reducer";
 import {RecommendationsEffects} from "./shop/product-details/recommendations/store/recommendations.effects";
+import {wishlistReducer} from "./account/wishlist/Store/wishlist.reducer";
+import {wishlistEffects} from "./account/wishlist/Store/wishlist.effects";
+import {userReducer} from "./account/general-details/Store/general-details.reducer";
 
 @NgModule({
   declarations: [
@@ -34,13 +37,18 @@ import {RecommendationsEffects} from "./shop/product-details/recommendations/sto
       products : productReducer,
       auth : authReducer,
       cart : cartReducer,
-      recommendations : recommendationsReducer
+      recommendations : recommendationsReducer,
+      cartReducer : cartReducer ,
+      wishlist : wishlistReducer ,
+      user     : userReducer ,
     }),
     EffectsModule.forRoot([
       ProductEffects,
       AuthEffects,
       CartEffects,
-      RecommendationsEffects
+      RecommendationsEffects,
+      CartEffects ,
+      wishlistEffects
     ]),
   ],
   providers: [],

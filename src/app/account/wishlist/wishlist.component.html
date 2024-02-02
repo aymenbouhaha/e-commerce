@@ -9,9 +9,9 @@
     </tr>
     </thead>
     <tbody>
-    <tr *ngFor="let product of wishList">
+    <tr *ngFor="let product of (wishList$ | async)">
       <td>
-        <img src="assets/cancel.svg" class="cancel-icon">
+        <img (click)="deleteFromWishlist(product)" src="assets/cancel.svg" class="cancel-icon">
         <img src="assets/sofa.png" class="product-image">
         <div class="product-name" >
           {{product.name}}

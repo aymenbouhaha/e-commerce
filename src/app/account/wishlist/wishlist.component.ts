@@ -1,5 +1,9 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Product} from "../../core/models/base-models/product/product";
+import {Store} from "@ngrx/store";
+import {wishlistReducer} from "./Store/wishlist.reducer";
+import {Observable} from "rxjs";
+import {Delete, Init, Set} from "./Store/wishlist.actions";
 
 
 @Component({
@@ -7,16 +11,23 @@ import {Product} from "../../core/models/base-models/product/product";
   templateUrl: './wishlist.component.html',
   styleUrls: ['./wishlist.component.css']
 })
-export class WishlistComponent {
+export class WishlistComponent implements OnInit{
 
+  wishList$ : Observable<Product[]>
 
-  wishList? : Product[]=[
-    new Product(0,"test",29),
-    new Product(0,"test",29),
-    new Product(0,"test",29),
-    new Product(0,"test",29),
-    new Product(0,"test",29),
-  ]
+  constructor(private store : Store<{wishlist : Product[]}>) {
+  this.wishList$ = this.store.select('wishlist')
+  }
+  ngOnInit() {
+     this.store.dispatch(Init());
+  }
+  deleteFromWishlist(product : Product )
+  {
+    if(product.id !== undefined)
+    {
+    this.store.dispatch(Delete({productId : product.id }))
+    }
+  }
 
 
 }
