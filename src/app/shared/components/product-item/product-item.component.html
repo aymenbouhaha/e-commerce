@@ -1,19 +1,22 @@
-<div class="product">
-    <div class="absolut">
-        <div class="discount">-50%</div>
+<div class="product" (click)="onClick()">
+    <div class="absolut" *ngIf="product.discount">
+        <div class="discount">-{{product.discount!.value! * 100}}%</div>
         <div class="wishlist-button">
             <img src="assets/heart_white.svg">
         </div>
     </div>
     <div class="hero-img">
-        <img src="assets/pr1.png">
+        <img src="{{product.images ? product.images[0] : null  | image}}">
     </div>
-    <div class="name">Loveseat Sofa</div>
-    <div class="price">
-        <div class="current-price">$199.00</div>
-        <div class="previous-price">$400.00</div>
+    <div class="name">{{product.name}}</div>
+    <div class="price" *ngIf="product.discount">
+      <div class="current-price">${{product.price! | price: product.discount.value!}}</div>
+      <div class="previous-price">${{product.price}}</div>
     </div>
-    <button class="button">
+    <div class="price" *ngIf="!product.discount">
+      <div class="current-price">${{product.price}}</div>
+    </div>
+    <button class="button" (click)="onAddToCart()">
         Add to cart
     </button>
 </div>
