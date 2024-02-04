@@ -6,7 +6,7 @@
 
 .absolut {
     position: absolute;
-    top: 15px;
+    top: 30px;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -31,11 +31,9 @@
     display: flex;
     border-radius: 60%;
     padding: 6px;
-    justify-content: flex-end;
-    align-items: flex-end;
-    position: absolute;
+    justify-content: center;
+    align-items: center;
     cursor: pointer;
-    left: 80%;
     visibility: hidden;
 }
 
@@ -46,8 +44,10 @@
 
 
 .hero-img{
+    border-radius: 10px;
     width: 100%;
     height: auto;
+    background-color: #F3F5F7;
 }
 
 .hero-img img{
@@ -83,7 +83,7 @@
 }
 
 .button {
-    display: none;
+    visibility: hidden;
     position: absolute;
     top: 80%;
     left: 50%;
@@ -93,16 +93,17 @@
     border-radius: 8px;
     color: #f0f0f0;
     width: 80%;
-    height: 10%;
+    height: 25px;
     justify-content: center;
     align-items: center;
     cursor: pointer;
+    border: none;
 
 }
 
 .product:hover .button {
-    display: block;
-    opacity: 1;
+  visibility: visible;
+  opacity: 1;
 
 }
 

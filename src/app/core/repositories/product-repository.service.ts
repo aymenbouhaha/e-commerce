@@ -3,6 +3,7 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { Endpoints } from '../utils/constant';
 import { Product } from '../models/base-models/product/product';
 import { GetProductsParams } from '../models/dto/get-products-params';
+import {map} from "rxjs";
 
 @Injectable({
   providedIn: 'root',
@@ -18,9 +19,13 @@ export class ProductRepositoryService {
     if (params.page) {
       httpParams = httpParams.append('page', params.page);
     }
-    return this.httpClient.get<Product[]>(Endpoints.products, {
+    return this.httpClient.get<{products : Product[]}>(Endpoints.products, {
       params: httpParams,
-    });
+    }).pipe(
+      map(value => {
+        return value.products
+      })
+    );
   }
 
   getProductById(id: number) {

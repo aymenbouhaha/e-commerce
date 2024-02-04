@@ -12,6 +12,7 @@ export interface ProductState {
 
   loading : boolean
 
+
 }
 
 
@@ -38,14 +39,14 @@ export const productReducer = createReducer(
     ProductActions.fetchedProducts,
     (state,action)=>{
       const {page , category} = action.params
-      if (category && page){
+      if (category && page!=1){
         return {
           ...state,
           error : null,
           loading : false,
           products : [...state.products,...action.products]
         }
-      }else if(!category && page){
+      }else if(!category && page!=1){
         return {
           ...state,
           error : null,

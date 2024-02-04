@@ -1,6 +1,9 @@
 <div class="product" (click)="onClick()">
-    <div class="absolut" *ngIf="product.discount">
-        <div class="discount">-{{product.discount!.value! * 100}}%</div>
+    <div class="absolut" >
+      <div class="discount" *ngIf="product.discount">-{{product.discount!.value! * 100}}%</div>
+      <div class="discount">-50%</div>
+      <div class="discount" style="visibility: hidden" >-50%</div>
+      <div style="width: 20px; visibility: hidden" >tests</div>
         <div class="wishlist-button">
             <img src="assets/heart_white.svg">
         </div>
