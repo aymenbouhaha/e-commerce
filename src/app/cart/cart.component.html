@@ -161,7 +161,7 @@
           </div>
         </div>
         <div style="display: flex;justify-content: center;">
-          <button class="placeOrderButton" (click)="" )>Place Order</button>
+          <button class="placeOrderButton" (click)="addOrder()" )>Place Order</button>
         </div>
       </div>
        <div class="orderSummary" >
@@ -236,4 +236,5 @@
   </div>
 </div>
 <app-loader  *ngIf="loading$| async"></app-loader>
+<app-loader  *ngIf="orderloading$| async"></app-loader>
 
