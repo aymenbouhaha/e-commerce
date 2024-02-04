@@ -26,6 +26,7 @@ export class ProductDetailsComponent extends GenericComponent implements OnDestr
     super(store.select(getProductsError),store,dialog)
     this.activatedRoute.params.subscribe(
       (params)=>{
+        console.log(params)
         this.store.dispatch(ProductsAction.startFetchingProduct({productId : params["id"]}))
       }
     )

@@ -4,7 +4,7 @@ import {Product} from "../core/models/base-models/product/product";
 import {Store} from "@ngrx/store";
 import {getProducts, getProductsError, getProductsLoading, ProductState} from "./store/product.reducer";
 import * as ProductsActions from "./store/product.actions";
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {MatDialog} from "@angular/material/dialog";
 import {GenericComponent} from "../shared/generic/generic.component";
 
@@ -18,7 +18,7 @@ export class ShopComponent extends GenericComponent implements OnDestroy{
   products$ : Observable<Product[]>
   loading$ : Observable<boolean>
 
-  constructor(private store : Store<ProductState>,private activatedRoute : ActivatedRoute,private dialog: MatDialog) {
+  constructor(private store : Store<ProductState>,private activatedRoute : ActivatedRoute,private dialog: MatDialog,private router : Router) {
     super(store.select(getProductsError),store,dialog)
     this.activatedRoute.queryParams.pipe(
       tap((params)=>{
@@ -35,7 +35,25 @@ export class ShopComponent extends GenericComponent implements OnDestroy{
   }
 
 
+  navigateToCategory(category : string | null){
+    this.router.navigate([],{
+      queryParams : {
+        category : category,
+        page : 1
+      }
+    })
+  }
 
+  addPage(){
+    const page = this.activatedRoute.snapshot.queryParams["page"]
+    const category = this.activatedRoute.snapshot.queryParams["category"]
+    this.router.navigate([],{
+      queryParams : {
+        category : category,
+        page : +page + 1
+      }
+    })
+  }
 
 
 }

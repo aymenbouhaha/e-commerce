@@ -20,7 +20,7 @@ export class ProductItemComponent {
   }
 
   onClick(){
-    this.router.navigate([`/product/${this.product.id}`])
+    this.router.navigate([`shop/product/${this.product.id}`])
   }
 
   onAddToCart() {

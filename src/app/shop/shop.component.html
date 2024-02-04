@@ -20,13 +20,13 @@
         <div class="filter-title">
           CATEGORIES
         </div>
-        <div class="category">All Rooms</div>
-        <div class="category">Living Room</div>
-        <div class="category">Bedroom</div>
-        <div class="category">Kitchen</div>
-        <div class="category">Bathroom</div>
-        <div class="category">Dinning</div>
-        <div class="category">Outdoor</div>
+        <div class="category" (click)="navigateToCategory(null)">All Rooms</div>
+        <div class="category" (click)="navigateToCategory('Living Room')">Living Room</div>
+        <div class="category" (click)="navigateToCategory('Bedroom')">Bedroom</div>
+        <div class="category" (click)="navigateToCategory('Kitchen')">Kitchen</div>
+        <div class="category" (click)="navigateToCategory('Bathroom')">Bathroom</div>
+        <div class="category" (click)="navigateToCategory('Dinning')">Dinning</div>
+        <div class="category" (click)="navigateToCategory('Outdoor')">Outdoor</div>
       </div>
       <div class="prices">
         <div class="filter-title">
@@ -63,7 +63,7 @@
       <div class="spinner" *ngIf="(loading$ | async)"><mat-spinner ></mat-spinner></div>
       <app-products [products]="(products$ | async)!" *ngIf="!(loading$ | async)"></app-products>
       <div class="seemore">
-        <button>See more</button>
+        <button (click)="addPage()">See more</button>
       </div>
     </div>
   </div>
