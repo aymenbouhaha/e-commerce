@@ -1,9 +1,13 @@
-import {Component, signal} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup} from "@angular/forms";
 import {User} from "../../core/models/base-models/user";
-import {Observable} from "rxjs";
 import {Store} from "@ngrx/store";
-import {selectUser} from "./Store/general-details.selector";
+import {getLoadingState, getUserError, selectUser} from "./Store/general-details.selector";
+import {HttpClient} from "@angular/common/http";
+import * as GeneralDetailsAction from "./Store/general-details.action"
+import {GenericComponent} from "../../shared/generic/generic.component";
+import {MatDialog} from "@angular/material/dialog";
+import {Observable} from "rxjs";
 
 
 @Component({
@@ -11,25 +15,43 @@ import {selectUser} from "./Store/general-details.selector";
   templateUrl: './general-details.component.html',
   styleUrls: ['./general-details.component.css']
 })
-export class GeneralDetailsComponent {
+export class GeneralDetailsComponent extends GenericComponent{
 
 
   form : FormGroup
-  User$ : Observable<User>
+  loading$ : Observable<boolean>
 
-  constructor(private store : Store<{user : User}>) {
+  constructor(private store : Store<{user : User}>,private dialog : MatDialog) {
+    super(store.select(getUserError),store,dialog)
     this.form=new FormGroup({
       firstName : new FormControl(),
       lastName : new FormControl(),
       address : new FormControl(),
       phoneNumber : new FormControl(),
     })
-    this.User$=this.store.select(selectUser)
+    this.loading$=this.store.select(getLoadingState)
+    this.store.select(selectUser).subscribe(
+      (data)=>{
+        this.form.patchValue({
+          firstName : data?.firstName,
+          lastName : data?.lastName,
+          address : data?.address,
+          phoneNumber : data?.phoneNumber,
+        })
+      }
+    )
   }
 
 
   onSubmit(){
-    console.log(this.form)
+    this.store.dispatch(GeneralDetailsAction.updateUserStart({
+      userData : {
+        firstName: this.form.get("firstName")!.value,
+        lastName :this.form.get("lastName")!.value,
+        address : this.form.get("address")!.value,
+        phoneNumber :this.form.get("phoneNumber")!.value
+      }
+    }))
   }
 
 }

@@ -6,9 +6,16 @@ import { CodeVerificationComponent } from './code-verification/code-verification
 import { AuthRoutingModule } from './auth-routing.module';
 import { RouterModule } from '@angular/router';
 import { SharedModule } from '../shared/shared.module';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 @NgModule({
   declarations: [SignInComponent, SignUpComponent, CodeVerificationComponent],
-  imports: [CommonModule, RouterModule, AuthRoutingModule, SharedModule],
+  imports: [
+    CommonModule,
+    RouterModule,
+    AuthRoutingModule,
+    SharedModule,
+    MatProgressSpinnerModule,
+  ],
 })
 export class AuthModule {}

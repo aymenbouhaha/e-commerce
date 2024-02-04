@@ -7,6 +7,7 @@ import { AccountComponent } from './account.component';
 import {AccountRoutingModule} from "./account-routing.module";
 import {RouterModule} from "@angular/router";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import {SharedModule} from "../shared/shared.module";
 
 
 
@@ -17,11 +18,11 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
     WishlistComponent,
     AccountComponent
   ],
-  imports: [
-    CommonModule,
-    AccountRoutingModule,
-    ReactiveFormsModule,
-    FormsModule
-  ]
+    imports: [
+        CommonModule,
+        AccountRoutingModule,
+        ReactiveFormsModule,
+        SharedModule
+    ]
 })
 export class AccountModule { }
