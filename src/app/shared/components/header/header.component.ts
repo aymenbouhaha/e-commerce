@@ -1,12 +1,18 @@
 import { Component } from '@angular/core';
-import {HttpParams} from "@angular/common/http";
+import { Router } from '@angular/router';
+import { Store } from '@ngrx/store';
+import * as authActions from '../../../auth/store/auth.actions';
 
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
-  styleUrls: ['./header.component.css']
+  styleUrls: ['./header.component.css'],
 })
 export class HeaderComponent {
+  constructor(private store: Store, private router: Router) {}
 
-  protected readonly HttpParams = HttpParams;
+  onClick() {
+    this.store.dispatch(authActions.logout());
+    this.router.navigate(['/auth/sign-in']);
+  }
 }

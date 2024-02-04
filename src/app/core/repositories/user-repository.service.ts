@@ -3,6 +3,7 @@ import {HttpClient} from "@angular/common/http";
 import {Endpoints} from "../utils/constant";
 import {SignUpDto} from "../models/dto/sign-up.dto";
 import {SignInSuccessDto} from "../models/dto/sign-in-success-dto";
+import {UpdateUserDto} from "../models/dto/update-user-dto";
 
 @Injectable({
   providedIn: 'root'
@@ -29,6 +30,13 @@ export class UserRepositoryService {
     )
   }
 
+
+  updateUserData(updateDto : UpdateUserDto){
+    return this.httpClient.patch<void>(
+      Endpoints.updateProfile,
+      updateDto
+    )
+  }
 
 
 
