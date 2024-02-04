@@ -1,9 +1,11 @@
 import { Component } from '@angular/core';
-import {Observable} from "rxjs";
-import {Basket} from "../core/models/base-models/basket/basket";
-import {BasketState} from "./store/cart.reducer";
+import {Observable, tap} from "rxjs";
+import {BasketState, getBasketError, getBasketLoading, getBasketProducts} from "./store/cart.reducer";
 import {Store} from "@ngrx/store";
-import {getBasket,removeFromBasketStart} from "./store/cart.actions";
+import {removeFromBasketStart} from "./store/cart.actions";
+import {Product} from "../core/models/base-models/product/product";
+import {GenericComponent} from "../shared/generic/generic.component";
+import {MatDialog} from "@angular/material/dialog";
 
 
 @Component({
@@ -11,17 +13,20 @@ import {getBasket,removeFromBasketStart} from "./store/cart.actions";
   templateUrl: './cart.component.html',
   styleUrls: ['./cart.component.css']
 })
-export class CartComponent {
+export class CartComponent extends GenericComponent{
   currentTab: string = 'Tab1';
 
-  basketState$: Observable<BasketState>;
+  basketProducts$: Observable< {
+    product : Product
+    itemsNumber : number
+  }[]>
+  loading$ : Observable<boolean>
 
-  constructor(private store: Store<{ cart: BasketState }>) {
-    this.basketState$ = this.store.select('cart');
-  }
 
-  ngOnInit() {
-    this.store.dispatch(getBasket({ user: yourUserObject })); //how to get the current user entity
+  constructor(private store: Store< BasketState >,private dialog: MatDialog) {
+    super(store.select(getBasketError),store,dialog)
+    this.loading$=this.store.select(getBasketLoading);
+    this.basketProducts$ = this.store.select(getBasketProducts);
   }
 
   openTab(tabName: string) {

@@ -29,13 +29,9 @@ export class BasketRepositoryService {
 
   //added by roua
   getBasket(user : User){
-    const userParam = encodeURIComponent(JSON.stringify(user));
-    const params = new HttpParams().set('user', userParam);
     return this.httpClient.get<{user : User}>(
       Endpoints.basket,
-      {
-          params: params
-      }
+
     )
   }
 

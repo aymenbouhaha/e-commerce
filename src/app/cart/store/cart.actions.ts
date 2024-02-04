@@ -12,7 +12,6 @@ export const START_REMOVE_FROM_BASKET = "[CART] START_REMOVE_FROM_BASKET"
 
 export const START_ADD_TO_BASKET = "[CART] START_ADD_TO_BASKET"
 
-export  const GET_BASKET ="[CART] GET_BASKET"
 
 export const REMOVE_FROM_BASKET_SUCCESS = "[CART] REMOVE_FROM_BASKET_SUCCESS"
 
@@ -50,11 +49,6 @@ export const basketError=createAction(
   props<{error : string}>()
 )
 
-
-export const getBasket=createAction(
-  GET_BASKET,
-  props<{ user: User }>()
-)
 
 export const clearError =createAction(CLEAR_ERROR)
 
