@@ -10,6 +10,7 @@
             <div class="description">
                 Already have an account? <a routerLink="/auth/sign-in">Sign in</a>
             </div>
+            <div class="spinner" *ngIf="(loading$ | async)"><mat-spinner></mat-spinner></div>
             <form [formGroup]="form" class="example-form"  (ngSubmit)="onSubmit()">
                 <mat-form-field class="example-full-width">
                     <mat-label>First name</mat-label>

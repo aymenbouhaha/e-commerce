@@ -1,23 +1,36 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
-import { AuthState } from '../store/auth.reducer';
+import { AuthState, getLoading } from '../store/auth.reducer';
 import { Store } from '@ngrx/store';
 import * as authActions from '../store/auth.actions';
-import { Router } from '@angular/router';
+import { GenericComponent } from 'src/app/shared/generic/generic.component';
+import { MatDialog } from '@angular/material/dialog';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-sign-in',
   templateUrl: './sign-in.component.html',
   styleUrls: ['./sign-in.component.css'],
 })
-export class SignInComponent {
+export class SignInComponent extends GenericComponent implements OnDestroy {
   form: FormGroup;
-  constructor(private store: Store<AuthState>, private router: Router) {
+  loading$: Observable<boolean> = new Observable<boolean>();
+
+  constructor(private store: Store<AuthState>, private dialog: MatDialog) {
+    super(
+      store.select((state) => state.error),
+      store,
+      dialog
+    );
     this.form = new FormGroup({
       email: new FormControl(),
       password: new FormControl(),
     });
   }
+  ngOnDestroy(): void {
+    this.destroySubscription();
+  }
+
   onSubmit() {
     const formValues = this.form.value;
     this.store.dispatch(
@@ -26,6 +39,6 @@ export class SignInComponent {
         password: formValues.password,
       })
     );
-    this.router.navigate(['']);
+    this.loading$ = this.store.select(getLoading);
   }
 }

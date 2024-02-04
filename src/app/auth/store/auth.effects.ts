@@ -29,6 +29,7 @@ export class AuthEffects {
                 return AuthActions.signInSuccess(value);
               }),
               catchError((err) => {
+                console.log('error', err);
                 return of(AuthActions.authenticationFailed(err));
               })
             );
@@ -68,7 +69,7 @@ export class AuthEffects {
   //   },{dispatch : true}
   // )
 
-  signInSuccessRedirect = createEffect(
+  signInSuccess = createEffect(
     () => {
       return this.action.pipe(
         ofType(AuthActions.signInSuccess),
@@ -89,4 +90,18 @@ export class AuthEffects {
       })
     );
   });
+
+  signupSuccess = createEffect(
+    () => {
+      return this.action.pipe(
+        ofType(AuthActions.signUpSuccess),
+        tap(() => {
+          this.router.navigate(['/auth/sign-in']);
+        })
+      );
+    },
+    { dispatch: false }
+  );
+
+  // TODO :: Error Handling
 }

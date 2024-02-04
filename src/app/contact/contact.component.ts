@@ -17,5 +17,6 @@ export class ContactComponent {
   }
   onSubmit() {
     console.log('submitted');
+    this.form.reset();
   }
 }
