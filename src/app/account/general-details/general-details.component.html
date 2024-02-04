@@ -26,4 +26,4 @@
   </form>
 </div>
 
-<app-loader *ngIf="loading$"></app-loader>
+<app-loader *ngIf="loading$ | async"></app-loader>
