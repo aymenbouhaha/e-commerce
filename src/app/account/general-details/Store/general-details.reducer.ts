@@ -6,11 +6,10 @@ export interface AccountState {
   user :    User | null
   error :   string | null
   loading : boolean
-
 }
 
 const initialState : AccountState = {
-  user : new User(1,"firas","saada","bizerta","","22221133"),
+  user : null,
   error : null ,
   loading : false
 }
@@ -26,17 +25,41 @@ export const userReducer=createReducer(
         loading : false,
       }
     }
-  ) ,
-  on(GeneralDetailsActions.updateUser ,
-    (state,{formData}) => {
+  ),
+  on(GeneralDetailsActions.updateUserStart ,
+    (state)=>{
+      return {
+        ...state,
+        error : null,
+        loading : true,
+      }
+    }
+  ),
+  on(GeneralDetailsActions.updateUserSuccess ,
+    (state,action) => {
       return {
           ...state,
-
-          user : {...state.user , ...formData},
-          error : null ,
+          user : action.userData as User,
+          error : null,
           loading : false,
         }
-
     }
-    )
+  ),
+  on(GeneralDetailsActions.updateUserFail,
+    (state,action)=>{
+      return {
+        ...state,
+        error : action.error,
+        loading : false,
+      }
+    }
+  ),
+  on(GeneralDetailsActions.clearError,
+    (state,action)=>{
+      return {
+        ...state,
+        error : null,
+      }
+    }
+  ),
 )

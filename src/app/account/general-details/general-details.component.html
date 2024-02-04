@@ -4,24 +4,26 @@
     <div class="circular-input">
       <label >FIRST NAME *</label>
       <br>
-      <input type="text" formControlName="firstName" [placeholder]="(User$ | async)?.firstName">
+      <input type="text" formControlName="firstName" placeholder="FIRST NAME">
     </div>
     <div class="circular-input">
       <label >LAST NAME *</label>
       <br>
-      <input type="text"  formControlName="lastName" [placeholder]="(User$ | async)?.lastName">
+      <input type="text"  formControlName="lastName" placeholder="LAST NAME">
     </div>
     <div class="circular-input">
       <label >ADDRESS *</label>
       <br>
-      <input type="text"  formControlName="address" [placeholder]="(User$ | async)?.address">
+      <input type="text"  formControlName="address" placeholder="ADDRESS">
     </div>
     <div class="circular-input">
       <label >PHONE NUMBER *</label>
       <br>
-      <input type="text" formControlName="phoneNumber" [placeholder]="(User$ | async)?.phoneNumber">
+      <input type="text" formControlName="phoneNumber" placeholder="PHONE NUMBER">
     </div>
-   <button type="submit" class="save-button" (click)="updateUser(User$) ">Save Changes</button>
+   <button type="submit" class="save-button">Save Changes</button>
 
   </form>
 </div>
+
+<app-loader *ngIf="loading$"></app-loader>
