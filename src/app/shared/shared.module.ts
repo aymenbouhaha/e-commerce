@@ -13,15 +13,15 @@ import { MatGridListModule } from '@angular/material/grid-list';
 import { ServicesComponent } from './components/services/services.component';
 import { LoaderComponent } from './components/loader/loader.component';
 import { DialogComponent } from './components/dialog/dialog.component';
-import {MatDialogModule} from "@angular/material/dialog";
-import {MatButtonModule} from "@angular/material/button";
-import {OverlayModule} from "@angular/cdk/overlay";
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatButtonModule } from '@angular/material/button';
+import { OverlayModule } from '@angular/cdk/overlay';
 import { PricePipe } from './pipes/price.pipe';
 import { ImagePipe } from './pipes/image.pipe';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatCheckboxModule } from '@angular/material/checkbox';
-
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -36,7 +36,15 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
     PricePipe,
     ImagePipe,
   ],
-  imports: [CommonModule, RouterModule, MatInputModule, MatFormFieldModule,MatDialogModule, MatButtonModule,OverlayModule],
+  imports: [
+    CommonModule,
+    RouterModule,
+    MatInputModule,
+    MatFormFieldModule,
+    MatDialogModule,
+    MatButtonModule,
+    OverlayModule,
+  ],
   exports: [
     FooterComponent,
     HeaderComponent,
@@ -56,6 +64,8 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
     MatInputModule,
     MatFormFieldModule,
     MatCheckboxModule,
+    FormsModule,
+    ReactiveFormsModule,
   ],
 })
 export class SharedModule {}

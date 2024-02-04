@@ -1,21 +1,63 @@
-import {createReducer} from "@ngrx/store";
-import {Order} from "../../../core/models/base-models/order/order";
-import {User} from "../../../core/models/base-models/user";
+import {
+  createFeatureSelector,
+  createReducer,
+  createSelector,
+  on,
+} from '@ngrx/store';
+import { Order } from '../../../core/models/base-models/order/order';
+import * as OrderActions from './orders.action';
 
-export interface ordersState {
-  orders :    Order[] | null
-  error :   string | null
-  loading : boolean
-
+export interface OrdersState {
+  orders: Order[];
+  error: string | null;
+  loading: boolean;
 }
-
-const initialState : ordersState = {
-  orders : [new Order(1,new Date(),"waiting")],
-  error : null ,
-  loading : false
-}
-
-export const orderReducer=createReducer(
-  initialState,
-
-)
+const initialOrdersState: OrdersState = {
+  error: null,
+  loading: false,
+  orders: [],
+};
+export const ordersReducer = createReducer(
+  initialOrdersState,
+  on(OrderActions.startFetchingOrders, (state) => {
+    return {
+      ...state,
+      error: null,
+      loading: true,
+    };
+  }),
+  on(OrderActions.fetchedOrders, (state, action) => {
+    return {
+      ...state,
+      error: null,
+      loading: false,
+      orders: action.orders,
+    };
+  }),
+  on(OrderActions.errorFetchingOrders, (state, action) => {
+    return {
+      ...state,
+      error: action.error,
+      loading: false,
+    };
+  }),
+  on(OrderActions.clearOrderError, (state) => {
+    return {
+      ...state,
+      error: null,
+    };
+  })
+);
+const ordersFeatureSelector = createFeatureSelector<OrdersState>('orders');
+export const selectOrders = createSelector(
+  ordersFeatureSelector,
+  (state) => state.orders
+);
+export const selectOrdersError = createSelector(
+  ordersFeatureSelector,
+  (state) => state.error
+);
+export const selectOrdersLoading = createSelector(
+  ordersFeatureSelector,
+  (state) => state.loading
+);
