@@ -9,5 +9,5 @@ export const Init=createAction(
   'init'
 )
 export const Set=createAction(
-  'set' , props<{wishlist :Product[]}>()
+  'set' , props<{wishlist :Product[] | null }>()
 )

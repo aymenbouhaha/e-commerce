@@ -19,6 +19,7 @@ import {RecommendationsEffects} from "./shop/product-details/recommendations/sto
 import {wishlistReducer} from "./account/wishlist/Store/wishlist.reducer";
 import {wishlistEffects} from "./account/wishlist/Store/wishlist.effects";
 import {userReducer} from "./account/general-details/Store/general-details.reducer";
+import {orderReducer} from "./account/orders/Store/orders.reducer";
 
 @NgModule({
   declarations: [
@@ -41,6 +42,7 @@ import {userReducer} from "./account/general-details/Store/general-details.reduc
       cartReducer : cartReducer ,
       wishlist : wishlistReducer ,
       user     : userReducer ,
+      orders    : orderReducer
     }),
     EffectsModule.forRoot([
       ProductEffects,

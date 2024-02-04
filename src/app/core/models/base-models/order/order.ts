@@ -8,8 +8,11 @@ export class Order {
   date?: Date;
   client?: User;
   orderProducts?: OrderProduct[];
-  constructor(id:number,dates:Date,Status : string,Price : number) {
 
+  constructor(id:number,dates:Date,status : string) {
+    this.id=id;
+    this.status=status ;
+    this.date=dates
 }
 
 }

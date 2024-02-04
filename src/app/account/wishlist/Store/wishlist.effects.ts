@@ -4,6 +4,7 @@ import {map, of, switchMap, tap, withLatestFrom} from "rxjs";
 import {Store} from "@ngrx/store";
 import {Product} from "../../../core/models/base-models/product/product";
 import {Injectable} from "@angular/core";
+import {selectwishlist} from "./wishlist.selector";
 @Injectable()
 export class wishlistEffects{
 
@@ -16,7 +17,7 @@ export class wishlistEffects{
         const wishlist=JSON.parse(storedWishlist)
         return of(Set({wishlist : wishlist}))
         }
-        return this.store.select('wishlist').pipe(
+        return this.store.select(selectwishlist).pipe(
           map(wishlistFromStore => Set({ wishlist: wishlistFromStore }))
         );
         }
@@ -27,9 +28,8 @@ export class wishlistEffects{
 () =>
       this.actions$.pipe(
         ofType(Delete),
-        withLatestFrom(this.store.select('wishlist')),
+        withLatestFrom(this.store.select(selectwishlist)),
         tap(([_,wishlist])=> {
-          console.log("ff") ;
           localStorage.setItem('wishlist',JSON.stringify(wishlist) )
           }     ) ,)
    ,{dispatch : false}  )
