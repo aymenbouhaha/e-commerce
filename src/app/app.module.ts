@@ -21,6 +21,8 @@ import {wishlistEffects} from "./account/wishlist/Store/wishlist.effects";
 import {userReducer} from "./account/general-details/Store/general-details.reducer";
 import { ordersReducer} from "./account/orders/Store/orders.reducer";
 import {NgxStripeModule} from "ngx-stripe";
+import {FormsModule} from "@angular/forms";
+import {environment} from "./cart/environment";
 
 @NgModule({
   declarations: [
@@ -51,9 +53,10 @@ import {NgxStripeModule} from "ngx-stripe";
       CartEffects,
       RecommendationsEffects,
       CartEffects ,
+      FormsModule,
       wishlistEffects
     ]),
-    NgxStripeModule.forRoot()
+    NgxStripeModule.forRoot(environment.stripe.publicKey)
   ],
   providers: [],
   bootstrap: [AppComponent]

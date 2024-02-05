@@ -2,6 +2,8 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CartComponent } from './cart.component';
 import {RouterModule} from "@angular/router";
+import {MatFormFieldModule} from "@angular/material/form-field";
+import {NgxStripeModule} from "ngx-stripe";
 
 
 
@@ -11,7 +13,9 @@ import {RouterModule} from "@angular/router";
   ],
   imports: [
     CommonModule,
-    RouterModule.forChild([{path: "" , component: CartComponent}])
+    RouterModule.forChild([{path: "", component: CartComponent}]),
+    MatFormFieldModule,
+    NgxStripeModule
   ]
 })
 export class CartModule { }
