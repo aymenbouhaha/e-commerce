@@ -19,7 +19,8 @@ import {RecommendationsEffects} from "./shop/product-details/recommendations/sto
 import {wishlistReducer} from "./account/wishlist/Store/wishlist.reducer";
 import {wishlistEffects} from "./account/wishlist/Store/wishlist.effects";
 import {userReducer} from "./account/general-details/Store/general-details.reducer";
-import {orderReducer} from "./account/orders/Store/orders.reducer";
+import { ordersReducer} from "./account/orders/Store/orders.reducer";
+import {NgxStripeModule} from "ngx-stripe";
 
 @NgModule({
   declarations: [
@@ -42,7 +43,7 @@ import {orderReducer} from "./account/orders/Store/orders.reducer";
       cartReducer : cartReducer ,
       wishlist : wishlistReducer ,
       user     : userReducer ,
-      orders    : orderReducer
+      orders    : ordersReducer
     }),
     EffectsModule.forRoot([
       ProductEffects,
@@ -52,6 +53,7 @@ import {orderReducer} from "./account/orders/Store/orders.reducer";
       CartEffects ,
       wishlistEffects
     ]),
+    NgxStripeModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]
