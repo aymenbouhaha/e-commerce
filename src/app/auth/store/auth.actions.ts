@@ -18,7 +18,7 @@ const LOGOUT = "[AUTH] LOGOUT"
 
 const AUTO_LOGIN = "[AUTH] AUTO_LOGIN"
 
-
+const CLEAR_AUTH_ERROR = "[AUTH] CLEAR_AUTH_ERROR"
 
 export const signInStarted =createAction(
   SIGN_IN_STARTED,
@@ -41,6 +41,11 @@ export const signUpSuccess =createAction(SIGN_UP_SUCCESS)
 export const authenticationFailed = createAction(
   AUTHENTICATION_FAIL,
   props<{error : string}>()
+)
+
+
+export const clearAuthError = createAction(
+  CLEAR_AUTH_ERROR,
 )
 
 export const logout = createAction(LOGOUT)

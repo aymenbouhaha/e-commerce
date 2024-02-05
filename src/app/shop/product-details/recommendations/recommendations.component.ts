@@ -9,7 +9,7 @@ import {
 import {Router} from "@angular/router";
 import {Product} from "../../../core/models/base-models/product/product";
 import {Observable} from "rxjs";
-import {recommendationStartFetching} from "./store/recommedations.action";
+import {clearRecommendationError, recommendationStartFetching} from "./store/recommedations.action";
 import {GenericComponent} from "../../../shared/generic/generic.component";
 import {MatDialog} from "@angular/material/dialog";
 
@@ -28,7 +28,7 @@ export class RecommendationsComponent extends GenericComponent implements OnDest
 
 
   constructor(private store : Store<RecommendationsState>,private router : Router,private dialog : MatDialog) {
-    super(store.select(getRecommendationsError),store,dialog)
+    super(store.select(getRecommendationsError),store,dialog,clearRecommendationError)
     this.store.dispatch(recommendationStartFetching({category: this.category}))
     this.products$=this.store.select(getRecommendations)
     this.loading$=this.store.select(getRecommendationsLoading)

@@ -6,6 +6,7 @@ import * as authActions from '../store/auth.actions';
 import { GenericComponent } from 'src/app/shared/generic/generic.component';
 import { MatDialog } from '@angular/material/dialog';
 import { Observable } from 'rxjs';
+import {clearAuthError} from "../store/auth.actions";
 
 @Component({
   selector: 'app-sign-in',
@@ -20,7 +21,8 @@ export class SignInComponent extends GenericComponent implements OnDestroy {
     super(
       store.select(getAuthenticationError),
       store,
-      dialog
+      dialog,
+      clearAuthError
     );
     this.form = new FormGroup({
       email: new FormControl(),

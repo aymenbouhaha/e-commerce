@@ -71,6 +71,12 @@ export const authReducer = createReducer(
       token: null,
     };
   }),
+  on(AuthActions.clearAuthError, (state) => {
+    return {
+      ...state,
+      error : null
+    };
+  }),
 )
 const authFeatureState = createFeatureSelector<AuthState>('auth');
 
@@ -78,11 +84,20 @@ export const getAuthenticationError = createSelector(
   authFeatureState,
   (state: AuthState) => state.error
 );
-export const getSigningError = createSelector(
+
+
+export const isSignedIn=createSelector(
   authFeatureState,
-  (state: AuthState) => state.error
-);
+  (state )=>state.isAuthenticated
+)
+
 export const getLoading = createSelector(
   authFeatureState,
   (state: AuthState) => state.loading
 );
+
+
+export const getToken=createSelector(
+  authFeatureState,
+  (state )=>state.token
+)

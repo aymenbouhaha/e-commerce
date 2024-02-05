@@ -1,6 +1,7 @@
 import {Product} from "../../../../core/models/base-models/product/product";
 import {createFeatureSelector, createReducer, createSelector, on} from "@ngrx/store";
 import {
+  clearRecommendationError,
   recommendationsError,
   recommendationsFetchedSuccess,
   recommendationStartFetching
@@ -54,7 +55,13 @@ export const recommendationsReducer=createReducer(
       error : action.error,
       category: null
     }
-  })
+  }),
+  on(clearRecommendationError,(state,action)=>{
+    return{
+      ...state,
+      error : null,
+    }
+  }),
 )
 
 

@@ -7,6 +7,7 @@ import * as GeneralDetailsAction from "./Store/general-details.action"
 import {GenericComponent} from "../../shared/generic/generic.component";
 import {MatDialog} from "@angular/material/dialog";
 import {Observable} from "rxjs";
+import {clearUserError} from "./Store/general-details.action";
 
 
 @Component({
@@ -21,7 +22,7 @@ export class GeneralDetailsComponent extends GenericComponent{
   loading$ : Observable<boolean>
 
   constructor(private store : Store<{user : User}>,private dialog : MatDialog) {
-    super(store.select(getUserError),store,dialog)
+    super(store.select(getUserError),store,dialog,clearUserError)
     this.form=new FormGroup({
       firstName : new FormControl(),
       lastName : new FormControl(),

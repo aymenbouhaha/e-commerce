@@ -7,6 +7,7 @@ import * as authActions from '../store/auth.actions';
 import { GenericComponent } from 'src/app/shared/generic/generic.component';
 import { MatDialog } from '@angular/material/dialog';
 import { Observable } from 'rxjs';
+import {clearAuthError} from "../store/auth.actions";
 
 @Component({
   selector: 'app-sign-up',
@@ -18,7 +19,7 @@ export class SignUpComponent extends GenericComponent implements OnDestroy {
   loading$: Observable<boolean> = new Observable<boolean>();
 
   constructor(private store: Store<AuthState>, private dialog: MatDialog) {
-    super(store.select(getAuthenticationError), store, dialog);
+    super(store.select(getAuthenticationError), store, dialog,clearAuthError);
     this.form = new FormGroup({
       firstName: new FormControl(),
       lastName: new FormControl(),

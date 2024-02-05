@@ -11,7 +11,7 @@ import {ToastrModule} from "ngx-toastr";
 import {authReducer} from "./auth/store/auth.reducer";
 import {ProductEffects} from "./shop/store/product.effects";
 import {AuthEffects} from "./auth/store/auth.effects";
-import {HttpClientModule} from "@angular/common/http";
+import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import {cartReducer} from "./cart/store/cart.reducer";
 import {CartEffects} from "./cart/store/cart.effects";
 import {recommendationsReducer} from "./shop/product-details/recommendations/store/recommendations.reducer";
@@ -21,6 +21,7 @@ import {wishlistEffects} from "./account/wishlist/Store/wishlist.effects";
 import {userReducer} from "./account/general-details/Store/general-details.reducer";
 import {ordersReducer} from "./account/orders/Store/orders.reducer";
 import {GeneralDetailsEffect} from "./account/general-details/Store/general-details.effect";
+import {AuthInterceptor} from "./auth/auth.interceptor";
 
 @NgModule({
   declarations: [
@@ -55,7 +56,13 @@ import {GeneralDetailsEffect} from "./account/general-details/Store/general-deta
       GeneralDetailsEffect
     ]),
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

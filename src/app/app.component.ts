@@ -10,7 +10,7 @@ import {autoLogin} from "./auth/store/auth.actions";
 })
 export class AppComponent implements OnInit{
   showHeaderFooter: boolean = true;
-
+  title = "E-commerce"
   constructor(private routeWatcherService: RouteWatcherService
               ,private store: Store
   ) {
