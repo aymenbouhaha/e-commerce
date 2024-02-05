@@ -34,12 +34,26 @@ export const ordersReducer = createReducer(
       orders: action.orders,
     };
   }),
-  on(OrderActions.errorFetchingOrders, (state, action) => {
+  on(OrderActions.orderError, (state, action) => {
     return {
       ...state,
       error: action.error,
       loading: false,
     };
+  }),
+  on(OrderActions.makeOrderSuccess,(state,action)=>{
+    return {
+      ...state,
+      loading : false,
+      orders : [...state.orders,action.products]
+    }
+  }),
+  on(OrderActions.makeOrder,(state)=>{
+    return {
+      ...state,
+      loading : false,
+      error : null
+    }
   }),
   on(OrderActions.clearOrderError, (state) => {
     return {

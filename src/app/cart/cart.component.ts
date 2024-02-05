@@ -7,6 +7,7 @@ import {Product} from "../core/models/base-models/product/product";
 import {GenericComponent} from "../shared/generic/generic.component";
 import {MatDialog} from "@angular/material/dialog";
 import {selectOrdersLoading} from "../account/orders/Store/orders.reducer";
+import {makeOrder} from "../account/orders/Store/orders.action";
 
 
 @Component({
@@ -17,7 +18,6 @@ import {selectOrdersLoading} from "../account/orders/Store/orders.reducer";
 export class CartComponent extends GenericComponent{
   currentTab: string = 'Tab1';
 
-  basketProductsToOrder!: { id: number, itemsNumber: number }[];
   basketProducts!: {
     product : Product
     itemsNumber : number
@@ -32,10 +32,6 @@ export class CartComponent extends GenericComponent{
     this.store.select(getBasketProducts).subscribe(
       (value => {
           this.basketProducts=value
-        this.basketProductsToOrder=this.basketProducts.map(productItem => ({
-          id: productItem.product.id!,
-          itemsNumber: productItem.itemsNumber
-        }))
       })
     );
   }
@@ -49,6 +45,6 @@ export class CartComponent extends GenericComponent{
   }
 
   addOrder(){
-    // this.store.dispatch(createOrder({products :this.basketProductsToOrder$ }));
+    this.store.dispatch(makeOrder({products :this.basketProducts}));
   }
 }

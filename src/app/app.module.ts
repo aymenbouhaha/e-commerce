@@ -22,6 +22,8 @@ import {ordersReducer} from "./account/orders/Store/orders.reducer";
 import {GeneralDetailsEffect} from "./account/general-details/Store/general-details.effect";
 import {AuthInterceptor} from "./auth/auth.interceptor";
 import { wishlistReducer} from "./account/wishlist/Store/wishlist.reducer";
+import {NgxStripeModule} from "ngx-stripe";
+import {environment} from "./cart/environment";
 
 @NgModule({
   declarations: [
@@ -55,6 +57,7 @@ import { wishlistReducer} from "./account/wishlist/Store/wishlist.reducer";
       wishlistEffects,
       GeneralDetailsEffect
     ]),
+    NgxStripeModule.forRoot(environment.stripe.publicKey)
   ],
   providers: [
     {
