@@ -1,25 +1,27 @@
 import {Product} from "../../core/models/base-models/product/product";
-import {createReducer, on} from "@ngrx/store";
+import {createFeatureSelector, createReducer, createSelector, on} from "@ngrx/store";
 import * as CartActions from "./cart.actions"
+
 
 export interface BasketState{
   error : string | null
+  loading: boolean
   products : {
     product : Product
     itemsNumber : number
   }[]
 }
 
-
-
 export const cartInitialState : BasketState= {
   error : null,
+  loading:false,
   products : []
 }
 
 
 export const cartReducer=createReducer(
   cartInitialState,
+
   on(CartActions.setBasket,(state,action)=>{
     const products = action.basket.basketProduct.map((element)=>{
       return {
@@ -45,7 +47,8 @@ export const cartReducer=createReducer(
       products : newPrevProductsRef
     }
   }),
-  on(CartActions.removeFromBasketStart,(state,action)=>{
+
+  on(CartActions.removeFromBasketSuccess,(state,action)=>{
     const  prevProducts = [...state.products]
     const newPrevProductsRef = prevProducts.map((ele)=>{
       return {
@@ -61,11 +64,14 @@ export const cartReducer=createReducer(
       products : newPrevProductsRef
     }
   }),
+
   on(CartActions.removeFromBasketStart,(state)=>{
     return{
       ...state,
+      loading : true
     }
   }),
+
   on(CartActions.startAddToBasket,(state)=>{
     return{
       ...state,
@@ -77,6 +83,7 @@ export const cartReducer=createReducer(
       error : action.error,
     }
   }),
+
   on(CartActions.clearError,(state)=>{
     return{
       ...state,
@@ -87,6 +94,23 @@ export const cartReducer=createReducer(
 
 
 
+const cartFeature = createFeatureSelector<BasketState>("cart")
+
+
+export const getBasket = createSelector(
+  cartFeature,
+  (state)=>state.products
+)
+export const cartFeatureState = createFeatureSelector<BasketState>("cartReducer")
+
+
+
+
+export const getBasketProducts = createSelector(cartFeatureState,(state)=>state.products)
+
+export const getBasketError = createSelector(cartFeatureState,(state)=>state.error)
+
+export const getBasketLoading = createSelector(cartFeatureState, (state)=> state.loading)
 
 
 

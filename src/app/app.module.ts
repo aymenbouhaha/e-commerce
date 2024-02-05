@@ -11,15 +11,17 @@ import {ToastrModule} from "ngx-toastr";
 import {authReducer} from "./auth/store/auth.reducer";
 import {ProductEffects} from "./shop/store/product.effects";
 import {AuthEffects} from "./auth/store/auth.effects";
-import {HttpClientModule} from "@angular/common/http";
+import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import {cartReducer} from "./cart/store/cart.reducer";
 import {CartEffects} from "./cart/store/cart.effects";
 import {recommendationsReducer} from "./shop/product-details/recommendations/store/recommendations.reducer";
 import {RecommendationsEffects} from "./shop/product-details/recommendations/store/recommendations.effects";
-import {wishlistReducer} from "./account/wishlist/Store/wishlist.reducer";
 import {wishlistEffects} from "./account/wishlist/Store/wishlist.effects";
 import {userReducer} from "./account/general-details/Store/general-details.reducer";
-import { ordersReducer} from "./account/orders/Store/orders.reducer";
+import {ordersReducer} from "./account/orders/Store/orders.reducer";
+import {GeneralDetailsEffect} from "./account/general-details/Store/general-details.effect";
+import {AuthInterceptor} from "./auth/auth.interceptor";
+import { wishlistReducer} from "./account/wishlist/Store/wishlist.reducer";
 import {NgxStripeModule} from "ngx-stripe";
 import {FormsModule} from "@angular/forms";
 import {environment} from "./cart/environment";
@@ -38,14 +40,14 @@ import {environment} from "./cart/environment";
     }),
     BrowserAnimationsModule,
     StoreModule.forRoot({
-      products : productReducer,
-      auth : authReducer,
-      cart : cartReducer,
-      recommendations : recommendationsReducer,
-      cartReducer : cartReducer ,
-      wishlist : wishlistReducer ,
-      user     : userReducer ,
-      orders    : ordersReducer
+      products: productReducer,
+      auth: authReducer,
+      cart: cartReducer,
+      recommendations: recommendationsReducer,
+      cartReducer: cartReducer ,
+      wishlist: wishlistReducer ,
+      user: userReducer ,
+      orders: ordersReducer
     }),
     EffectsModule.forRoot([
       ProductEffects,
@@ -53,12 +55,18 @@ import {environment} from "./cart/environment";
       CartEffects,
       RecommendationsEffects,
       CartEffects ,
-      FormsModule,
-      wishlistEffects
+      wishlistEffects,
+      GeneralDetailsEffect
     ]),
     NgxStripeModule.forRoot(environment.stripe.publicKey)
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

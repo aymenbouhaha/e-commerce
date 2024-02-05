@@ -2,8 +2,13 @@ import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { Router } from '@angular/router';
 import { UserRepositoryService } from '../../core/repositories/user-repository.service';
-import { catchError, map, of, switchMap, tap } from 'rxjs';
+import {catchError, map, of, switchMap, take, tap} from 'rxjs';
 import * as AuthActions from './auth.actions';
+import {setBasket} from "../../cart/store/cart.actions";
+import {setUser} from "../../account/general-details/Store/general-details.action";
+import {User} from "../../core/models/base-models/user";
+import {Basket} from "../../core/models/base-models/basket/basket";
+import {HttpErrorResponse} from "@angular/common/http";
 
 @Injectable()
 export class AuthEffects {
@@ -23,14 +28,13 @@ export class AuthEffects {
             .pipe(
               tap((value) => {
                 localStorage.setItem('token', value.token);
-                // TODO :: Basket Setting
               }),
               map((value) => {
                 return AuthActions.signInSuccess(value);
               }),
-              catchError((err) => {
-                console.log('error', err);
-                return of(AuthActions.authenticationFailed(err));
+              catchError((err : HttpErrorResponse) => {
+                console.log("Test Error",err)
+                return of(AuthActions.authenticationFailed({error : err.error.message.toString()}));
               })
             );
         })
@@ -48,8 +52,9 @@ export class AuthEffects {
             map(() => {
               return AuthActions.signUpSuccess();
             }),
-            catchError((err) => {
-              return of(AuthActions.authenticationFailed(err));
+            catchError((err : HttpErrorResponse) => {
+              console.log("Test Error",err)
+              return of(AuthActions.authenticationFailed({error : err.error.message.toString()}));
             })
           );
         })
@@ -58,16 +63,34 @@ export class AuthEffects {
     { dispatch: true }
   );
 
-  // TODO :: Dispatch Basket Action
-  // setUpBasket=createEffect(()=>{
-  //     return this.action.pipe(
-  //       ofType(AuthActions.signInSuccess),
-  //       switchMap((value)=>{
-  //         return
-  //       })
-  //     )
-  //   },{dispatch : true}
-  // )
+  setUpBasket=createEffect(()=>{
+      return this.action.pipe(
+        ofType(AuthActions.signInSuccess),
+        switchMap((value)=>{
+          console.log(value)
+          return of(setBasket({basket : value.basket}))
+        })
+      )
+    },{dispatch : true}
+  )
+
+  setUpUser=createEffect(()=>{
+      return this.action.pipe(
+        ofType(AuthActions.signInSuccess),
+        switchMap((value)=>{
+          return of(setUser({
+            user : {
+              email : value.email,
+              firstName : value.firstName,
+              lastName : value.lastName,
+              phoneNumber : value.phoneNumber,
+              address : value.address
+            }
+          }))
+        })
+      )
+    },{dispatch : true}
+  )
 
   signInSuccess = createEffect(
     () => {
@@ -86,10 +109,10 @@ export class AuthEffects {
       ofType(AuthActions.logout),
       tap(() => {
         localStorage.clear();
-        // TODO :: Basket Setting
       })
     );
-  });
+  },{dispatch : false}
+  );
 
   signupSuccess = createEffect(
     () => {
@@ -103,5 +126,30 @@ export class AuthEffects {
     { dispatch: false }
   );
 
-  // TODO :: Error Handling
+
+  autoLogin$ = createEffect(
+    () => {
+      return this.action.pipe(
+        ofType(AuthActions.autoLogin),
+        map(
+        ()=>{
+          const token = localStorage.getItem("token")
+          if (token){
+            const userSerialized = localStorage.getItem("user") ;
+            const user : User = JSON.parse(userSerialized!)
+            const basketSerialized = localStorage.getItem("basket")
+            const basket : Basket = JSON.parse(basketSerialized!)
+            console.log(user)
+            console.log(basket)
+            return AuthActions.signInSuccess({...user,basket : basket ,token : token})
+          }else {
+            return AuthActions.logout()
+          }
+        }
+      )
+    )
+    },{dispatch : true}
+  )
+
+
 }

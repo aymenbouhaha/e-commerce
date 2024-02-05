@@ -1,84 +1,54 @@
-// cart.component.ts
-import { Component, ViewChild } from '@angular/core';
-import { StripeCardComponent, StripeCardNumberComponent, NgxStripeElementsOptions } from 'ngx-stripe';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { HttpClient } from '@angular/common/http';
-import { Observable, switchMap } from 'rxjs';
-import { StripeService } from './stripe.service';
-import {environment as env } from "./environment"; // Make sure to adjust the path
+import { Component } from '@angular/core';
+import {map, Observable, tap} from "rxjs";
+import {BasketState, getBasketError, getBasketLoading, getBasketProducts} from "./store/cart.reducer";
+import {Store} from "@ngrx/store";
+import {clearError, removeFromBasketStart} from "./store/cart.actions";
+import {Product} from "../core/models/base-models/product/product";
+import {GenericComponent} from "../shared/generic/generic.component";
+import {MatDialog} from "@angular/material/dialog";
+import {selectOrdersLoading} from "../account/orders/Store/orders.reducer";
+
 
 @Component({
   selector: 'app-cart',
   templateUrl: './cart.component.html',
   styleUrls: ['./cart.component.css']
 })
-export class CartComponent {
-  @ViewChild(StripeCardNumberComponent) card?: StripeCardComponent;
+export class CartComponent extends GenericComponent{
+  currentTab: string = 'Tab1';
 
-  public cardOptions: { locale: string, style: { base: any } } = {
-    locale: 'en',
-    style: {
-      base: {
-        fontWeight: 400,
-        fontFamily: 'Circular',
-        fontSize: '14px',
-        iconColor: '#666EE8',
-        color: '#002333',
-        '::placeholder': {
-          color: '#919191',
-        },
-      },
-    },
-  };
+  basketProductsToOrder!: { id: number, itemsNumber: number }[];
+  basketProducts!: {
+    product : Product
+    itemsNumber : number
+  }[]
+  loading$ : Observable<boolean>
+  orderLoading$ : Observable<boolean>
 
-  public elementsOptions: NgxStripeElementsOptions = {
-    locale: 'en',
-  };
-
-  paymentForm: FormGroup = this.fb.group({
-    name: ['John', [Validators.required]],
-    email: ['john@gmail.com', [Validators.required]],
-    amount: [100, [Validators.required, Validators.pattern(/\d+/)]],
-  });
-
-  constructor(
-    private http: HttpClient,
-    private fb: FormBuilder,
-    private stripeService: StripeService
-  ) {}
-
-  pay(): void {
-    if (this.paymentForm.valid) {
-      this.createPaymentIntent(this.paymentForm.get('amount')?.value)
-        .pipe(
-          switchMap((pi) =>
-            this.stripeService.confirmCardPayment(
-              pi.client_secret,
-              this.card?.element,
-  { name: this.paymentForm.get('name')?.value }
-            )
-
-              )
-
-        )
-        .subscribe((result) => {
-          if (result.error) {
-            console.log(result.error.message);
-          } else {
-            if (result.paymentIntent.status === 'succeeded') {
-              // Payment success logic
-            }
-          }
-        });
-    } else {
-      console.log(this.paymentForm);
-    }
+  constructor(private store: Store< BasketState >,private dialog: MatDialog) {
+    super(store.select(getBasketError),store,dialog,clearError)
+    this.loading$=this.store.select(getBasketLoading);
+    this.orderLoading$=this.store.select(selectOrdersLoading);
+    this.store.select(getBasketProducts).subscribe(
+      (value => {
+          this.basketProducts=value
+        this.basketProductsToOrder=this.basketProducts.map(productItem => ({
+          id: productItem.product.id!,
+          itemsNumber: productItem.itemsNumber
+        }))
+      })
+    );
   }
 
-  createPaymentIntent(amount: number): Observable<any> {
-    return this.http.post<any>(
-      `${env.apiUrl}/create-payment-intent`,
-      { amount }
-    );
+  openTab(tabName: string) {
+    this.currentTab = tabName;
+  }
+
+  removeProduct(productId: number) {
+    this.store.dispatch(removeFromBasketStart({ productId }));
+  }
+
+  addOrder(){
+    // this.store.dispatch(createOrder({products :this.basketProductsToOrder$ }));
   }
 }

@@ -54,7 +54,7 @@ export const userReducer=createReducer(
       }
     }
   ),
-  on(GeneralDetailsActions.clearError,
+  on(GeneralDetailsActions.clearUserError,
     (state,action)=>{
       return {
         ...state,

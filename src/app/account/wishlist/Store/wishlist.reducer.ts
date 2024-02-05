@@ -1,49 +1,51 @@
-import {createReducer, on} from "@ngrx/store";
 import {Product} from "../../../core/models/base-models/product/product";
-import {Delete, Init, Set} from "./wishlist.actions";
-import {Order} from "../../../core/models/base-models/order/order";
-export interface wishlistState {
-  wishlist :    Product[] | null
-  error :   string | null
-  loading : boolean
+import {createReducer, on} from "@ngrx/store";
+import {addToWishlist, removeFromWishlist, wishlistLoaded} from "./wishlist.actions";
+
+
+export interface WishlistState {
+  wishlist : Product[]
 
 }
 
-const initialState : wishlistState = {
+const initialState : WishlistState = {
   wishlist: [
-    new Product(0,"test",29),
-    new Product(1,"test",29),
-    new Product(2,"qqa",29),
-    new Product(3,"test",222),
-
-  ] ,
-  error : null ,
-  loading : false
+  ]
 }
 
 
-export const wishlistReducer=createReducer(
+export const wishlistReducer = createReducer<WishlistState>(
   initialState,
-  on(Delete, (state, {productId}) =>
-  {
+  on(wishlistLoaded,(state,action)=>{
     return {
-      ...state,
-      wishlist: state.wishlist ? state.wishlist.filter(product => product.id !== productId) : [],
-      error : null ,
-      loading : false,
+      wishlist : action.products
     }
   }),
-  on(Set ,(state,{wishlist})=>
-  {
-    return {
-      ...state,
-      wishlist : wishlist,
-      error : null ,
-      loading : false,
+  on(addToWishlist, (state, action): WishlistState => {
+    const productId = action.product.id;
+    const isProductInWishlist = state.wishlist.some((product) => product.id === productId);
+    console.log(state)
+    if (isProductInWishlist) {
+      console.log("entered");
+      return state;
+    } else {
+      console.log("else entered");
+      return {
+        ...state,
+        wishlist: [...state.wishlist,action.product]
+      };
     }
-  }
-) ,
-) ;
+  }),
+  on(removeFromWishlist,(state,action)=>{
+    const prevState = [...state.wishlist]
+    const newState = prevState.filter(
+      (ele)=>ele.id!=action.id
+    )
+    return {
+      wishlist : newState
+    }
+  })
+)
 
 
 

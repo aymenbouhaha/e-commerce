@@ -1,6 +1,7 @@
 import {createAction, props} from "@ngrx/store";
 import {Product} from "../../core/models/base-models/product/product";
 import {Basket} from "../../core/models/base-models/basket/basket";
+import {User} from "../../core/models/base-models/user";
 
 
 export const SET_BASKET = "[CART] SET_BASKET"
@@ -48,10 +49,12 @@ export const basketError=createAction(
   props<{error : string}>()
 )
 
+
+export const clearError =createAction(CLEAR_ERROR)
+
 export const addToBasketSuccess=createAction(
   ADD_TO_BASKET_SUCCESS,
   props<{product : Product,itemsNumber : number}>()
 )
 
-export const clearError =createAction(CLEAR_ERROR)
 

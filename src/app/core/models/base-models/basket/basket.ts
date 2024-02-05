@@ -7,16 +7,4 @@ export interface Basket {
   basketProduct: BasketProduct[];
 }
 
-export interface BasketProductInterface {
-  id: number;
 
-  product: ProductInterface;
-
-  itemsNumber: number;
-}
-
-export interface BasketInterface {
-  id: number;
-
-  basketProduct: BasketProductInterface[];
-}
