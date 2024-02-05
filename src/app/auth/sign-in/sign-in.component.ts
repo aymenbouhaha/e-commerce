@@ -1,11 +1,12 @@
 import { Component, OnDestroy } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
-import { AuthState, getLoading } from '../store/auth.reducer';
+import {AuthState, getAuthenticationError, getLoading} from '../store/auth.reducer';
 import { Store } from '@ngrx/store';
 import * as authActions from '../store/auth.actions';
 import { GenericComponent } from 'src/app/shared/generic/generic.component';
 import { MatDialog } from '@angular/material/dialog';
 import { Observable } from 'rxjs';
+import {clearAuthError} from "../store/auth.actions";
 
 @Component({
   selector: 'app-sign-in',
@@ -18,14 +19,16 @@ export class SignInComponent extends GenericComponent implements OnDestroy {
 
   constructor(private store: Store<AuthState>, private dialog: MatDialog) {
     super(
-      store.select((state) => state.error),
+      store.select(getAuthenticationError),
       store,
-      dialog
+      dialog,
+      clearAuthError
     );
     this.form = new FormGroup({
       email: new FormControl(),
       password: new FormControl(),
     });
+    this.loading$ = this.store.select(getLoading);
   }
   ngOnDestroy(): void {
     this.destroySubscription();
@@ -39,6 +42,5 @@ export class SignInComponent extends GenericComponent implements OnDestroy {
         password: formValues.password,
       })
     );
-    this.loading$ = this.store.select(getLoading);
   }
 }

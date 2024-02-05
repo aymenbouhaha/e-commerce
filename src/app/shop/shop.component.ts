@@ -7,6 +7,7 @@ import * as ProductsActions from "./store/product.actions";
 import {ActivatedRoute, Router} from "@angular/router";
 import {MatDialog} from "@angular/material/dialog";
 import {GenericComponent} from "../shared/generic/generic.component";
+import {clearProductError} from "./store/product.actions";
 
 @Component({
   selector: 'app-shop',
@@ -19,7 +20,7 @@ export class ShopComponent extends GenericComponent implements OnDestroy{
   loading$ : Observable<boolean>
 
   constructor(private store : Store<ProductState>,private activatedRoute : ActivatedRoute,private dialog: MatDialog,private router : Router) {
-    super(store.select(getProductsError),store,dialog)
+    super(store.select(getProductsError),store,dialog,clearProductError)
     this.activatedRoute.queryParams.pipe(
       tap((params)=>{
         this.store.dispatch(ProductsActions.startFetchingProducts({params : {page : +params["page"], category : params["category"]}}))

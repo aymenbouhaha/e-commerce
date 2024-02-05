@@ -9,10 +9,11 @@ import * as authActions from '../../../auth/store/auth.actions';
   styleUrls: ['./header.component.css'],
 })
 export class HeaderComponent {
-  constructor(private store: Store, private router: Router) {}
+  constructor(private store: Store, private router: Router) {
+    // this.store.dispatch(autoLogin())
+  }
 
   onClick() {
     this.store.dispatch(authActions.logout());
-    this.router.navigate(['/auth/sign-in']);
   }
 }

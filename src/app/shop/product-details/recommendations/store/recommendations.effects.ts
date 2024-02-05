@@ -7,6 +7,7 @@ import {
   recommendationsFetchedSuccess,
   recommendationStartFetching
 } from "./recommedations.action";
+import {HttpErrorResponse} from "@angular/common/http";
 
 
 @Injectable()
@@ -27,7 +28,7 @@ export class RecommendationsEffects{
             map((value)=>{
               return recommendationsFetchedSuccess({products : value})
             }),
-            catchError(err => of(recommendationsError({error: err})))
+            catchError((err : HttpErrorResponse) => of(recommendationsError({error: err.error.message.toString()})))
           )
         })
       )

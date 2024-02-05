@@ -9,6 +9,7 @@ const RECOMMENDATIONS_FETCHING_SUCCESS = "[RECOMMENDATIONS] RECOMMENDATIONS_FETC
 
 const RECOMMENDATIONS_FETCHING_FAILURE="[RECOMMENDATIONS] RECOMMENDATIONS_FETCHING_FAILURE"
 
+const CLEAR_RECOMMENDATION_ERROR = "[RECOMMENDATIONS] CLEAR_RECOMMENDATION_ERROR"
 
 
 export const recommendationStartFetching=createAction(
@@ -26,3 +27,12 @@ export const recommendationsError=createAction(
   RECOMMENDATIONS_FETCHING_FAILURE,
   props<{error : string}>()
 )
+
+
+
+export const clearRecommendationError=createAction(
+  CLEAR_RECOMMENDATION_ERROR,
+  props<{error : string}>()
+)
+
+

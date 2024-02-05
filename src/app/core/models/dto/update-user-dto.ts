@@ -9,6 +9,7 @@ export interface UpdateUserDto{
   lastName : string;
   address : string;
   phoneNumber : string;
+  email : string
 
 
 }

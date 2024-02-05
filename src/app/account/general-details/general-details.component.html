@@ -2,6 +2,11 @@
   <p>Account details</p>
   <form [formGroup]="form" (ngSubmit)="onSubmit()">
     <div class="circular-input">
+      <label >EMAIL *</label>
+      <br>
+      <input type="text" formControlName="email" placeholder="FIRST NAME">
+    </div>
+    <div class="circular-input">
       <label >FIRST NAME *</label>
       <br>
       <input type="text" formControlName="firstName" placeholder="FIRST NAME">
