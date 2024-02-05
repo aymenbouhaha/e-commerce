@@ -44,24 +44,20 @@ export const cartReducer=createReducer(
     newPrevProductsRef.push({product : action.product, itemsNumber: action.itemsNumber})
     return{
       ...state,
-      products : newPrevProductsRef
+      products : newPrevProductsRef,
+      loading : false
     }
   }),
 
   on(CartActions.removeFromBasketSuccess,(state,action)=>{
-    const  prevProducts = [...state.products]
-    const newPrevProductsRef = prevProducts.map((ele)=>{
-      return {
-        ...ele
-      }
-    })
-    newPrevProductsRef.filter((ele)=>{
-      return ele.product.id==action.productId
-    })
+    const prevState = [...state.products]
+    const newState = prevState.filter(
+      (element)=>element.product.id! !=action.productId
+    )
     return{
       ...state,
       loading : false,
-      products : newPrevProductsRef
+      products : newState
     }
   }),
 
@@ -75,11 +71,13 @@ export const cartReducer=createReducer(
   on(CartActions.startAddToBasket,(state)=>{
     return{
       ...state,
+      loading : true
     }
   }),
   on(CartActions.basketError,(state,action)=>{
     return{
       ...state,
+      loading : false,
       error : action.error,
     }
   }),

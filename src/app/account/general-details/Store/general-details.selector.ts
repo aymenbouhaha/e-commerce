@@ -17,3 +17,8 @@ export const getLoadingState = createSelector(
   userFeatureState,
   (state)=>state.loading
 )
+
+export const getFullName = createSelector(
+  userFeatureState,
+  (state)=>state.user?.firstName +" "+ state.user?.lastName
+)

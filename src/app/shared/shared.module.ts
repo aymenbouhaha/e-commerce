@@ -24,6 +24,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {SubtotalPipe} from "./pipes/subtotal.pipe";
 import {TotalPipe} from "./pipes/total.pipe";
+import {MapPipe} from "./pipes/map.pipe";
 
 @NgModule({
   declarations: [
@@ -39,6 +40,7 @@ import {TotalPipe} from "./pipes/total.pipe";
     ImagePipe,
     SubtotalPipe,
     TotalPipe,
+    MapPipe
   ],
   imports: [
     CommonModule,
@@ -72,6 +74,7 @@ import {TotalPipe} from "./pipes/total.pipe";
     ReactiveFormsModule,
     SubtotalPipe,
     TotalPipe,
+    MapPipe,
   ],
 })
 export class SharedModule {}
