@@ -6,4 +6,5 @@ export interface BasketProduct {
   product: Product;
 
   itemsNumber: number;
+
 }
