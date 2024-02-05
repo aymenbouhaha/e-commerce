@@ -32,16 +32,16 @@
           <p class="orderItem">Price</p>
           <p class="orderItem">Subtotal</p>
         </div>
-        <div class="productDetails" *ngFor="let cart of basketProducts$ | async" >
+        <div class="productDetails" *ngFor="let cart of basketProducts" >
           <div class="productDetailsInternalStyling">
             <div>
-              <img class="checkoutImage" src="{{cart.product.images[0]}}">
+              <img class="checkoutImage" src="{{cart.product.images![0]!}}">
             </div>
             <div style="align-items: center;">
               <p class="productTitle">{{ cart.product.name }}</p>
               <div class="removeProduct">
                 <img src="assets/cancel.svg" class="removeIcon">
-                <button class="removeProductInside" (click)="removeProduct(cart.product.id)">Remove</button>
+                <button class="removeProductInside" (click)="removeProduct(cart.product.id!)">Remove</button>
               </div>
             </div>
           </div>
@@ -50,7 +50,7 @@
           </div>
           <div style="display: flex; align-items: center;padding-left: 360px;">
             <p>
-              {{ cart.product.price * cart.itemsNumber | currency }}
+              {{ cart.product.price! * cart.itemsNumber! | currency }}
             </p>
           </div>
         </div>
@@ -166,10 +166,10 @@
       </div>
        <div class="orderSummary" >
           <p class="orderSummaryTitle">Order summary</p>
-          <div class="productDetails checkoutProductDetails" *ngFor="let cart of basketProducts$ | async">
+          <div class="productDetails checkoutProductDetails" *ngFor="let cart of basketProducts">
             <div class="productDetailsInternalStyling">
               <div>
-                <img class="orderSummaryImage" src="{{cart.product.images[0]}}">
+                <img class="orderSummaryImage" src="{{cart.product.images![0]}}">
               </div>
               <div style="align-items: center;">
                   <p class="productTitle">{{cart.product.name}}</p>
@@ -236,5 +236,5 @@
   </div>
 </div>
 <app-loader  *ngIf="loading$| async"></app-loader>
-<app-loader  *ngIf="orderloading$| async"></app-loader>
+<app-loader  *ngIf="orderLoading$| async"></app-loader>
 
