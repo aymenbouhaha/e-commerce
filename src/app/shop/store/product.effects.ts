@@ -3,6 +3,7 @@ import { ProductRepositoryService } from '../../core/repositories/product-reposi
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import * as ProductActions from './product.actions';
 import { catchError, map, of, switchMap, tap } from 'rxjs';
+import {HttpErrorResponse} from "@angular/common/http";
 
 @Injectable()
 export class ProductEffects {
@@ -23,8 +24,8 @@ export class ProductEffects {
                 params: params.params,
               });
             }),
-            catchError((err) => {
-              return of(ProductActions.errorFetchingProducts({ error: err }));
+            catchError((err : HttpErrorResponse) => {
+              return of(ProductActions.errorFetchingProducts({ error: err.error.message.toString() }));
             })
           );
         })
@@ -41,8 +42,8 @@ export class ProductEffects {
             map((product) => {
               return ProductActions.fetchedProduct({ product: product });
             }),
-            catchError((err) => {
-              return of(ProductActions.errorFetchingProducts({ error: err }));
+            catchError((err : HttpErrorResponse) => {
+              return of(ProductActions.errorFetchingProducts({ error: err.error.message.toString() }));
             })
           );
         })

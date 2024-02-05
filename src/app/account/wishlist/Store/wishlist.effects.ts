@@ -1,39 +1,50 @@
-import {Actions, createEffect, ofType} from "@ngrx/effects";
-import {Delete, Init, Set} from "./wishlist.actions";
-import {map, of, switchMap, tap, withLatestFrom} from "rxjs";
-import {Store} from "@ngrx/store";
-import {Product} from "../../../core/models/base-models/product/product";
 import {Injectable} from "@angular/core";
-import {selectwishlist} from "./wishlist.selector";
+import {Actions, createEffect, ofType} from "@ngrx/effects";
+import {Store} from "@ngrx/store";
+import {WishlistState} from "./wishlist.reducer";
+import {addToWishlist, loadWishlist, removeFromWishlist, wishlistLoaded} from "./wishlist.actions";
+import {map, tap, withLatestFrom} from "rxjs";
+import {Product} from "../../../core/models/base-models/product/product";
+import {selectWishlist} from "./wishlist.selector";
+
+
 @Injectable()
 export class wishlistEffects{
 
-  loadwishList =createEffect(
-    () =>this.actions$.pipe(
-      ofType(Init) ,
-      switchMap(() =>{
-        const storedWishlist= localStorage.getItem('wishlist')
-        if(storedWishlist) {
-        const wishlist=JSON.parse(storedWishlist)
-        return of(Set({wishlist : wishlist}))
-        }
-        return this.store.select(selectwishlist).pipe(
-          map(wishlistFromStore => Set({ wishlist: wishlistFromStore }))
-        );
-        }
-      )
-    )
-  )
-  saveWishList =createEffect(
-() =>
-      this.actions$.pipe(
-        ofType(Delete),
-        withLatestFrom(this.store.select(selectwishlist)),
-        tap(([_,wishlist])=> {
-          localStorage.setItem('wishlist',JSON.stringify(wishlist) )
-          }     ) ,)
-   ,{dispatch : false}  )
-  constructor(private actions$: Actions ,private store :Store<{wishlist : Product[]}>) {
 
+  constructor(private actions : Actions,private store : Store<WishlistState>) {
   }
+
+  loadWishlist = createEffect(
+    ()=>{
+      return this.actions.pipe(
+        ofType(loadWishlist),
+        map(
+          ()=>{
+            const wishlistSer = localStorage.getItem("wishlist")
+            const wishlist : Product[] = wishlistSer ? JSON.parse(wishlistSer) : []
+            return wishlistLoaded({products : wishlist})
+          }
+        )
+      )
+    }
+  )
+
+  updateWishlist=createEffect(
+    ()=>{
+      return this.actions.pipe(
+        ofType(addToWishlist,removeFromWishlist),
+        withLatestFrom(this.store.select(selectWishlist)),
+        tap(
+          ([_,value])=>{
+            localStorage.setItem("wishlist",JSON.stringify(value))
+          }
+        )
+      )
+    },{dispatch : false}
+  )
+
+
+
+
 }

@@ -4,7 +4,7 @@ import { OrderRepositoryService } from 'src/app/core/repositories/order-reposito
 import { catchError, map, of, switchMap, tap } from 'rxjs';
 import * as OrderActions from './orders.action';
 import { Order } from 'src/app/core/models/base-models/order/order';
-import {ProductOrder} from "../../../core/models/dto/product-order";
+import {HttpErrorResponse} from "@angular/common/http";
 
 @Injectable()
 export class OrdersEffects {
@@ -23,12 +23,41 @@ export class OrdersEffects {
               return OrderActions.fetchedOrders({ orders: orders as Order[] });
             }),
             catchError((err) => {
-              return of(OrderActions.errorFetchingOrders({ error: err }));
+              return of(OrderActions.orderError({ error: err }));
             })
           );
         })
       ),
     { dispatch: true }
   );
+
+
+
+
+  makeOrder = createEffect(
+    () =>
+      this.action$.pipe(
+        ofType(OrderActions.makeOrder),
+        map((action)=>{
+          const products = action.products
+          return products.map(productItem => ({
+            id: productItem.product!.id!,
+            itemsNumber: productItem.itemsNumber
+          }))
+        }),
+        switchMap((value) => {
+          return this.orderRepository.makeOrder(value).pipe(
+            map((orders) => {
+              // TODO :: fix this
+              return OrderActions.fetchedOrders({ orders: orders as Order[] });
+            }),
+            catchError((err : HttpErrorResponse) => {
+              return of(OrderActions.orderError({ error: err.error.message.toString()}));
+            })
+          );
+        })
+      ),
+    { dispatch: true }
+  )
 
 }

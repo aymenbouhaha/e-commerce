@@ -1,9 +1,7 @@
 import {Product} from "../../core/models/base-models/product/product";
-import {createFeature, createFeatureSelector, createReducer, createSelector, on} from "@ngrx/store";
+import {createFeatureSelector, createReducer, createSelector, on} from "@ngrx/store";
 import * as CartActions from "./cart.actions"
-import {Basket, BasketProductInterface} from "../../core/models/base-models/basket/basket";
-import {BasketProduct} from "../../core/models/base-models/basket/basket-product";
-import * as ProductActions from "../../shop/store/product.actions";
+
 
 export interface BasketState{
   error : string | null
@@ -50,41 +48,30 @@ export const cartReducer=createReducer(
     }
   }),
 
-  on(CartActions.removeFromBasketStart,(state,action)=>{
+  on(CartActions.removeFromBasketSuccess,(state,action)=>{
     const  prevProducts = [...state.products]
     const newPrevProductsRef = prevProducts.map((ele)=>{
       return {
         ...ele
       }
     })
-
     newPrevProductsRef.filter((ele)=>{
       return ele.product.id==action.productId
     })
     return{
       ...state,
-      loading : true,
+      loading : false,
       products : newPrevProductsRef
     }
   }),
 
-  // on(CartActions.removeFromBasketStart,(state)=>{
-  //   return{
-  //     ...state,
-  //   }
-  // }),
-  //
-  on(CartActions.removeFromBasketSuccess, (state, { productId }) => {
-    const updatedProducts = state.products.filter(
-      (product) => product.product.id !== productId
-    );
-
-    return {
+  on(CartActions.removeFromBasketStart,(state)=>{
+    return{
       ...state,
-      loading: false,
-      products: updatedProducts,
-    };
+      loading : true
+    }
   }),
+
   on(CartActions.startAddToBasket,(state)=>{
     return{
       ...state,
@@ -96,6 +83,7 @@ export const cartReducer=createReducer(
       error : action.error,
     }
   }),
+
   on(CartActions.clearError,(state)=>{
     return{
       ...state,
@@ -106,6 +94,13 @@ export const cartReducer=createReducer(
 
 
 
+const cartFeature = createFeatureSelector<BasketState>("cart")
+
+
+export const getBasket = createSelector(
+  cartFeature,
+  (state)=>state.products
+)
 export const cartFeatureState = createFeatureSelector<BasketState>("cartReducer")
 
 

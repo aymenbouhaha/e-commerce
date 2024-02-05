@@ -1,18 +1,14 @@
   import { Category } from '../categroy';
 import { Discount } from '../discount';
 
-export class Product {
-  id?: number;
-  name?: string;
-  price?: number;
-  itemsNumber?: number;
-  description?: string;
-  category?: Category;
-  images? : string[];
-  discount?: Discount;
-  constructor(id : number , name: string , price : number) {
-    this.id=id ;
-    this.name=name ;
-    this.price= price
-  }
+export interface Product {
+  id : number | null;
+  name: string | null;
+  price: number | null;
+  itemsNumber: number | null;
+  description: string | null;
+  category: Category | null;
+  images : string[] | null;
+  discount: Discount | null;
+
 }

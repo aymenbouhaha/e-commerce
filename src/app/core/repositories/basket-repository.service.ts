@@ -13,7 +13,7 @@ export class BasketRepositoryService {
 
 
   addToBasket(productId: number,itemsNumber : number){
-    return this.httpClient.post<{userId : Product}>(
+    return this.httpClient.post<{product : Product}>(
       Endpoints.addToBasket,
       {
         id : productId,

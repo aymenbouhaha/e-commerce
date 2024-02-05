@@ -1,14 +1,13 @@
 import {Component, OnDestroy} from '@angular/core';
-import {Observable, Subscription} from "rxjs";
+import {Observable} from "rxjs";
 import {Product} from "../../core/models/base-models/product/product";
 import {Store} from "@ngrx/store";
 import {getProductsError, getProductsLoading, getSelectedProduct, ProductState} from "../store/product.reducer";
 import {ActivatedRoute} from "@angular/router";
 import {MatDialog} from "@angular/material/dialog";
 import * as ProductsAction from "../store/product.actions"
-import {DialogComponent} from "../../shared/components/dialog/dialog.component";
-import * as ProductsActions from "../store/product.actions";
 import {GenericComponent} from "../../shared/generic/generic.component";
+import {clearProductError} from "../store/product.actions";
 
 @Component({
   selector: 'app-product-details',
@@ -23,7 +22,7 @@ export class ProductDetailsComponent extends GenericComponent implements OnDestr
 
 
   constructor(private store : Store<ProductState>,private activatedRoute : ActivatedRoute,private dialog : MatDialog){
-    super(store.select(getProductsError),store,dialog)
+    super(store.select(getProductsError),store,dialog,clearProductError)
     this.activatedRoute.params.subscribe(
       (params)=>{
         console.log(params)

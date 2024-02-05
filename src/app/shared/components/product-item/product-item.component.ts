@@ -4,6 +4,7 @@ import {Router} from "@angular/router";
 import {Store} from "@ngrx/store";
 import {BasketState} from "../../../cart/store/cart.reducer";
 import {startAddToBasket} from "../../../cart/store/cart.actions";
+import {addToWishlist} from "../../../account/wishlist/Store/wishlist.actions";
 
 @Component({
   selector: 'app-product-item',
@@ -16,7 +17,7 @@ export class ProductItemComponent {
   @Input() product! : Product
 
 
-  constructor(private router: Router,private store : Store<BasketState>) {
+  constructor(private router: Router,private store : Store) {
   }
 
   onClick(){
@@ -25,5 +26,10 @@ export class ProductItemComponent {
 
   onAddToCart() {
     this.store.dispatch(startAddToBasket({productId: this.product,itemsNumber : 1}))
+  }
+
+  onAddToWishlist(){
+    console.log("Wishlist Clicked")
+    this.store.dispatch(addToWishlist({product : this.product}))
   }
 }

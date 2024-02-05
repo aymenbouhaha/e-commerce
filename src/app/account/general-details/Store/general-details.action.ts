@@ -38,6 +38,6 @@ export const updateUserFail=createAction(
 
 )
 
-export const clearError=createAction(
+export const clearUserError=createAction(
   CLEAR_ERROR,
 )
