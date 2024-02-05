@@ -17,13 +17,11 @@ import {selectOrdersLoading} from "../account/orders/Store/orders.reducer";
 export class CartComponent extends GenericComponent{
   currentTab: string = 'Tab1';
 
-  basketProductsToOrder$: Observable<{ productId: number, itemsNumber: number }[]>;
-
-
-  basketProducts$: Observable< {
+  basketProductsToOrder$: { id: number, itemsNumber: number }[];
+  basketProducts: {
     product : Product
     itemsNumber : number
-  }[]>
+  }[]
   loading$ : Observable<boolean>
   orderloading$ : Observable<boolean>
 
@@ -31,15 +29,14 @@ export class CartComponent extends GenericComponent{
     super(store.select(getBasketError),store,dialog)
     this.loading$=this.store.select(getBasketLoading);
     this.orderloading$=this.store.select(selectOrdersLoading);
-    this.basketProducts$ = this.store.select(getBasketProducts);
-
-    this.basketProductsToOrder$ = this.basketProducts$.pipe(
-      map(basketProducts =>
-        basketProducts.map(productItem => ({
-          productId: productItem.product.id,
+    this.store.select(getBasketProducts).subscribe(
+      (value => {
+          this.basketProducts=value
+        this.basketProductsToOrder$=this.basketProducts.map(productItem => ({
+          id: productItem.product.id!,
           itemsNumber: productItem.itemsNumber
         }))
-      )
+      })
     );
   }
 
@@ -52,6 +49,7 @@ export class CartComponent extends GenericComponent{
   }
 
   addOrder(){
-    // this.store.dispatch(createOrder(this.basketProductsToOrder$));
+
+    // this.store.dispatch(createOrder({products :this.basketProductsToOrder$ }));
   }
 }
