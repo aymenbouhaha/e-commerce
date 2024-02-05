@@ -3,7 +3,6 @@ import {Actions, createEffect, ofType} from "@ngrx/effects";
 import * as CartActions from "./cart.actions"
 import {catchError, map, of, switchMap, tap, withLatestFrom} from "rxjs";
 import {BasketRepositoryService} from "../../core/repositories/basket-repository.service";
-import * as GeneralDetailsActions from "../../account/general-details/Store/general-details.action";
 import {HttpErrorResponse} from "@angular/common/http";
 import {BasketState, getBasket} from "./cart.reducer";
 import {Store} from "@ngrx/store";
@@ -27,8 +26,8 @@ export class CartEffects{
       ofType(CartActions.startAddToBasket),
       switchMap((action)=>{
         return this.cartRepository.addToBasket(action.productId.id!,action.itemsNumber).pipe(
-          map((value)=>{
-            return CartActions.addToBasketSuccess({product : value.product,itemsNumber : value.itemsNumber})
+          map(()=>{
+            return CartActions.addToBasketSuccess({product : action.productId , itemsNumber : action.itemsNumber})
           }),
           catchError(
             (er : HttpErrorResponse)=>{
