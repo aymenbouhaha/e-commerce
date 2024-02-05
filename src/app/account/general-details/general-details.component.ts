@@ -1,9 +1,8 @@
-import {Component, OnInit} from '@angular/core';
+import {Component} from '@angular/core';
 import {FormControl, FormGroup} from "@angular/forms";
 import {User} from "../../core/models/base-models/user";
 import {Store} from "@ngrx/store";
 import {getLoadingState, getUserError, selectUser} from "./Store/general-details.selector";
-import {HttpClient} from "@angular/common/http";
 import * as GeneralDetailsAction from "./Store/general-details.action"
 import {GenericComponent} from "../../shared/generic/generic.component";
 import {MatDialog} from "@angular/material/dialog";

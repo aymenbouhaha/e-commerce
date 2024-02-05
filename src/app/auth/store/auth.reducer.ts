@@ -70,15 +70,15 @@ export const authReducer = createReducer(
       error: null,
       token: null,
     };
-  })
-);
+  }),
+)
 const authFeatureState = createFeatureSelector<AuthState>('auth');
 
-export const getSignupError = createSelector(
+export const getAuthenticationError = createSelector(
   authFeatureState,
   (state: AuthState) => state.error
 );
-export const getSigninError = createSelector(
+export const getSigningError = createSelector(
   authFeatureState,
   (state: AuthState) => state.error
 );

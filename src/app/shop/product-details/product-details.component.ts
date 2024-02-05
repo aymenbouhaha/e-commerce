@@ -1,13 +1,11 @@
 import {Component, OnDestroy} from '@angular/core';
-import {Observable, Subscription} from "rxjs";
+import {Observable} from "rxjs";
 import {Product} from "../../core/models/base-models/product/product";
 import {Store} from "@ngrx/store";
 import {getProductsError, getProductsLoading, getSelectedProduct, ProductState} from "../store/product.reducer";
 import {ActivatedRoute} from "@angular/router";
 import {MatDialog} from "@angular/material/dialog";
 import * as ProductsAction from "../store/product.actions"
-import {DialogComponent} from "../../shared/components/dialog/dialog.component";
-import * as ProductsActions from "../store/product.actions";
 import {GenericComponent} from "../../shared/generic/generic.component";
 
 @Component({

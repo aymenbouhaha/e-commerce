@@ -16,6 +16,8 @@ const SIGN_UP_SUCCESS = "[AUTH] SIGN_UP_SUCCESS"
 
 const LOGOUT = "[AUTH] LOGOUT"
 
+const AUTO_LOGIN = "[AUTH] AUTO_LOGIN"
+
 
 
 export const signInStarted =createAction(
@@ -42,3 +44,6 @@ export const authenticationFailed = createAction(
 )
 
 export const logout = createAction(LOGOUT)
+
+export const autoLogin = createAction(AUTO_LOGIN)
+

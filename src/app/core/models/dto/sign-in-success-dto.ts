@@ -2,7 +2,6 @@ import {Basket} from "../base-models/basket/basket";
 
 export interface SignInSuccessDto{
 
-  id : number,
 
   firstName : string ,
 

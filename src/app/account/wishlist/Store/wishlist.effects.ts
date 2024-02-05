@@ -4,11 +4,11 @@ import {map, of, switchMap, tap, withLatestFrom} from "rxjs";
 import {Store} from "@ngrx/store";
 import {Product} from "../../../core/models/base-models/product/product";
 import {Injectable} from "@angular/core";
-import {selectwishlist} from "./wishlist.selector";
+import {selectWishlist} from "./wishlist.selector";
 @Injectable()
 export class wishlistEffects{
 
-  loadwishList =createEffect(
+  loadWishlist =createEffect(
     () =>this.actions$.pipe(
       ofType(Init) ,
       switchMap(() =>{
@@ -17,18 +17,20 @@ export class wishlistEffects{
         const wishlist=JSON.parse(storedWishlist)
         return of(Set({wishlist : wishlist}))
         }
-        return this.store.select(selectwishlist).pipe(
+        return this.store.select(selectWishlist).pipe(
           map(wishlistFromStore => Set({ wishlist: wishlistFromStore }))
         );
         }
       )
     )
   )
+
+
   saveWishList =createEffect(
 () =>
       this.actions$.pipe(
         ofType(Delete),
-        withLatestFrom(this.store.select(selectwishlist)),
+        withLatestFrom(this.store.select(selectWishlist)),
         tap(([_,wishlist])=> {
           localStorage.setItem('wishlist',JSON.stringify(wishlist) )
           }     ) ,)

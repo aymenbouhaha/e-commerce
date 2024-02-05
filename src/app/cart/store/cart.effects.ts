@@ -1,8 +1,10 @@
 import {Injectable} from "@angular/core";
 import {Actions, createEffect, ofType} from "@ngrx/effects";
 import * as CartActions from "./cart.actions"
-import {catchError, map, of, switchMap} from "rxjs";
+import {catchError, map, of, switchMap, tap} from "rxjs";
 import {BasketRepositoryService} from "../../core/repositories/basket-repository.service";
+import * as GeneralDetailsActions from "../../account/general-details/Store/general-details.action";
+import {HttpErrorResponse} from "@angular/common/http";
 
 
 @Injectable()
@@ -23,8 +25,8 @@ export class CartEffects{
             return CartActions.addToBasketSuccess({product : value.product,itemsNumber : value.itemsNumber})
           }),
           catchError(
-            (er)=>{
-              return of(CartActions.basketError(er))
+            (er : HttpErrorResponse)=>{
+              return of(CartActions.basketError({error : er.error.message.toString()}))
             }
           )
         )
@@ -42,8 +44,8 @@ export class CartEffects{
             return CartActions.removeFromBasketSuccess({productId : action.productId})
           }),
           catchError(
-            (er)=>{
-              return of(CartActions.basketError(er))
+            (er : HttpErrorResponse)=>{
+              return of(CartActions.basketError({error : er.error.message.toString()}))
             }
           )
         )
@@ -52,6 +54,14 @@ export class CartEffects{
   },{dispatch : true})
 
 
+  storeBasketToLocalStorage = createEffect(()=>{
+    return this.actions$.pipe(
+      ofType(CartActions.setBasket),
+      tap(value => {
+        localStorage.setItem("basket",JSON.stringify(value.basket))
+      })
+    )
+  },{dispatch : false})
 
 
 
