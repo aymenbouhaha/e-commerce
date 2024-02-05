@@ -26,7 +26,6 @@ export class RecommendationsComponent extends GenericComponent implements OnDest
   loading$ : Observable<boolean>
 
 
-
   constructor(private store : Store<RecommendationsState>,private router : Router,private dialog : MatDialog) {
     super(store.select(getRecommendationsError),store,dialog,clearRecommendationError)
     this.store.dispatch(recommendationStartFetching({category: this.category}))

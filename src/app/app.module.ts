@@ -23,7 +23,6 @@ import {GeneralDetailsEffect} from "./account/general-details/Store/general-deta
 import {AuthInterceptor} from "./auth/auth.interceptor";
 import { wishlistReducer} from "./account/wishlist/Store/wishlist.reducer";
 import {NgxStripeModule} from "ngx-stripe";
-import {FormsModule} from "@angular/forms";
 import {environment} from "./cart/environment";
 
 @NgModule({
