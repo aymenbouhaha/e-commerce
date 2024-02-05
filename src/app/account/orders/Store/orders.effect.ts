@@ -4,6 +4,7 @@ import { OrderRepositoryService } from 'src/app/core/repositories/order-reposito
 import { catchError, map, of, switchMap, tap } from 'rxjs';
 import * as OrderActions from './orders.action';
 import { Order } from 'src/app/core/models/base-models/order/order';
+import {ProductOrder} from "../../../core/models/dto/product-order";
 
 @Injectable()
 export class OrdersEffects {
@@ -29,4 +30,5 @@ export class OrdersEffects {
       ),
     { dispatch: true }
   );
+
 }

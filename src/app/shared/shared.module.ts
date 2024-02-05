@@ -22,6 +22,8 @@ import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import {SubtotalPipe} from "./pipes/subtotal.pipe";
+import {TotalPipe} from "./pipes/total.pipe";
 
 @NgModule({
   declarations: [
@@ -35,6 +37,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     DialogComponent,
     PricePipe,
     ImagePipe,
+    SubtotalPipe,
+    TotalPipe,
   ],
   imports: [
     CommonModule,
@@ -66,6 +70,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     MatCheckboxModule,
     FormsModule,
     ReactiveFormsModule,
+    SubtotalPipe,
+    TotalPipe,
   ],
 })
 export class SharedModule {}

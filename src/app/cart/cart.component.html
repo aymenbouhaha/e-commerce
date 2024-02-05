@@ -10,17 +10,17 @@
     <div class="tab">
       <div class="tabcontent">
         <div class="tabNumber">1</div>
-        <button class="tablinks" (click)="openTab('Tab1')">Shopping cart</button>
+        <button class="tablinks">Shopping cart</button>
       </div>
 
       <div class="tabLastingContent">
         <div class="tabNumber">2</div>
-      <button class="tablinks" (click)="openTab('Tab2')">Checkout details</button>
+      <button class="tablinks">Checkout details</button>
       </div>
 
       <div class="tabLastingContent">
         <div class="tabNumber">3</div>
-      <button class="tablinks" (click)="openTab('Tab3')">Order complete</button>
+      <button class="tablinks" >Order complete</button>
       </div>
     </div>
 
@@ -32,7 +32,7 @@
           <p class="orderItem">Price</p>
           <p class="orderItem">Subtotal</p>
         </div>
-        <div class="productDetails" *ngFor="let cart of basketProducts$ | async" >
+        <div class="productDetails" *ngFor="let cart of basketProducts$ " >
           <div class="productDetailsInternalStyling">
             <div>
               <img class="checkoutImage" src="{{cart.product.images[0]}}">
@@ -60,28 +60,37 @@
         <p style="font-size: 25px;">Cart summary</p>
         <div class="shipping">
           <div class="radioButton">
-          <input type="radio" id="FS"  name="drone" value="Free shipping" checked />
+          <input type="radio" id="FS"  name="drone" value="Free shipping" checked [(ngModel)]="selectedShipping"/>
           <label for="FS" style="font-size: 18px;">Free shipping</label>
         </div>
           <p style="margin-left: auto;">$0.00</p>
         </div>
         <div class="expShipping">
           <div class="radioButton">
-            <input type="radio" id="ES" name="drone" value="Express shipping" checked />
+            <input type="radio" id="ES" name="drone" value="Express shipping" [(ngModel)]="selectedShipping" />
             <label for="ES" style="font-size: 18px;">Express shipping</label>
           </div>
           <p style="margin-left: auto;">+$15.00</p>
         </div>
         <div class="cartSubtotal">
           <p style="font-size: 18px;">Subtotal</p>
-          <p style="margin-left: auto;">$1234.00</p>
+          <p style="margin-left: auto;">
+            ${{
+            basketProducts
+              | map: 'product.price * itemsNumber'
+              | subtotal
+            }}</p>
         </div>
         <div class="cartTotal">
           <p  style="font-size: 18px;font-weight: bold">Total</p>
-          <p style="margin-left: auto;">$1234.00</p>
-        </div>
+          <p style="margin-left: auto;" *ngIf="selectedShipping === 'Express shipping'">
+            ${{ (basketProducts | map: 'product.price * itemsNumber' | subtotal | total: expressShippingCost) }}
+          </p>
+          <p style="margin-left: auto;" *ngIf="selectedShipping !== 'Express shipping'">
+            ${{ (basketProducts | map: 'product.price * itemsNumber' | subtotal)  }}
+          </p>        </div>
         <div style="display: flex;justify-content: center;">
-          <button class="checkoutButton">Checkout</button>
+          <button class="checkoutButton" (click)="openTab('Tab2')">Checkout</button>
         </div>
       </div>
       </div>
@@ -161,12 +170,12 @@
           </div>
         </div>
         <div style="display: flex;justify-content: center;">
-          <button class="placeOrderButton" (click)="addOrder()" )>Place Order</button>
+          <button class="placeOrderButton" (click)="addOrder(); openTab('Tab3')" )>Place Order</button>
         </div>
       </div>
        <div class="orderSummary" >
           <p class="orderSummaryTitle">Order summary</p>
-          <div class="productDetails checkoutProductDetails" *ngFor="let cart of basketProducts$ | async">
+          <div class="productDetails checkoutProductDetails" *ngFor="let cart of basketProducts$">
             <div class="productDetailsInternalStyling">
               <div>
                 <img class="orderSummaryImage" src="{{cart.product.images[0]}}">
@@ -184,15 +193,26 @@
 
          <div class="orderSummaryDetails">
             <p>Shipping</p>
-            <p class="orderSummaryAmounts">Free</p>
-          </div>
+           <p class="orderSummaryAmounts" *ngIf="selectedShipping === 'Express shipping'">
+             +${{ expressShippingCost }
+           </p>
+           <p class="orderSummaryAmounts" *ngIf="selectedShipping !== 'Express shipping'">
+             Free
+           </p>
+         </div>
           <div class="orderSummaryDetails">
             <p>Subtotal</p>
-            <p class="orderSummaryAmounts">$1234.00</p>
+            <p class="orderSummaryAmounts">    ${{ (basketProducts | map: 'product.price * itemsNumber' | subtotal) }}
+            </p>
           </div>
           <div class="orderSummaryTotal">
             <p style="font-weight: 500">Total</p>
-            <p class="orderSummaryAmounts">$1234.00</p>
+            <p class="orderSummaryAmounts" *ngIf="selectedShipping === 'Express shipping'">
+              ${{ (basketProducts | map: 'product.price * itemsNumber' | subtotal | total: expressShippingCost)  }}
+            </p>
+            <p class="orderSummaryAmounts" *ngIf="selectedShipping !== 'Express shipping'">
+              ${{ (basketProducts | map: 'product.price * itemsNumber' | subtotal) }}
+            </p>
           </div>
         </div>
 
@@ -203,22 +223,24 @@
       <p class="thankingWord">Thank you! 🎉</p>
         <p style="margin: 10px;font-weight: 600;font-size: 35px">Your Order has been received</p>
         <div style="display: flex;flex-direction: row;margin: 20px; gap:35px">
-          <img src="assets/pic1.jpg" style="width: 150px;">
-          <img src="assets/pic2.jpg" style="width: 150px;">
-          <img src="assets/pic3.jpg" style="width: 150px;">
+          <div *ngFor="let cart of basketProducts$">
+            <img src="{{cart.product.images[0]}}" style="width: 150px;">
+          </div>
+
         </div>
         <div class="validationResume">
-          <div class="validationDetailsItems">
-            <p class="validationDetails">Order Code</p>
-            <p class="validationDetailsItemsValues">#0123_45678</p>
-          </div>
           <div class="validationDetailsItems">
             <p class="validationDetails">Date:</p>
             <p class="validationDetailsItemsValues">October 19, 2023</p>
           </div>
           <div class="validationDetailsItems">
             <p class="validationDetails">Total:</p>
-            <p class="validationDetailsItemsValues">$1,345.00</p>
+            <p class="validationDetailsItemsValues" *ngIf="selectedShipping === 'Express shipping'">
+              ${{ (basketProducts | map: 'product.price * itemsNumber' | subtotal | total: expressShippingCost)  }}
+            </p>
+            <p class="validationDetailsItemsValues" *ngIf="selectedShipping !== 'Express shipping'">
+              ${{ (basketProducts | map: 'product.price * itemsNumber' | subtotal) }}
+            </p>
           </div>
           <div class="validationDetailsItems">
             <p class="validationDetails">Payment method:</p>
