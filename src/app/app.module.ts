@@ -16,12 +16,12 @@ import {cartReducer} from "./cart/store/cart.reducer";
 import {CartEffects} from "./cart/store/cart.effects";
 import {recommendationsReducer} from "./shop/product-details/recommendations/store/recommendations.reducer";
 import {RecommendationsEffects} from "./shop/product-details/recommendations/store/recommendations.effects";
-import {wishlistReducer} from "./account/wishlist/Store/wishlist.reducer";
 import {wishlistEffects} from "./account/wishlist/Store/wishlist.effects";
 import {userReducer} from "./account/general-details/Store/general-details.reducer";
 import {ordersReducer} from "./account/orders/Store/orders.reducer";
 import {GeneralDetailsEffect} from "./account/general-details/Store/general-details.effect";
 import {AuthInterceptor} from "./auth/auth.interceptor";
+import { wishlistReducer} from "./account/wishlist/Store/wishlist.reducer";
 
 @NgModule({
   declarations: [

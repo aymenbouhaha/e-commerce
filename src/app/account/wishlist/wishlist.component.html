@@ -11,8 +11,8 @@
     <tbody>
     <tr *ngFor="let product of (wishList$ | async)">
       <td>
-        <img (click)="deleteFromWishlist(product)" src="assets/cancel.svg" class="cancel-icon">
-        <img src="assets/sofa.png" class="product-image">
+        <img  src="assets/cancel.svg" class="cancel-icon" (click)="removeFromWishlist(product.id!)">
+        <img src="{{product.images![0]}}" class="product-image">
         <div class="product-name" >
           {{product.name}}
         </div>
@@ -22,7 +22,6 @@
         <button type="button" class="add-to-cart-button">Add to card</button>
       </td>
     </tr>
-    <!-- Add more rows as needed -->
     </tbody>
   </table>
 </div>

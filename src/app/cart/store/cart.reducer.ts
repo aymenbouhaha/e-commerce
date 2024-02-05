@@ -1,5 +1,5 @@
 import {Product} from "../../core/models/base-models/product/product";
-import {createReducer, on} from "@ngrx/store";
+import {createFeatureSelector, createReducer, createSelector, on} from "@ngrx/store";
 import * as CartActions from "./cart.actions"
 
 export interface BasketState{
@@ -87,6 +87,13 @@ export const cartReducer=createReducer(
 
 
 
+const cartFeature = createFeatureSelector<BasketState>("cart")
+
+
+export const getBasket = createSelector(
+  cartFeature,
+  (state)=>state.products
+)
 
 
 

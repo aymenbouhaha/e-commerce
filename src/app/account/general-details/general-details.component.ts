@@ -28,6 +28,7 @@ export class GeneralDetailsComponent extends GenericComponent{
       lastName : new FormControl(),
       address : new FormControl(),
       phoneNumber : new FormControl(),
+      email : new FormControl()
     })
     this.loading$=this.store.select(getLoadingState)
     this.store.select(selectUser).subscribe(
@@ -37,6 +38,7 @@ export class GeneralDetailsComponent extends GenericComponent{
           lastName : data?.lastName,
           address : data?.address,
           phoneNumber : data?.phoneNumber,
+          email : data?.email
         })
       }
     )
@@ -49,7 +51,8 @@ export class GeneralDetailsComponent extends GenericComponent{
         firstName: this.form.get("firstName")!.value,
         lastName :this.form.get("lastName")!.value,
         address : this.form.get("address")!.value,
-        phoneNumber :this.form.get("phoneNumber")!.value
+        phoneNumber :this.form.get("phoneNumber")!.value,
+        email : this.form.get("email")!.value,
       }
     }))
   }

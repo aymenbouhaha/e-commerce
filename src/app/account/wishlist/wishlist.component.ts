@@ -2,8 +2,8 @@ import {Component, OnInit} from '@angular/core';
 import {Product} from "../../core/models/base-models/product/product";
 import {Store} from "@ngrx/store";
 import {Observable} from "rxjs";
-import {Delete, Init, Set} from "./Store/wishlist.actions";
 import {selectWishlist} from "./Store/wishlist.selector";
+import {loadWishlist, removeFromWishlist} from "./Store/wishlist.actions";
 
 
 @Component({
@@ -19,14 +19,12 @@ export class WishlistComponent implements OnInit{
   this.wishList$ = this.store.select(selectWishlist)
   }
   ngOnInit() {
-     this.store.dispatch(Init());
+    this.store.dispatch(loadWishlist())
   }
-  deleteFromWishlist(product : Product )
-  {
-    if(product.id !== undefined)
-    {
-    this.store.dispatch(Delete({productId : product.id }))
-    }
+
+
+  removeFromWishlist(id : number){
+    this.store.dispatch(removeFromWishlist({id : id}))
   }
 
 

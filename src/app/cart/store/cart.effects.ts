@@ -1,10 +1,14 @@
 import {Injectable} from "@angular/core";
 import {Actions, createEffect, ofType} from "@ngrx/effects";
 import * as CartActions from "./cart.actions"
-import {catchError, map, of, switchMap, tap} from "rxjs";
+import {catchError, map, of, switchMap, tap, withLatestFrom} from "rxjs";
 import {BasketRepositoryService} from "../../core/repositories/basket-repository.service";
 import * as GeneralDetailsActions from "../../account/general-details/Store/general-details.action";
 import {HttpErrorResponse} from "@angular/common/http";
+import {BasketState, getBasket} from "./cart.reducer";
+import {Store} from "@ngrx/store";
+import {Basket} from "../../core/models/base-models/basket/basket";
+import {BasketProduct} from "../../core/models/base-models/basket/basket-product";
 
 
 @Injectable()
@@ -12,7 +16,9 @@ export class CartEffects{
 
 
 
-  constructor(private actions$ : Actions,private cartRepository : BasketRepositoryService) {
+  constructor(
+    private actions$ : Actions,private cartRepository : BasketRepositoryService,
+    private store : Store<BasketState>) {
   }
 
 
@@ -64,5 +70,28 @@ export class CartEffects{
   },{dispatch : false})
 
 
+  updateBasketSuccess = createEffect(()=>{
+    return this.actions$.pipe(
+      ofType(CartActions.removeFromBasketSuccess,CartActions.addToBasketSuccess),
+      withLatestFrom(this.store.select(getBasket)),
+      tap(([_,value]) => {
+        const preBasketSerialized = localStorage.getItem("basket")
+        const prevBasket : Basket= JSON.parse(preBasketSerialized!)
+        const newProducts : BasketProduct[]= value.map(
+          (elem)=>{
+            return{
+              itemsNumber : elem.itemsNumber,
+              product : elem.product
+            }
+          }
+        )
+        const newBasket : Basket = {
+          id : prevBasket.id,
+          basketProduct : newProducts
+        }
+        localStorage.setItem("basket",JSON.stringify(newBasket))
+      })
+    )
+  },{dispatch : false})
 
 }
