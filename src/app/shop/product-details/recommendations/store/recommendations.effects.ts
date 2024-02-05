@@ -26,6 +26,7 @@ export class RecommendationsEffects{
             {category : value.category,page : null}
           ).pipe(
             map((value)=>{
+              console.log("Reccommendation",value)
               return recommendationsFetchedSuccess({products : value})
             }),
             catchError((err : HttpErrorResponse) => of(recommendationsError({error: err.error.message.toString()})))

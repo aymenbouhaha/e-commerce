@@ -7,18 +7,20 @@
             <img src="assets/heart_white.svg">
         </div>
     </div>
-    <div class="hero-img">
+    <div (click)="onClick()" style="cursor: pointer">
+      <div class="hero-img">
         <img src="{{product.images ? product.images[0] : null  | image}}">
-    </div>
-    <div class="name">{{product.name}}</div>
-    <div class="price" *ngIf="product.discount">
-      <div class="current-price">${{product.price! | price: product.discount.value!}}</div>
-      <div class="previous-price">${{product.price}}</div>
-    </div>
-    <div class="price" *ngIf="!product.discount">
-      <div class="current-price">${{product.price}}</div>
+      </div>
+      <div class="name">{{product.name}}</div>
+      <div class="price" *ngIf="product.discount">
+        <div class="current-price">${{product.price! | price: product.discount.value!}}</div>
+        <div class="previous-price">${{product.price}}</div>
+      </div>
+      <div class="price" *ngIf="!product.discount">
+        <div class="current-price">${{product.price}}</div>
+      </div>
     </div>
     <button class="button" (click)="onAddToCart()">
-        Add to cart
+    Add to cart
     </button>
 </div>

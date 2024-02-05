@@ -6,6 +6,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  margin-bottom: 16px;
 }
 
 .call-to-action .text{
@@ -29,4 +30,11 @@
 .call-to-action .action img{
   width: 15px;
   height: 15px;
+}
+
+
+.grid-list{
+  display: grid;
+  grid-template-columns: repeat(6, 3fr);
+  gap: 10px;
 }

@@ -1,6 +1,6 @@
 <div class="images">
     <div class="hero">
-        <img src="assets/pr1.png">
+        <img src="{{images[0]}}" class="prd-img">
         <div class="img-controller">
             <div class="previous-button controller" (click)="onPrevious()">
                 <img src="assets/arrow-left.svg">
@@ -11,8 +11,6 @@
         </div>
     </div>
     <div class="secondaries">
-        <img src="assets/pr1.png">
-        <img src="assets/pr1.png">
-        <img src="assets/pr1.png">
+      <img *ngFor="let image of images" src="{{image}}" class="prd-img">
     </div>
 </div>

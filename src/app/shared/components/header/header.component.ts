@@ -2,6 +2,9 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import * as authActions from '../../../auth/store/auth.actions';
+import {Observable} from "rxjs";
+import {getBasketItemNumber} from "../../../cart/store/cart.reducer";
+import {isSignedIn} from "../../../auth/store/auth.reducer";
 
 @Component({
   selector: 'app-header',
@@ -9,8 +12,13 @@ import * as authActions from '../../../auth/store/auth.actions';
   styleUrls: ['./header.component.css'],
 })
 export class HeaderComponent {
+
+  itemsNumber : Observable<number>
+  isAuthenticated : Observable<boolean>
+
   constructor(private store: Store, private router: Router) {
-    // this.store.dispatch(autoLogin())
+    this.itemsNumber=this.store.select(getBasketItemNumber)
+    this.isAuthenticated=this.store.select(isSignedIn)
   }
 
   onClick() {
