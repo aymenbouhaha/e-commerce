@@ -41,24 +41,32 @@ export const ordersReducer = createReducer(
       loading: false,
     };
   }),
-  on(OrderActions.makeOrderSuccess,(state,action)=>{
+  on(OrderActions.makeOrderSuccess, (state, action) => {
     return {
       ...state,
-      loading : false,
-      orders : [...state.orders,action.products]
-    }
+      loading: false,
+      orders: [...state.orders, action.products],
+    };
   }),
-  on(OrderActions.makeOrder,(state)=>{
+  on(OrderActions.makeOrder, (state) => {
     return {
       ...state,
-      loading : false,
-      error : null
-    }
+      loading: false,
+      error: null,
+    };
   }),
   on(OrderActions.clearOrderError, (state) => {
     return {
       ...state,
       error: null,
+    };
+  }),
+  on(OrderActions.clearState, (state) => {
+    return {
+      state: initialOrdersState,
+      error: null,
+      loading: false,
+      orders: [],
     };
   })
 );

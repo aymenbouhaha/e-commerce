@@ -10,7 +10,7 @@ export class Discount {
 
   value?: number;
 
-  product?: Product;
+  product!: Product;
 }
 
 export interface DiscountInterface {
