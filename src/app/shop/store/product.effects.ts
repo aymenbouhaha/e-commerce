@@ -38,8 +38,10 @@ export class ProductEffects {
       this.actions$.pipe(
         ofType(ProductActions.startFetchingProduct),
         switchMap((params) => {
+          console.log("from product effect",params.productId)
           return this.productsRepository.getProductById(params.productId).pipe(
             map((product) => {
+              console.log("product",product)
               return ProductActions.fetchedProduct({ product: product });
             }),
             catchError((err : HttpErrorResponse) => {

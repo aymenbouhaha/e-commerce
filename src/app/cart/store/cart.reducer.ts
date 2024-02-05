@@ -113,9 +113,10 @@ export const getBasketError = createSelector(cartFeatureState,(state)=>state.err
 export const getBasketLoading = createSelector(cartFeatureState, (state)=> state.loading)
 
 
-
-
-
+export const getBasketItemNumber = createSelector(
+  cartFeature,
+  (state)=>state.products.length
+)
 
 
 

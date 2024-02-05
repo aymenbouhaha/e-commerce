@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component, Input} from '@angular/core';
 
 @Component({
   selector: 'app-product-images',
@@ -6,6 +6,10 @@ import { Component } from '@angular/core';
   styleUrls: ['./product-images.component.css']
 })
 export class ProductImagesComponent {
+
+
+  @Input() images : string[] = []
+
 
   onPrevious() {
 

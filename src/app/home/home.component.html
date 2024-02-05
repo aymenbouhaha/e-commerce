@@ -8,7 +8,7 @@
     </div>
   </div>
   <div class="banner-grid">
-    <div class="elements-card cont">
+    <div class="elements-card cont" (click)="navigate('Living Room')" style="cursor: pointer">
       <div class="image-placeholder">
         <img class="paste-image" src="assets/paste-image0.png" />
       </div>
@@ -54,7 +54,7 @@
       </div>
     </div>
     <div class="small-cards cont">
-      <div class="elements-card2">
+      <div class="elements-card2" (click)="navigate('Bedroom')" style="cursor: pointer">
         <div class="image-placeholder">
           <img class="paste-image" src="assets/paste-image1.png" />
         </div>
@@ -97,7 +97,7 @@
           </div>
         </div>
       </div>
-      <div class="elements-card2">
+      <div class="elements-card2" (click)="navigate('Kitchen')" style="cursor: pointer">
         <div class="image-placeholder">
           <img class="paste-image" src="assets/paste-image2.png" />
         </div>
@@ -139,7 +139,7 @@
             </svg>
           </div>
         </div>
-      </div>
+      </div >
     </div>
   </div>
   <div class="values">

@@ -69,7 +69,7 @@ export const productReducer = createReducer(
       return {
         ...state,
         error : null,
-        loading : false,
+        loading : true,
       }
     }
   ),
@@ -80,7 +80,7 @@ export const productReducer = createReducer(
         ...state,
         error : null,
         loading : false,
-        product : action.product
+        selectedProduct : action.product
       }
     }
   ),

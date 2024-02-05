@@ -9,7 +9,7 @@
       <img src="assets/arrow-right.svg">
     </div>
   </div>
-  <div>
-    <app-product-item *ngFor="let product of (products$ | async)" [product]="product"></app-product-item>
+  <div class="grid-list">
+    <app-product-item *ngFor="let product of (products$ | async | slice:0:6 ) " [product]="product"></app-product-item>
   </div>
 </div>
