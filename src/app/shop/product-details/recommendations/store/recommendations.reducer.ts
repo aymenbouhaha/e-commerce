@@ -42,6 +42,7 @@ export const recommendationsReducer=createReducer(
     }
   }),
   on(recommendationsFetchedSuccess,(state,action)=>{
+    console.log(action.products)
     return{
       ...state ,
       loading : false,
