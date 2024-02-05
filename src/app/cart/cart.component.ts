@@ -30,7 +30,7 @@ export class CartComponent extends GenericComponent{
   loading$ : Observable<boolean>
   orderLoading$ : Observable<boolean>
 
-  constructor(private store: Store< BasketState >,private dialog: MatDialog) {
+  constructor(private store: Store< BasketState >,private dialog: MatDialog,private datePipe:DatePipe) {
     super(store.select(getBasketError),store,dialog,clearError)
     this.loading$=this.store.select(getBasketLoading);
     this.orderLoading$=this.store.select(selectOrdersLoading);
