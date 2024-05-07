@@ -1,6 +1,6 @@
 <div class="product" >
     <div class="absolut" >
-      <div class="discount" *ngIf="product.discount">-{{product.discount!.value! * 100}}%</div>
+      <div class="discount" *ngIf="product.discount">-{{product.discount!.value! }}%</div>
       <div class="discount" style="visibility: hidden" >-50%</div>
       <div style="width: 20px; visibility: hidden" >tests</div>
         <div class="wishlist-button" (click)="onAddToWishlist()">

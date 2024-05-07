@@ -5,7 +5,7 @@ import { catchError, map, of, switchMap } from 'rxjs';
 import * as DiscountActions from './discount.actions';
 
 @Injectable()
-export class discountEffects {
+export class DiscountEffects {
   constructor(
     private discountsRepository: DiscountRepositoryService,
     private actions$: Actions
