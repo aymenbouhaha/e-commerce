@@ -7,7 +7,7 @@ import {Pipe, PipeTransform} from '@angular/core';
 export class PricePipe implements PipeTransform {
 
   transform(value: number, percent : number): number {
-    return value * (1 - percent);
+    return +(value * (1 - percent/100)).toFixed(2);
   }
 
 }
